@@ -9,11 +9,12 @@ highlight YcmErrorSection   ctermfg=red    cterm=undercurl
 
 highlight Error      ctermbg=red    ctermfg=none    cterm=bold
 highlight Todo       ctermbg=green                  cterm=bold
-highlight Comment    ctermfg=green
+highlight Comment    ctermfg=green                  cterm=italic
 highlight Constant   ctermfg=magenta
 highlight Identifier ctermfg=cyan
 highlight PreProc    ctermfg=yellow
-highlight Special    ctermfg=yellow
+highlight Special    ctermfg=yellow                 cterm=bold
+highlight Delimiter  ctermfg=red
 highlight Statement  ctermfg=blue
 highlight Type       ctermfg=green
 

@@ -39,13 +39,18 @@ Plug 'Valloric/YouCompleteMe', {
             \}
 Plug 'rdnetto/YCM-Generator', { 'branch': 'develop' }
 Plug 'arakashic/chromatica.nvim', {
-            \   'do': 'UpdateRemotePlugins',
+            \   'do': ':UpdateRemotePlugins',
             \}
 " Rust
 Plug 'rust-lang/rust.vim'
 
 " Python
+" - autoformatting
 Plug 'mindriot101/vim-yapf'
+" - semantic highlighting
+Plug 'numirias/semshi', {
+            \   'do': ':UpdateRemotePlugins',
+            \}
 
 Plug 'rhysd/vim-grammarous'
 
@@ -83,5 +88,8 @@ Plug 'jvirtanen/vim-octave'
 " Plug 'eagletmt/neco-ghc'
 Plug 'parsonsmatt/intero-neovim'
 " Plug 'enomsg/vim-haskellConcealPlus'
+
+" pass
+Plug 'https://sanctum.geek.nz/code/vim-redact-pass.git'
 
 call plug#end()

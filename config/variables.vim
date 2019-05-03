@@ -1,9 +1,12 @@
+" VIM-PLUG
+let g:plug_shallow = 0 " work around --depth not working for https clones
+
 " VIMTEX "
 let g:tex_flavor='latex'
 let g:vimtex_compiler_progname='nvr'
 let g:vimtex_quickfix_enabled=1
 let g:vimtex_fold_enabled=1
-let g:vimtex_view_method='mupdf'
+let g:vimtex_view_method='zathura'
 
 " YOUCOMPLETEME "
 if !exists('g:ycm_semantic_triggers')
@@ -23,7 +26,7 @@ let g:ycm_extra_conf_globlist = [ '!~/usr/src/3ds/other/*', '~/usr/src/3ds/*' ]
 let g:chromatica#enable_at_startup = 1
 let g:chromatica#highlight_feature_level = 2
 let g:chromatica#search_source_args = 1
-let g:chromatica#global_args = ['-isystem/usr/lib/clang/7.0.1/include']
+let g:chromatica#global_args = ['-isystem/usr/lib/clang/8.0.0/include']
 
 " GOLDENVIEW "
 let g:goldenview__enable_default_mapping = 0

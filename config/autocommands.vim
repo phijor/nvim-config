@@ -38,11 +38,16 @@ if has("autocmd")
             autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
             autocmd InsertLeave * match ExtraWhitespace /\s\+$/
         augroup END
+        augroup Ghidra
+            autocmd BufNewFile,BufRead *.slaspec set filetype=slaspec
+            autocmd BufNewFile,BufRead *.sinc set filetype=slaspec
+            autocmd BufNewFile,BufRead *.cdefs set filetype=xml
+            autocmd BufNewFile,BufRead *.ldefs set filetype=xml
+            autocmd BufNewFile,BufRead *.pspec set filetype=xml
+        augroup END
         augroup CodeFormat
             autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :ClangFormat<CR>
             autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-            autocmd FileType rust nnoremap <buffer><Leader>cf :RustFmt<CR>
-            autocmd FileType rust vnoremap <buffer><Leader>cf :RustFmt<CR>
         augroup END
     endif
 endif
