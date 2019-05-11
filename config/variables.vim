@@ -80,3 +80,6 @@ let g:rainbow_conf = {
 let g:haddock_browser = 'chromium'
 
 " let hscoptions = "xhl"
+
+" RUST
+let g:rustfmt_autosave = 1
