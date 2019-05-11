@@ -23,13 +23,8 @@ nmap <F7> :make -j`nproc` release<Enter>
 " disable search-highlighting
 nnoremap <C-n> :noh<Enter>
 
-" exit terminal-mode
-tnoremap <Esc> <C-\><C-n>
-
-" exit to normal mode
-inoremap <C-e> <Esc>
-vnoremap <C-e> <Esc>
-tnoremap <C-e> <C-\><C-n>
+" double-escape to exit terminal-mode
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " open .nvimrc in split window
 nmap <leader>V :vs $MYVIMRC <Enter>
@@ -48,10 +43,6 @@ nmap <leader>vh :e $XDG_CONFIG_HOME/nvim/config/highlight.vim <Enter>
 nmap <leader>vo :e $XDG_CONFIG_HOME/nvim/config/options.vim <Enter>
 nmap <leader>vp :e $XDG_CONFIG_HOME/nvim/config/plugins.vim <Enter>
 nmap <leader>vv :e $XDG_CONFIG_HOME/nvim/config/variables.vim <Enter>
-
-" clang-format "
-" nnoremap <Leader>cf :ClangFormat<CR>
-" vnoremap <Leader>cf :ClangFormat<CR>
 
 " you-complete-me "
 nnoremap <Leader>yf :YcmCompleter FixIt<CR>
