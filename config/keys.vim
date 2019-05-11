@@ -11,7 +11,7 @@ vnoremap <Space> :
 vnoremap // y/<C-R>"<Enter>
 
 " Allow saving of files as sudo when you forgot to start vim using sudo
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! w suda://%
 
 " gnu-make shortcuts
 nmap <F3> :make clean<Enter>
