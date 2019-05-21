@@ -19,8 +19,8 @@ set undolevels=1000
 set textwidth=80
 set colorcolumn=+1
 set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=0        " use value of tabstop
+set softtabstop=-1      " use value of tabstop
 set expandtab
 set shiftround
 set clipboard+=unnamedplus
