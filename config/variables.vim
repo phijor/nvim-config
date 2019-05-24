@@ -22,6 +22,9 @@ let g:ycm_semantic_triggers.tex = [
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_extra_conf_globlist = [ '!~/usr/src/3ds/other/*', '~/usr/src/3ds/*' ]
 
+" PYTHON-BLACK
+let g:black_virtualenv = $XDG_CONFIG_HOME . '/nvim/bundle/black/venv'
+
 " CHROMATICA "
 let g:chromatica#enable_at_startup = 1
 let g:chromatica#highlight_feature_level = 2

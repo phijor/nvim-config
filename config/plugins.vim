@@ -46,7 +46,7 @@ Plug 'rust-lang/rust.vim'
 
 " Python
 " - autoformatting
-Plug 'mindriot101/vim-yapf'
+Plug 'python/black'
 " - semantic highlighting
 Plug 'numirias/semshi', {
             \   'do': ':UpdateRemotePlugins',

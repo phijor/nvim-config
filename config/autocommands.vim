@@ -48,6 +48,7 @@ if has("autocmd")
         augroup CodeFormat
             autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :ClangFormat<CR>
             autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+            autocmd BufWritePre *.py execute ':Black'
         augroup END
     endif
 endif
