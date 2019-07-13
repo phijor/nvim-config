@@ -1,6 +1,6 @@
 nnoremap <buffer><Leader>cf :RustFmt<CR>
 vnoremap <buffer><Leader>cf :RustFmtRange<CR>
 
-nnoremap <F4> :Neomake! cargo
+nnoremap <F4> :Neomake! cargo<CR>
 
 setlocal textwidth=100
