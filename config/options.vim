@@ -16,8 +16,8 @@ set visualbell
 set noerrorbells
 set history=50         " keep 50 lines of command line history
 set undolevels=1000
-set textwidth=80
-set colorcolumn=+1
+set textwidth=0
+set colorcolumn=81
 set tabstop=4
 set shiftwidth=0        " use value of tabstop
 set softtabstop=-1      " use value of tabstop
@@ -29,6 +29,11 @@ set splitbelow                  " split windows below the current window
 set wildmode=list:longest       " set zsh-like command autocomplete
 set wildmenu
 set fillchars+=vert:█
+set cmdheight=2
+set signcolumn=yes
+set shortmess+=c " don't give |ins-completion-menu| messages.
+
+set updatetime=300
 
 set guicursor=
 

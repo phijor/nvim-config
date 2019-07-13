@@ -52,24 +52,7 @@ nnoremap <leader>vo :e $XDG_CONFIG_HOME/nvim/config/options.vim <CR>
 nnoremap <leader>vp :e $XDG_CONFIG_HOME/nvim/config/plugins.vim <CR>
 nnoremap <leader>vv :e $XDG_CONFIG_HOME/nvim/config/variables.vim <CR>
 
-" you-complete-me "
-nnoremap <Leader>yf :YcmCompleter FixIt<CR>
-
-nnoremap <Leader>ygg :YcmCompleter GoTo<CR>
-nnoremap <Leader>ygi :YcmCompleter GoToInclude<CR>
-nnoremap <Leader>ygh :YcmCompleter GoToDeclaration<CR>
-nnoremap <Leader>ygc :YcmCompleter GoToDefinition<CR>
-
-nnoremap <Leader>yd :YcmCompleter GetDoc<CR>
-nnoremap <Leader>yt :YcmCompleter GetType<CR>
-
-nnoremap <Leader>yi :YcmDebugInfo<CR>
-nnoremap <Leader>yr :YcmRestartServer<CR>
-nnoremap <Leader>yl :YcmToggleLogs<CR>
-
-" use TAB to cycle pop-up menu
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+runtime config/coc/keys.vim
 
 " git "
 nnoremap <Leader>gb :Gblame<CR>

@@ -29,20 +29,19 @@ Plug 'Numkil/ag.nvim'
 " GLSL
 Plug 'tikhomirov/vim-glsl'
 
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
+
 " C/C++
-Plug 'vim-scripts/c.vim'
+" Plug 'vim-scripts/c.vim'
 Plug 'rhysd/vim-clang-format'
 
-Plug 'Valloric/YouCompleteMe', {
-            \   'do': 'python2 install.py --clang-completer --rust-completer --system-libclang --system-boost',
-            \   'for': [ 'c', 'cpp', 'haskell', 'python', 'tex', 'rust' ],
-            \}
-Plug 'rdnetto/YCM-Generator', { 'branch': 'develop' }
-Plug 'arakashic/chromatica.nvim', {
-            \   'do': ':UpdateRemotePlugins',
-            \}
+Plug 'm-pilia/vim-ccls'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+
 " Rust
 Plug 'rust-lang/rust.vim'
+Plug 'rust-analyzer/rust-analyzer'
 
 " Python
 " - autoformatting
