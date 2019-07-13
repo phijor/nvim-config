@@ -8,41 +8,49 @@ nnoremap <Space> :
 vnoremap <Space> :
 
 " search visual selection
-vnoremap // y/<C-R>"<Enter>
+vnoremap // y/<C-R>"<CR>
 
 " Allow saving of files as sudo when you forgot to start vim using sudo
-cmap w!! w suda://%
+cnoremap w!! w suda://%
 
 " gnu-make shortcuts
-nmap <F3> :make clean<Enter>
-nmap <F4> :make -j`nproc`<Enter>
-nmap <F5> :make -j`nproc` runhw<Enter>
-nmap <F6> :make -j`nproc` debug<Enter>
-nmap <F7> :make -j`nproc` release<Enter>
+noremap <F3> :make clean<CR>
+noremap <F4> :make -j`nproc`<CR>
+noremap <F5> :make -j`nproc` runhw<CR>
+noremap <F6> :make -j`nproc` debug<CR>
+noremap <F7> :make -j`nproc` release<CR>
 
 " disable search-highlighting
-nnoremap <C-n> :noh<Enter>
+nnoremap <C-n> :noh<CR>
+
+" navigate between buffers
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
+nnoremap <leader>bl :e#<CR>
+
+" toggle NERDTree
+nnoremap <leader>t :NERDTreeToggle<CR>
 
 " double-escape to exit terminal-mode
 tnoremap <Esc><Esc> <C-\><C-n>
 
 " open .nvimrc in split window
-nmap <leader>V :vs $MYVIMRC <Enter>
-nmap <leader>Va :vs $XDG_CONFIG_HOME/nvim/config/autocommands.vim <Enter>
-nmap <leader>Vk :vs $XDG_CONFIG_HOME/nvim/config/keys.vim <Enter>
-nmap <leader>Vh :vs $XDG_CONFIG_HOME/nvim/config/highlight.vim <Enter>
-nmap <leader>Vo :vs $XDG_CONFIG_HOME/nvim/config/options.vim <Enter>
-nmap <leader>Vp :vs $XDG_CONFIG_HOME/nvim/config/plugins.vim <Enter>
-nmap <leader>Vv :vs $XDG_CONFIG_HOME/nvim/config/variables.vim <Enter>
+nnoremap <leader>V :vs $MYVIMRC <CR>
+nnoremap <leader>Va :vs $XDG_CONFIG_HOME/nvim/config/autocommands.vim <CR>
+nnoremap <leader>Vk :vs $XDG_CONFIG_HOME/nvim/config/keys.vim <CR>
+nnoremap <leader>Vh :vs $XDG_CONFIG_HOME/nvim/config/highlight.vim <CR>
+nnoremap <leader>Vo :vs $XDG_CONFIG_HOME/nvim/config/options.vim <CR>
+nnoremap <leader>Vp :vs $XDG_CONFIG_HOME/nvim/config/plugins.vim <CR>
+nnoremap <leader>Vv :vs $XDG_CONFIG_HOME/nvim/config/variables.vim <CR>
 
 " open .nvimrc in current window
-nmap <leader>v :e $MYVIMRC <Enter>
-nmap <leader>va :e $XDG_CONFIG_HOME/nvim/config/autocommands.vim <Enter>
-nmap <leader>vk :e $XDG_CONFIG_HOME/nvim/config/keys.vim <Enter>
-nmap <leader>vh :e $XDG_CONFIG_HOME/nvim/config/highlight.vim <Enter>
-nmap <leader>vo :e $XDG_CONFIG_HOME/nvim/config/options.vim <Enter>
-nmap <leader>vp :e $XDG_CONFIG_HOME/nvim/config/plugins.vim <Enter>
-nmap <leader>vv :e $XDG_CONFIG_HOME/nvim/config/variables.vim <Enter>
+nnoremap <leader>v :e $MYVIMRC <CR>
+nnoremap <leader>va :e $XDG_CONFIG_HOME/nvim/config/autocommands.vim <CR>
+nnoremap <leader>vk :e $XDG_CONFIG_HOME/nvim/config/keys.vim <CR>
+nnoremap <leader>vh :e $XDG_CONFIG_HOME/nvim/config/highlight.vim <CR>
+nnoremap <leader>vo :e $XDG_CONFIG_HOME/nvim/config/options.vim <CR>
+nnoremap <leader>vp :e $XDG_CONFIG_HOME/nvim/config/plugins.vim <CR>
+nnoremap <leader>vv :e $XDG_CONFIG_HOME/nvim/config/variables.vim <CR>
 
 " you-complete-me "
 nnoremap <Leader>yf :YcmCompleter FixIt<CR>
