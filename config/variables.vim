@@ -8,6 +8,9 @@ let g:vimtex_quickfix_enabled=1
 let g:vimtex_fold_enabled=1
 let g:vimtex_view_method='zathura'
 
+" CLANG-FORMAT "
+let g:clang_format#auto_formatexpr=1
+
 " YOUCOMPLETEME "
 if !exists('g:ycm_semantic_triggers')
     let g:ycm_semantic_triggers = {}
