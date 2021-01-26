@@ -1,4 +1,33 @@
 {
+  "json.format.enable": true,
+  "yaml.format.enable": true,
+  "yaml.format.singleQuote": true,
+  "yaml.schemas": {
+    "https://github.com/asyncapi/asyncapi/raw/master/versions/2.0.0/schema.json": "*.asyncapi.yaml",
+    "http://json.schemastore.org/github-workflow": "/.github/workflow/*.yml",
+    "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": "docker-compose*.yml"
+  },
+  "diagnostic.level": "warning",
+  "diagnostic.enable": true,
+  "texlab.trace.server": "messages",
+  "latex.build.onSave": true,
+  "latex.forwardSearch.executable": "zathura",
+  "latex.forwardSearch.args": [
+    "--synctex-forward",
+    "%l:1:%f",
+    "%p"
+  ],
+  "python.formatting.provider": "black",
+  "python.linting.flake8Enabled": true,
+  "pyright.organizeimports.provider": "isort",
+  "git.enableGutters": true,
+  "rust-analyzer.inlayHints.chainingHintsSeparator": "→ ",
+  "rust-analyzer.inlayHints.typeHintsSeparator": "⊢ ",
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.lens.enable": true,
+  "rust-analyzer.lens.methodReferences": true,
+  "rust-analyzer.assist.importMergeBehavior": "last",
   "languageserver": {
     "ccls": {
       "command": "ccls",
@@ -11,27 +40,28 @@
       "rootPatterns": [
         ".ccls",
         "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
+        ".git/"
       ],
       "initializationOptions": {
         "cache": {
           "directory": "/tmp/ccls"
+        },
+        "highlight": {
+          "lsRanges": true
         }
       }
     },
-    "rust": {
-      "command": "ra_lsp_server",
+    "lean": {
+      "command": "lean-language-server",
+      "args": [
+        "--stdio"
+      ],
       "filetypes": [
-        "rust"
+        "lean"
       ],
       "rootPatterns": [
-        "Cargo.toml"
-      ],
-      "initializationOptions": {
-        "highlightingOn": true
-      }
+        "leanpkg.toml"
+      ]
     }
   }
 }

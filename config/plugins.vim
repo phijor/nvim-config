@@ -7,6 +7,8 @@ Plug 'flazz/vim-colorschemes'
 " Plug 'roman/golden-ratio'
 Plug 'zhaocai/GoldenView.Vim'
 
+Plug 'liuchengxu/vista.vim'
+
 " Plug 'nathanaelkane/vim-indent-guides'
 
 " Misc highlighting/naviagtion
@@ -15,7 +17,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'Raimondi/delimitMate'
-Plug 'machakann/vim-highlightedyank'
 Plug 'wellle/targets.vim'
 
 Plug 'kana/vim-operator-user'
@@ -23,14 +24,19 @@ Plug 'kana/vim-operator-user'
 " make
 Plug 'neomake/neomake'
 
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
 " search using The Silver Searcher -- ag
 Plug 'Numkil/ag.nvim'
 
 " GLSL
 Plug 'tikhomirov/vim-glsl'
 
-Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': { -> coc#util#install()}}
+if !exists('g:vscode')
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc-neco'
+endif
 
 " C/C++
 " Plug 'vim-scripts/c.vim'
@@ -41,11 +47,14 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " Rust
 Plug 'rust-lang/rust.vim'
-Plug 'rust-analyzer/rust-analyzer'
 
 " Python
 " - autoformatting
-Plug 'python/black'
+Plug 'python/black', { 'tag': '20.8b1' }
+
+" Xonsh
+Plug 'meatballs/vim-xonsh'
+
 " - semantic highlighting
 Plug 'numirias/semshi', {
             \   'do': ':UpdateRemotePlugins',
@@ -53,7 +62,8 @@ Plug 'numirias/semshi', {
 
 Plug 'rhysd/vim-grammarous'
 
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -69,8 +79,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
 
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'airblade/vim-gitgutter'
-Plug 'mhinz/vim-signify'
+" Plug 'mhinz/vim-signify'
 Plug 'bling/vim-airline'
 Plug 'luochen1990/rainbow'
 
@@ -82,13 +91,26 @@ Plug 'alisdair/vim-armasm'
 
 Plug 'jvirtanen/vim-octave'
 
-" Plug 'raichoo/haskell-vim'
-" Plug 'lukerandall/haskellmode-vim'
-" Plug 'eagletmt/neco-ghc'
 Plug 'parsonsmatt/intero-neovim'
-" Plug 'enomsg/vim-haskellConcealPlus'
 
 " pass
 Plug 'https://sanctum.geek.nz/code/vim-redact-pass.git'
+
+Plug '~/usr/src/vim-loop-syntax'
+
+Plug 'leanprover/lean.vim'
+
+" discord lol
+Plug 'aurieh/discord.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Firenvim browser integration
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
+Plug 'lepture/vim-jinja'
+
+" ASCII art
+Plug 'gyim/vim-boxdraw'
+
+Plug 'cespare/vim-toml'
 
 call plug#end()

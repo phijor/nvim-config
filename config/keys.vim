@@ -7,52 +7,55 @@ let maplocalleader = ';'
 nnoremap <Space> :
 vnoremap <Space> :
 
+nnoremap L <C-d>
+vnoremap L <C-d>
+nnoremap H <C-u>
+vnoremap H <C-u>
+
 " search visual selection
 vnoremap // y/<C-R>"<CR>
 
 " Allow saving of files as sudo when you forgot to start vim using sudo
 cnoremap w!! w suda://%
 
-" gnu-make shortcuts
-noremap <F3> :make clean<CR>
-noremap <F4> :make -j`nproc`<CR>
-noremap <F5> :make -j`nproc` runhw<CR>
-noremap <F6> :make -j`nproc` debug<CR>
-noremap <F7> :make -j`nproc` release<CR>
-
 " disable search-highlighting
-nnoremap <C-n> :noh<CR>
+nnoremap <C-n> <Cmd>noh<CR>
 
 " navigate between buffers
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprev<CR>
-nnoremap <leader>bl :e#<CR>
+nnoremap <leader>bn <Cmd>bnext<CR>
+nnoremap <leader>bp <Cmd>bprev<CR>
+nnoremap <leader>bl <Cmd>e#<CR>
 
 " toggle NERDTree
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>t <Cmd>NERDTreeToggle<CR>
 
 " double-escape to exit terminal-mode
 tnoremap <Esc><Esc> <C-\><C-n>
 
 " open .nvimrc in split window
-nnoremap <leader>V :vs $MYVIMRC <CR>
-nnoremap <leader>Va :vs $XDG_CONFIG_HOME/nvim/config/autocommands.vim <CR>
-nnoremap <leader>Vk :vs $XDG_CONFIG_HOME/nvim/config/keys.vim <CR>
-nnoremap <leader>Vh :vs $XDG_CONFIG_HOME/nvim/config/highlight.vim <CR>
-nnoremap <leader>Vo :vs $XDG_CONFIG_HOME/nvim/config/options.vim <CR>
-nnoremap <leader>Vp :vs $XDG_CONFIG_HOME/nvim/config/plugins.vim <CR>
-nnoremap <leader>Vv :vs $XDG_CONFIG_HOME/nvim/config/variables.vim <CR>
+nnoremap <leader>V  <Cmd>vs $MYVIMRC <CR>
+nnoremap <leader>Va <Cmd>vs $XDG_CONFIG_HOME/nvim/config/autocommands.vim <CR>
+nnoremap <leader>Vk <Cmd>vs $XDG_CONFIG_HOME/nvim/config/keys.vim <CR>
+nnoremap <leader>Vh <Cmd>vs $XDG_CONFIG_HOME/nvim/config/highlight.vim <CR>
+nnoremap <leader>Vo <Cmd>vs $XDG_CONFIG_HOME/nvim/config/options.vim <CR>
+nnoremap <leader>Vp <Cmd>vs $XDG_CONFIG_HOME/nvim/config/plugins.vim <CR>
+nnoremap <leader>Vv <Cmd>vs $XDG_CONFIG_HOME/nvim/config/variables.vim <CR>
 
 " open .nvimrc in current window
-nnoremap <leader>v :e $MYVIMRC <CR>
-nnoremap <leader>va :e $XDG_CONFIG_HOME/nvim/config/autocommands.vim <CR>
-nnoremap <leader>vk :e $XDG_CONFIG_HOME/nvim/config/keys.vim <CR>
-nnoremap <leader>vh :e $XDG_CONFIG_HOME/nvim/config/highlight.vim <CR>
-nnoremap <leader>vo :e $XDG_CONFIG_HOME/nvim/config/options.vim <CR>
-nnoremap <leader>vp :e $XDG_CONFIG_HOME/nvim/config/plugins.vim <CR>
-nnoremap <leader>vv :e $XDG_CONFIG_HOME/nvim/config/variables.vim <CR>
+nnoremap <leader>v  <Cmd>e $MYVIMRC <CR>
+nnoremap <leader>va <Cmd>e $XDG_CONFIG_HOME/nvim/config/autocommands.vim <CR>
+nnoremap <leader>vk <Cmd>e $XDG_CONFIG_HOME/nvim/config/keys.vim <CR>
+nnoremap <leader>vh <Cmd>e $XDG_CONFIG_HOME/nvim/config/highlight.vim <CR>
+nnoremap <leader>vo <Cmd>e $XDG_CONFIG_HOME/nvim/config/options.vim <CR>
+nnoremap <leader>vp <Cmd>e $XDG_CONFIG_HOME/nvim/config/plugins.vim <CR>
+nnoremap <leader>vv <Cmd>e $XDG_CONFIG_HOME/nvim/config/variables.vim <CR>
 
-runtime config/coc/keys.vim
+nnoremap <leader>vck <Cmd>vs $XDG_CONFIG_HOME/nvim/config/coc/keys.vim <CR>
+
+" fzf
+nnoremap <Leader>o <Cmd>GFiles<CR>
+nnoremap <Leader>O <Cmd>Files<CR>
+nnoremap <Leader>b <Cmd>Buffers<CR>
 
 " git "
-nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gb <Cmd>Gblame<CR>

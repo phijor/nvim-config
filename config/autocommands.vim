@@ -3,8 +3,12 @@ if has("autocmd")
         let autocommands_loaded = 1
         augroup startup
             autocmd!
-            autocmd VimEnter * let $EDITOR = 'nvr -cc split --remote-wait-silent'
-            autocmd VimEnter * let $VISUAL = 'nvr -cc split --remote-wait-silent'
+            autocmd VimEnter * let $EDITOR = "nvr --remote-tab-wait-silent"
+            autocmd VimEnter * let $VISUAL = "nvr --remote-tab-wait-silent"
+            autocmd FileType gitcommit set bufhidden=delete
+        augroup END
+        augroup highlight_yank
+            autocmd! TextYankPost * silent! lua require 'vim.highlight'.on_yank("IncSearch", 2000)
         augroup END
         augroup vimrchooks
             autocmd!
@@ -48,7 +52,7 @@ if has("autocmd")
         augroup CodeFormat
             autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :ClangFormat<CR>
             autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-            autocmd BufWritePre *.py execute ':Black'
+            autocmd BufWritePre *.py execute ':Format'
         augroup END
     endif
 endif

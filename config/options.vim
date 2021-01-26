@@ -1,4 +1,5 @@
-set backup             " keep a backup file (restore to previous version)
+set nobackup           " do not keep a backup file
+set nowritebackup
 set undofile           " keep an undo file (undo changes after closing)
 set showcmd            " display incomplete commands
 set background=dark    " background color
@@ -28,29 +29,26 @@ set backspace=indent,eol,start  " more powerful backspacing
 set splitbelow                  " split windows below the current window
 set wildmode=list:longest       " set zsh-like command autocomplete
 set wildmenu
-set fillchars+=vert:█
+set fillchars+=vert:┃
 set cmdheight=2
-set signcolumn=yes
 set shortmess+=c " don't give |ins-completion-menu| messages.
 
 set updatetime=300
 
-set guicursor=
+" set guicursor= " disable changing cursor shape
+set guifont=Foo
+set title
 
 " Suffixes that get lower priority when doing tab completion for filenames.
 " These are files we are not likely to want to edit or read.
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg
-
-"Set backup-dir for .*~-files
-set bdir-=.
-set bdir^=$XDG_CACHE_HOME/nvim/backupfiles/backup//
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.png,.jpg,.egg-info
+set wildignore+=.egg-info
 
 "Set backup-dir for .*.swp-files
-set dir-=.
-set dir^=$XDG_CACHE_HOME/nvim/backupfiles/swap//
-
-"Set undo-dir for .*.un~-files
-set undodir-=.
-set undodir^=$XDG_CACHE_HOME/nvim/backupfiles/undo//
+set directory-=.
+set directory-=$XDG_DATA_HOME/nvim/swap//
+set directory+=$XDG_RUNTIME_DIR/nvim/swap//
 
 set grepprg=grep\ -nH\ $*
+
+set pyxversion=3
