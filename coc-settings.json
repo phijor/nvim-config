@@ -9,48 +9,27 @@
   },
   "diagnostic.level": "warning",
   "diagnostic.enable": true,
-  "texlab.trace.server": "messages",
-  "latex.build.onSave": true,
-  "latex.forwardSearch.executable": "zathura",
-  "latex.forwardSearch.args": [
-    "--synctex-forward",
-    "%l:1:%f",
-    "%p"
+  "clangd.semanticHighlighting": true,
+  "texlab.build.onSave": true,
+  "texlab.build.args": [
+      "-pdf",
+      "-interaction=nonstopmode",
+      "-synctex=1",
+      "%f"
   ],
+  "texlab.forwardSearch.executable": "zathura",
+  "texlab.forwardSearch.args": ["--synctex-forward=%l:1:%f", "%p"],
   "python.formatting.provider": "black",
   "python.linting.flake8Enabled": true,
   "pyright.organizeimports.provider": "isort",
   "git.enableGutters": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.inlayHints.chainingHintsSeparator": "→ ",
   "rust-analyzer.inlayHints.typeHintsSeparator": "⊢ ",
-  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.lens.enable": true,
   "rust-analyzer.lens.methodReferences": true,
-  "rust-analyzer.assist.importMergeBehavior": "last",
   "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": [
-        "c",
-        "cpp",
-        "objc",
-        "objcpp"
-      ],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".git/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        },
-        "highlight": {
-          "lsRanges": true
-        }
-      }
-    },
     "lean": {
       "command": "lean-language-server",
       "args": [
@@ -62,6 +41,23 @@
       "rootPatterns": [
         "leanpkg.toml"
       ]
+    },
+    "agda": {
+      "command": "als",
+      "args": ["-p-"],
+      "filetypes": [
+        "agda"
+      ]
+    },
+    "prolog": {
+        "command": "swipl",
+        "args": [
+            "-g", "use_module(library(lsp_server)).",
+            "-g", "lsp_server:main",
+            "-t", "halt",
+            "--", "stdio"
+        ],
+        "filetypes": ["prolog"]
     }
   }
 }

@@ -52,3 +52,7 @@ set directory+=$XDG_RUNTIME_DIR/nvim/swap//
 set grepprg=grep\ -nH\ $*
 
 set pyxversion=3
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldlevelstart=1 " start with one level of folds opened

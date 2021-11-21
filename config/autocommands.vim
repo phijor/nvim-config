@@ -10,6 +10,9 @@ if has("autocmd")
         augroup highlight_yank
             autocmd! TextYankPost * silent! lua require 'vim.highlight'.on_yank("IncSearch", 2000)
         augroup END
+        augroup undo
+            autocmd! BufWritePre /tmp/*,/var/tmp/*,/run/user/*,*/.git/* setlocal noundofile
+        augroup END
         augroup vimrchooks
             autocmd!
             autocmd bufwritepost $MYVIMRC source $MYVIMRC
@@ -52,6 +55,7 @@ if has("autocmd")
         augroup CodeFormat
             autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :ClangFormat<CR>
             autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+            autocmd BufWritePre *.rs execute ':Format'
             autocmd BufWritePre *.py execute ':Format'
         augroup END
     endif

@@ -81,4 +81,47 @@ let g:haddock_browser = 'chromium'
 " let hscoptions = "xhl"
 
 " RUST
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
+
+"
+let g:languagetool_server_command="/usr/bin/languagetool"
+
+" NvimTree
+let g:nvim_tree_icons = {
+    \ 'default': '•',
+    \ 'symlink': '→',
+    \ 'git': {
+    \   'unstaged': "✗",
+    \   'staged': "✓",
+    \   'unmerged': "⥇",
+    \   'renamed': "→",
+    \   'untracked': "★",
+    \   'deleted': "␡",
+    \   'ignored': "◌"
+    \   },
+    \ 'folder': {
+    \   'arrow_open': "▼",
+    \   'arrow_closed': "▶",
+    \   'default': "🗀",
+    \   'open': "🗁",
+    \   'empty': "🗀",
+    \   'empty_open': "🗁",
+    \   'symlink': '→',
+    \   'symlink_open': '→',
+    \   },
+    \   'lsp': {
+    \     'hint': "😏",
+    \     'info': "ℹ",
+    \     'warning': "⚠",
+    \     'error': "⛔",
+    \   }
+    \ }
+
+let g:nvim_tree_icon_padding = '  '
+
+let g:nvim_tree_show_icons = {
+    \ 'git': 0,
+    \ 'folders': 1,
+    \ 'files': 0,
+    \ 'folder_arrows': 1,
+    \ }

@@ -5,6 +5,8 @@ runtime config/autocommands.vim
 runtime config/highlight.vim
 runtime config/keys.vim
 
+lua require('treesitter_setup')
+
 if !exists('g:vscode')
     runtime config/coc/init.vim
 endif

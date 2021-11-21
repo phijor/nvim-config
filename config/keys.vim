@@ -21,13 +21,8 @@ cnoremap w!! w suda://%
 " disable search-highlighting
 nnoremap <C-n> <Cmd>noh<CR>
 
-" navigate between buffers
-nnoremap <leader>bn <Cmd>bnext<CR>
-nnoremap <leader>bp <Cmd>bprev<CR>
-nnoremap <leader>bl <Cmd>e#<CR>
-
-" toggle NERDTree
-nnoremap <leader>t <Cmd>NERDTreeToggle<CR>
+" toggle NvimTree
+nnoremap <leader>t <Cmd>NvimTreeToggle<CR>
 
 " double-escape to exit terminal-mode
 tnoremap <Esc><Esc> <C-\><C-n>
@@ -52,10 +47,16 @@ nnoremap <leader>vv <Cmd>e $XDG_CONFIG_HOME/nvim/config/variables.vim <CR>
 
 nnoremap <leader>vck <Cmd>vs $XDG_CONFIG_HOME/nvim/config/coc/keys.vim <CR>
 
-" fzf
-nnoremap <Leader>o <Cmd>GFiles<CR>
-nnoremap <Leader>O <Cmd>Files<CR>
-nnoremap <Leader>b <Cmd>Buffers<CR>
+" fzf / Telescope
+nnoremap <Leader>o <Cmd>Telescope git_files<CR>
+nnoremap <Leader>O <Cmd>Telescope find_files<CR>
+nnoremap <Leader>b <Cmd>Telescope buffers<CR>
+nnoremap <Leader>/ <Cmd>Telescope live_grep<CR>
+
+" navigate between buffers
+" nnoremap <leader>bn <Cmd>bnext<CR>
+" nnoremap <leader>bp <Cmd>bprev<CR>
+" nnoremap <leader>bl <Cmd>e#<CR>
 
 " git "
 nnoremap <Leader>gb <Cmd>Gblame<CR>

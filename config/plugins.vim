@@ -3,6 +3,9 @@ Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 
 Plug 'flazz/vim-colorschemes'
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+
 " Plug 'https://fedorapeople.org/home/fedora/wwoods/public_git/vim-scripts.git'
 " Plug 'roman/golden-ratio'
 Plug 'zhaocai/GoldenView.Vim'
@@ -27,6 +30,10 @@ Plug 'neomake/neomake'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
+Plug 'nvim-lua/popup.nvim' " dep of: telescope.nvim
+Plug 'nvim-lua/plenary.nvim' " dep of: telescope.nvim
+Plug 'nvim-telescope/telescope.nvim'
+
 " search using The Silver Searcher -- ag
 Plug 'Numkil/ag.nvim'
 
@@ -50,17 +57,16 @@ Plug 'rust-lang/rust.vim'
 
 " Python
 " - autoformatting
-Plug 'python/black', { 'tag': '20.8b1' }
+Plug 'python/black', { 'tag': '21.6b0' }
+Plug 'stsewd/sphinx.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Xonsh
 Plug 'meatballs/vim-xonsh'
 
 " - semantic highlighting
-Plug 'numirias/semshi', {
-            \   'do': ':UpdateRemotePlugins',
-            \}
 
 Plug 'rhysd/vim-grammarous'
+" Plug 'vigoux/LanguageTool.nvim'
 
 " Plug 'lervag/vimtex'
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
@@ -78,7 +84,10 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-lua-ftplugin'
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'mhinz/vim-signify'
 Plug 'bling/vim-airline'
 Plug 'luochen1990/rainbow'
@@ -96,7 +105,7 @@ Plug 'parsonsmatt/intero-neovim'
 " pass
 Plug 'https://sanctum.geek.nz/code/vim-redact-pass.git'
 
-Plug '~/usr/src/vim-loop-syntax'
+" Plug '~/usr/src/vim-loop-syntax'
 
 Plug 'leanprover/lean.vim'
 
