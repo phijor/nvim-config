@@ -1,4 +1,4 @@
-lua require('plugins')
+lua require('config.plugins')
 
 runtime config/options.vim
 runtime config/variables.vim
@@ -13,12 +13,3 @@ runtime config/keys.vim
 if exists('g:started_by_firenvim')
     runtime config/firenvim/init.vim
 endif
-
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-command SynStack call <SID>SynStack()

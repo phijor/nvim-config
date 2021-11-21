@@ -10,6 +10,17 @@ highlight VertSplit ctermbg=none ctermfg=black cterm=bold
 highlight Pmenu    ctermfg=black ctermbg=lightgrey
 highlight PmenuSel ctermfg=black ctermbg=yellow cterm=bold
 
+" LSP highlights
+highlight LspDiagnosticsDefaultError       ctermfg=red
+highlight LspDiagnosticsDefaultWarning     ctermfg=yellow
+highlight LspDiagnosticsDefaultHint        ctermfg=cyan
+highlight LspDiagnosticsDefaultInformation ctermfg=green
+
+highlight LspDiagnosticsUnderlineError       ctermfg=red    cterm=underline
+highlight LspDiagnosticsUnderlineWarning     ctermfg=yellow cterm=underline
+highlight LspDiagnosticsUnderlineHint        ctermfg=cyan   cterm=underline
+highlight LspDiagnosticsUnderlineInformation ctermfg=green  cterm=underline
+
 highlight Error      ctermfg=red      ctermbg=none  cterm=undercurl
 highlight Todo                        ctermbg=green cterm=bold
 " highlight Comment    ctermfg=green                  cterm=italic
