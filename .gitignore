@@ -1,4 +1,5 @@
 autoload/
 bundle/
 spell/
+plugin/packer_compiled.lua
 .netrwhist

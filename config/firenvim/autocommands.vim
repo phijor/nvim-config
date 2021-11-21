@@ -4,7 +4,6 @@ if has("autocommands")
         augroup FIRENVIM
             autocmd!
             au BufEnter github.com_*.txt set filetype=markdown
-            au BufEnter couchdb.metricq.zih.tu-dresden.de_*doc-editor.txt set filetype=json
         augroup END
     endif
 endif

@@ -18,22 +18,10 @@ if has("autocmd")
             autocmd bufwritepost $MYVIMRC source $MYVIMRC
             autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
         augroup END
-        augroup jshooks
-            autocmd!
-            autocmd BufNewFile,BufRead,BufEnter *.js set omnifunc=javascriptcomplete#CompleteJS
-        augroup END
-        augroup NERDTree
-            autocmd!
-            " autocmd VimEnter * NERDTree | wincmd p
-            autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-        augroup END
         augroup Quickfix
             autocmd QuickFixCmdPost [^l]* nested cwindow
             autocmd QuickFixCmdPost    l* nested lwindow
         augroup END
-        " augroup Haskell
-        "     autocmd BufEnter *.hs compiler ghc
-        " augroup END
         augroup Octave
             autocmd BufNewFile,BufRead *.m set filetype=octave
         augroup END
