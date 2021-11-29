@@ -20,6 +20,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'Raimondi/delimitMate'
+
 Plug 'wellle/targets.vim'
 
 Plug 'kana/vim-operator-user'

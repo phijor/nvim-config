@@ -2,6 +2,8 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
+local _ = require('cmp_path')
+
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
@@ -45,8 +47,7 @@ cmp.setup {
     {
       { name = 'nvim_lsp' },
       { name = 'luasnip' }, -- For luasnip users.
-    },
-    {
+      { name = 'path' },
       { name = 'buffer' },
     }
   ),

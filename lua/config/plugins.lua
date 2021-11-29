@@ -9,9 +9,35 @@ require('packer').startup(function (use)
 
   -- LSP
   use {
-    'neovim/nvim-lspconfig',
+    -- 'neovim/nvim-lspconfig',
+    -- 'phijor/nvim-lspconfig',
+    '~/usr/src/nvim/nvim-lspconfig',
+    branch = 'feature-agda-language-server',
     config = function()
-      require('config.lsp')
+      -- require('config.lsp')
+    end
+  }
+  use {
+    'nvim-lua/lsp-status.nvim',
+    config = function()
+      local lsp_status = require('lsp-status')
+      lsp_status.register_progress()
+      lsp_status.config {
+        current_function = true,
+        show_filename = false,
+        indicator_errors = '✗',
+        indicator_warnings = '!',
+        indicator_info = 'ℹ',
+        indicator_hint = 'ℹ',
+        indicator_ok = '✓',
+        status_symbol = 'ƒ',
+      }
+    end
+  }
+  use {
+    'kosayoda/nvim-lightbulb',
+    config = function ()
+      vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'config.lsp'.update_lightbulb()]]
     end
   }
 
@@ -26,7 +52,13 @@ require('packer').startup(function (use)
       require('config.completion')
     end
   }
+  -- Completion sources
+  use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-nvim-lsp'
+  use {
+    'davidsierradz/cmp-conventionalcommits',
+    filetype = { 'gitcommit' },
+  }
 
   -- Treesitter
   use {
@@ -45,7 +77,30 @@ require('packer').startup(function (use)
       'nvim-lua/plenary.nvim'
     },
     config = function()
-      require('gitsigns').setup()
+      require('gitsigns').setup {
+        keymaps = {
+          -- Default keymap options
+          noremap = true,
+
+          ['n ]h'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
+          ['n [h'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
+
+          ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+          ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+          ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+          ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+          ['v <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+          ['n <leader>hR'] = '<cmd>lua require"gitsigns".reset_buffer()<CR>',
+          ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+          ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line{full=true}<CR>',
+          ['n <leader>hS'] = '<cmd>lua require"gitsigns".stage_buffer()<CR>',
+          ['n <leader>hU'] = '<cmd>lua require"gitsigns".reset_buffer_index()<CR>',
+
+          -- Text objects
+          ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+          ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+        },
+      }
     end
   }
 
@@ -103,7 +158,6 @@ require('packer').startup(function (use)
   use 'Numkil/ag.nvim'
 
   -- Rust
-  -- use 'rust-lang/rust.vim'
   use {
     'simrat39/rust-tools.nvim',
     requires = {
@@ -115,11 +169,30 @@ require('packer').startup(function (use)
     ft = {"rust"},
     config = function ()
       local rust_config = require('config.lsp').lsp_get_default_config()
+      rust_config.settings = {
+        ["rust-analyzer"] = {
+          checkOnSave = { command = "clippy" },
+          inlayHints = {
+            chainingHintsSeparator = "→ ",
+            typeHintsSeparator = "⊢ ",
+          },
+          procMacro = {
+            enable = true,
+          },
+          lens = {
+            enable = true,
+            methodReferences = true,
+          },
+        }
+      }
       require('rust-tools').setup {
         server = rust_config
       }
     end
   }
+
+  -- Lean
+  use 'Julian/lean.nvim'
 
   -- pass
   use 'https://gitlab.com/craftyguy/vim-redact-pass.git'

@@ -24,21 +24,39 @@ local colors = {
 }
 
 local color_template = {
-    normal = 'yellow',
+    normal = 'blue',
     insert = 'green',
-    visual = 'magenta',
+    visual = 'yellow',
     replace = 'red',
     command = 'cyan',
     inactive = 'black',
 }
 
+local function create_section_highlight(section, mode, hl)
+  local hl_section = string.format("_StatusLineSection_%s_%s", section, mode)
+  local args = {}
+  for k, v in pairs(hl) do
+    table.insert(args, k .. '=' .. v)
+  end
+  vim.cmd(string.format("highlight %s %s", hl_section, table.concat(args, ' ')))
+  return hl_section
+end
+
 local color_scheme = {}
 for mode, base in pairs(color_template) do
-    color_scheme[mode] = {
-        a = {bg = colors[base], fg = colors.black, gui = 'bold'},
-        b = {bg = colors.black, fg = colors['bright_' .. base], gui = 'bold'},
-        c = {bg = colors.background, fg = colors.white, },
-    }
+  local dark_base = 'dark' .. base
+  if base == 'black' then
+    dark_base = "black"
+  end
+
+  color_scheme[mode] = {
+    -- a = {bg = colors[base], fg = colors.black },
+    -- b = {bg = colors.black, fg = colors['bright_' .. base], gui = 'bold'},
+    -- c = {bg = colors.background, fg = colors['bright_' .. base], },
+    a = create_section_highlight('a', mode, { ctermfg='black', ctermbg=dark_base }),
+    b = create_section_highlight('b', mode, { ctermfg=base,    ctermbg='black', gui='bold' }),
+    c = create_section_highlight('c', mode, { ctermfg=base,    ctermbg='none' }),
+  }
 end
 
 require('lualine').setup {
@@ -47,31 +65,36 @@ require('lualine').setup {
         icons_enabled = true,
     },
     sections = {
-        lualine_a = {'mode'},
-        lualine_b = {
-            'branch',
-            'diff',
-            {'diagnostics', sources={'nvim_lsp', 'coc'}}
-        },
-        lualine_c = {'filename'},
-        lualine_x = {
-            'encoding',
-            { 'fileformat', icons_enabled = false },
-            { 'filetype', icons_enabled = false }
-        },
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
+      lualine_a = {
+        'mode'
+      },
+      lualine_b = {
+        'branch',
+        'diff',
+        {'diagnostics', sources={'nvim_lsp'}}
+      },
+      lualine_c = {
+        [[require('lsp-status').status()]],
+        [[require('nvim-lightbulb').get_status_text()]]
+      },
+      lualine_x = {
+        'encoding',
+        { 'fileformat', icons_enabled = false },
+        { 'filetype', icons_enabled = false }
+      },
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
     },
     tabline = {
-        lualine_a = {
-            {
-                'buffers',
-                icons_enabled = false,
-                buffers_color = {
-                    active = {bg = colors.yellow, fg = colors.black, gui = 'italic'},
-                    inactive = {bg = colors.black, fg = colors.white, gui = nil},
-                },
-            }
+      lualine_a = {
+        {
+          'buffers',
+          icons_enabled = false,
+          buffers_color = {
+            active = create_section_highlight('buffer', 'active', {ctermfg='black', ctermbg='darkblue', gui='italic'}),
+            inactive = create_section_highlight('buffer', 'inactive', {ctermfg='white', ctermbg='black'}),
+          },
         }
+      }
     }
-}
+  }
