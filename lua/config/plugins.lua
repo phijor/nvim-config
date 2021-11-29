@@ -113,6 +113,43 @@ require('packer').startup(function (use)
   use 'wellle/targets.vim'
   use 'kana/vim-operator-user'
 
+  use {
+    'phaazon/hop.nvim',
+    config = function ()
+      require('hop').setup {
+        keys = 'asdghklwertyuiopzxcvbnmfj',
+        quit_key = 'q'
+      }
+
+      local c1 = function (mode, key, dir, current_line_only, inclusive_jump)
+        local opts = string.format(
+          [[{direction = require'hop.hint'.HintDirection.%s, current_line_only = %s, inclusive_jump = %s}]],
+          dir, tostring(current_line_only), tostring(inclusive_jump)
+        )
+        vim.api.nvim_set_keymap(
+          mode,
+          key,
+          string.format([[<cmd>lua require'hop'.hint_char1(%s)<cr>]], opts),
+          {}
+        )
+      end
+
+      local sk = vim.api.nvim_set_keymap
+
+      c1('n', 'f', 'AFTER_CURSOR', true, false)
+      c1('n', 'F', 'BEFORE_CURSOR', true, false)
+      c1('o', 'f', 'AFTER_CURSOR', true, true)
+      c1('o', 'F', 'AFTER_CURSOR', true, true)
+      c1('', 't', 'AFTER_CURSOR', true, false)
+      c1('', 'T', 'BEFORE_CURSOR', true, false)
+
+      sk('n', 'gw', "<cmd>HopWord<cr>", {})
+      sk('n', 'gW', "<cmd>HopWordCurrentLine<cr>", {})
+      sk('n', 'gl', "<cmd>HopLineStart<cr>", {})
+      sk('n', 'gL', "<cmd>HopLine<cr>", {})
+    end
+  }
+
   -- Firenvim browser integration
   use {
     'glacambre/firenvim',
