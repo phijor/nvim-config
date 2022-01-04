@@ -1,9 +1,9 @@
+lua require('config.keymap').setup()
 lua require('config.options')
 lua require('config.plugins')
 lua require('config.lsp').setup()
 
 runtime config/autocommands.vim
-runtime config/keys.vim
 
 command ShowLspClients lua require('config.util').show_available_lsp_clients()
 

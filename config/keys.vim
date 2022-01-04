@@ -1,23 +1,3 @@
-" custom mappings
-" let <Leader> be semicolon because '\' is just to far away
-let mapleader = ';'
-let maplocalleader = ';'
-
-" map colon to space to save time
-nnoremap <Space> :
-vnoremap <Space> :
-
-nnoremap L <C-d>
-vnoremap L <C-d>
-nnoremap H <C-u>
-vnoremap H <C-u>
-
-" search visual selection
-vnoremap // y/<C-R>"<CR>
-
-" Allow saving of files as sudo when you forgot to start vim using sudo
-cnoremap w!! w suda://%
-
 " disable search-highlighting
 nnoremap <C-n> <Cmd>noh<CR>
 
