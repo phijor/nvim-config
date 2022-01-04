@@ -3,10 +3,11 @@ lua require('config.plugins')
 lua require('config.lsp').setup()
 
 runtime config/autocommands.vim
-runtime config/highlight.vim
 runtime config/keys.vim
 
 command ShowLspClients lua require('config.util').show_available_lsp_clients()
+
+colorscheme phijor
 
 " if !exists('g:vscode')
 "     runtime config/coc/init.vim
