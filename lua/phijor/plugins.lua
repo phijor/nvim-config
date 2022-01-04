@@ -191,6 +191,34 @@ require("packer").startup(function(use)
 		run = function()
 			vim.fn["firenvim#install"](0)
 		end,
+		config = function()
+			local augroup = require("phijor.util").augroup
+
+			if not vim.g.started_by_firenvim then
+				return
+			end
+
+			vim.g.firenvim_config = {
+				globalSettings = {
+					alt = "all",
+				},
+				localSettings = {
+					[".*"] = {
+						cmdline = "neovim",
+						content = "text",
+					},
+					-- [ [[https?://[^/]+www\.example\.com/]] ] = { takeover = 'never', priority = 1 },
+				},
+			}
+
+			augroup {
+				firenvim = {
+					"BufEnter",
+					"github.com_*.txt",
+					[[set filetype=markdown]],
+				},
+			}
+		end,
 	}
 
 	-- fuzzy searching

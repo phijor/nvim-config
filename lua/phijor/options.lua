@@ -108,3 +108,8 @@ set.directory = vim.env.XDG_RUNTIME_DIR .. "/nvim/swap//"
 -- Misc
 -- set.updatetime = 300
 set.pyxversion = 3
+
+-- Environment
+local remote = [[nvr --remote-tab-wait-silent]]
+vim.env.EDITOR = remote
+vim.env.VISUAL = remote
