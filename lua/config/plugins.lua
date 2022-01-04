@@ -91,6 +91,18 @@ require('packer').startup(function (use)
   }
   use 'nvim-treesitter/playground'
 
+  -- Treesitter: spell checking
+  use {
+    'lewis6991/spellsitter.nvim',
+    requires = {
+      'nvim-treesitter/nvim-treesitter', opt = true
+    },
+    config = function ()
+      require('spellsitter').setup()
+    end
+  }
+
+
   -- Git changes
   use {
     'lewis6991/gitsigns.nvim',
