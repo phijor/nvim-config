@@ -10,6 +10,9 @@ setlocal linebreak
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 
-nnoremap <Leader>ll :CocCommand latex.Build<CR>
-nnoremap <Leader>lc :CocCommand latex.BuildCancel<CR>
-nnoremap <Leader>lv :CocCommand latex.ForwardSearch<CR>
+" https://www.reddit.com/r/neovim/comments/991kmv/annoying_auto_indentation_in_tex_files/
+" setlocal autoindent
+" 
+" let g:tex_indent_items=0
+" let g:tex_indent_and=0
+" let g:tex_indent_brace=0
