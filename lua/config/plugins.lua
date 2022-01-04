@@ -249,7 +249,7 @@ require('packer').startup(function (use)
       local rust_config = require('config.lsp').lsp_get_default_config()
       rust_config.settings = {
         ["rust-analyzer"] = {
-          checkOnSave = { command = "clippy" },
+          checkOnSave = { command = "check" },
           inlayHints = {
             chainingHintsSeparator = "→ ",
             typeHintsSeparator = "⊢ ",
