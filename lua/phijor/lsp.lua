@@ -3,46 +3,59 @@
 local nvim_lsp = require "lspconfig"
 local lsp_status = require "lsp-status"
 
+local util = require "phijor.util"
+
 local M = {}
 
-local leader = "<localleader>"
-
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
-
   -- Enable completion triggered by <c-x><c-o>
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  -- Mappings.
-  local opts = { noremap = true, silent = true }
+  local buf = util.BufKeyMapper:new(bufnr, { noremap = true, silent = true })
 
-  local function cmd(fcn)
-    return "<cmd>lua vim.lsp." .. fcn .. "()<CR>"
+  local function lsp(target)
+    return buf.format_cmd("lua vim.lsp." .. target .. "()")
   end
 
-  buf_set_keymap("n", "gD", cmd "buf.declaration", opts)
-  buf_set_keymap("n", "gd", cmd "buf.definition", opts)
-  buf_set_keymap("n", "K", cmd "buf.hover", opts)
-  buf_set_keymap("n", "gi", cmd "buf.implementation", opts)
-  buf_set_keymap("n", "<C-k>", cmd "buf.signature_help", opts)
-  buf_set_keymap("n", leader .. "wa", cmd "buf.add_workspace_folder", opts)
-  buf_set_keymap("n", leader .. "wr", cmd "buf.remove_workspace_folder", opts)
-  buf_set_keymap("n", leader .. "wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-  buf_set_keymap("n", leader .. "D", cmd "buf.type_definition", opts)
-  buf_set_keymap("n", leader .. "r", cmd "buf.rename", opts)
-  buf_set_keymap("n", leader .. "q", cmd "buf.code_action", opts)
-  buf_set_keymap("n", "gr", cmd "buf.references", opts)
-  buf_set_keymap("n", leader .. "e", cmd "diagnostic.show_line_diagnostics", opts)
-  buf_set_keymap("n", "[d", cmd "diagnostic.goto_prev", opts) -- deprecated
-  buf_set_keymap("n", "]d", cmd "diagnostic.goto_next", opts) -- deprecated
-  buf_set_keymap("n", leader .. "l", cmd "diagnostic.set_loclist", opts) -- deprecated
-  buf_set_keymap("n", leader .. "f", cmd "buf.formatting", opts)
-  buf_set_keymap("n", leader .. "R", "<cmd>LspRestart<CR>", opts)
+  local function diag(target)
+    return buf.format_cmd("lua vim.diagnostic." .. target .. "()")
+  end
+
+  local cmd = buf.format_cmd
+
+  buf:maps {
+    -- Jump to items
+    ["n gd"] = { lsp "buf.definition" },
+    ["n gD"] = { lsp "buf.declaration" },
+    ["n gi"] = { lsp "buf.implementation" },
+    ["n gt"] = { lsp "buf.type_definition" },
+    ["n gr"] = { lsp "buf.references" },
+
+    -- Hovers
+    ["ni <C-k>"] = { lsp "buf.signature_help" },
+    ["n K"] = { lsp "buf.hover" },
+
+    -- Workspace actions
+    ["n <Leader>wa"] = { lsp "buf.add_workspace_folder" },
+    ["n <Leader>wr"] = { lsp "buf.remove_workspace_folder" },
+    ["n <Leader>wl"] = { cmd [[lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))]] },
+
+    -- Navigation
+    ["n [d"] = { diag "goto_prev" },
+    ["n ]d"] = { diag "goto_next" },
+
+    -- Interaction
+    ["nv <Leader>f"] = { lsp "buf.formatting" },
+    ["n <Leader>r"] = { lsp "buf.rename" },
+    ["n <Leader>a"] = { lsp "buf.code_action" },
+
+    -- Diagnostics
+    ["n <Leader>dl"] = { diag "set_loclist" },
+    ["n <Leader>dL"] = { diag "show_line_diagnostics" },
+
+    -- Misc
+    ["n <Leader>R"] = { cmd "LspRestart" },
+  }
 
   lsp_status.on_attach(client)
 end
@@ -111,18 +124,15 @@ local function setup_texlab()
   texlab_config.on_attach = function(client, bufnr)
     orig_on_attach(client, bufnr)
 
-    local function buf_set_keymap(...)
-      vim.api.nvim_buf_set_keymap(bufnr, ...)
+    local buf = util.BufKeyMapper:new(bufnr, { noremap = true, silent = true })
+    local function texlab(target)
+      return string.format([[<cmd>lua require('lspconfig').texlab['%s'](%d)<CR>]], target, bufnr)
     end
 
-    local function bufcmd(cmd)
-      return string.format([[<cmd>lua require('lspconfig').texlab['%s'](%d)<CR>]], cmd, bufnr)
-    end
-
-    local options = { noremap = true, silent = true }
-
-    buf_set_keymap("n", leader .. "ll", bufcmd "buf_build", options)
-    buf_set_keymap("n", leader .. "lv", bufcmd "buf_search", options)
+    buf:maps {
+      ["n <Leader>ll"] = { texlab "buf_build" },
+      ["n <Leader>lv"] = { texlab "buf_search" },
+    }
   end
 
   texlab_config.settings = {
@@ -172,17 +182,15 @@ local function setup_idris2()
   idris_config.on_attach = function(client, bufnr)
     orig_on_attach(client, bufnr)
 
-    local function buf_set_keymap(...)
-      vim.api.nvim_buf_set_keymap(bufnr, ...)
+    local buf = util.BufKeyMapper:new(bufnr, { noremap = true, silent = true })
+
+    local function idris(target)
+      return string.format([[<cmd>lua require('idris2.code_action').%s()<CR>]], target)
     end
 
-    local function bufcmd(cmd)
-      return string.format([[<cmd>lua require('idris2.code_action').%s()<CR>]], cmd)
-    end
-
-    local options = { noremap = true, silent = true }
-
-    buf_set_keymap("n", leader .. "is", bufcmd "case_split", options)
+    buf:maps {
+      ["n <Leader>is"] = { idris "case_split" },
+    }
   end
 
   require("idris2").setup {}

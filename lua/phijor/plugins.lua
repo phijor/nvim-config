@@ -169,8 +169,6 @@ require("packer").startup(function(use)
         vim.api.nvim_set_keymap(mode, key, string.format([[<cmd>lua require'hop'.hint_char1(%s)<cr>]], opts), {})
       end
 
-      local sk = vim.api.nvim_set_keymap
-
       c1("n", "f", "AFTER_CURSOR", true, false)
       c1("n", "F", "BEFORE_CURSOR", true, false)
       c1("o", "f", "AFTER_CURSOR", true, true)
@@ -178,10 +176,15 @@ require("packer").startup(function(use)
       c1("", "t", "AFTER_CURSOR", true, false)
       c1("", "T", "BEFORE_CURSOR", true, false)
 
-      sk("n", "gw", "<cmd>HopWord<cr>", {})
-      sk("n", "gW", "<cmd>HopWordCurrentLine<cr>", {})
-      sk("n", "gl", "<cmd>HopLineStart<cr>", {})
-      sk("n", "gL", "<cmd>HopLine<cr>", {})
+      local key = require("phijor.util").KeyMapper:new { silent = true }
+      local cmd = key.format_cmd
+
+      key:maps {
+        ["nv gw"] = { cmd "HopWord" },
+        ["nv gW"] = { cmd "HopWordCurrentLine" },
+        ["nv gl"] = { cmd "HopLineStart" },
+        ["nv gL"] = { cmd "HopLine" },
+      }
     end,
   }
 

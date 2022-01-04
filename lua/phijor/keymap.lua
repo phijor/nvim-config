@@ -14,11 +14,11 @@ function M:setup()
   local keys = KeyMapper:new()
 
   -- Use <Space> to enter command mode
-  keys:map({ "n", "v" }, "<Space>", ":")
+  keys:map("nv", "<Space>", ":")
 
   -- Navigate half a page up/down with H/L
-  keys:map({ "n", "v" }, "H", "<C-u>")
-  keys:map({ "n", "v" }, "L", "<C-d>")
+  keys:map("nv", "H", "<C-u>")
+  keys:map("nv", "L", "<C-d>")
 
   -- Seach visual selection:
   -- y - yank
