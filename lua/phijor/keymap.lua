@@ -1,82 +1,17 @@
 local M = {}
 
---@class Keymapper
---@field opts table mapping options
-local Keymapper = { default_opts = { noremap = true } }
-Keymapper.__index = Keymapper
-
-function Keymapper:new(opts)
-  local mapper = setmetatable({}, self)
-
-  mapper.opts = opts
-
-	return mapper
-end
-
-function Keymapper:_set_keymap(...)
-  return vim.api.nvim_set_keymap(...)
-end
-
---@class BufKeymapper
---@field bufnr buffer number
-local BufKeymapper = { bufnr = nil }
-BufKeymapper.__index = BufKeymapper
-setmetatable(BufKeymapper, { __index = Keymapper })
-
-function BufKeymapper:new(bufnr, opts)
-  local mapper = setmetatable({}, self)
-
-  mapper.bufnr = bufnr
-  mapper.opts = opts
-
-  return mapper
-end
-
-function BufKeymapper:_set_keymap(...)
-  return vim.api.nvim_buf_set_keymap(self.bufnr, ...)
-end
-
-function Keymapper:get_opts(opts)
-	return vim.tbl_extend("force", self.default_opts, self.opts or {}, opts or {})
-end
-
--- Create a key mapping
---@param mode string | list[string] Modes in which to create the mapping
---@param chord string The new key sequence to map
---@param target string What it maps to
---@param opts table | nil Mapping options
-function Keymapper:map(modes, chord, target, opts)
-	if type(modes) == "string" then
-		modes = { modes }
-	end
-
-	if type(modes) ~= "table" then
-		error "Expected `modes` to a string or a list of strings"
-	end
-
-	opts = self:get_opts(opts)
-	for _, mode in ipairs(modes) do
-    self:_set_keymap(mode, chord, target, opts)
-	end
-end
-
--- Map chord to a command.
---
--- Like Keymapper.map, but surrounds `target` with "<Cmd>...<CR>".
-function Keymapper:cmd(modes, chord, target, opts)
-	self:map(modes, chord, "<Cmd>" .. target .. "<CR>", opts)
-end
-
 function M:set_leader(leader)
 	vim.g.mapleader = leader
 	vim.g.localmapleader = vim.g.mapleader
 end
 
 function M:setup()
+  local KeyMapper = require('phijor.util').KeyMapper
+
 	-- Map <Leader> to ';' because '\' is just to far away
 	M:set_leader ";"
 
-	local keys = Keymapper:new()
+  local keys = KeyMapper:new()
 
 	-- Use <Space> to enter command mode
 	keys:map({ "n", "v" }, "<Space>", ":")
