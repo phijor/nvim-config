@@ -40,8 +40,7 @@ function M:setup()
 
   -- Open file picker in nvim config directory
   function _G.phijor_find_config_files()
-    local config_path = vim.api.env.XDG_CONFIG_HOME .. "/nvim/config"
-    require("telescope.builtin").find_files { cwd = config_path }
+    require("telescope.builtin").find_files { cwd = vim.fn.stdpath('config') }
   end
   keys:cmd("n", "<Leader>vo", [[lua phijor_find_config_files()]])
 end
