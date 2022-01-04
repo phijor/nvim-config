@@ -1,11 +1,11 @@
-lua require('config.keymap').setup()
-lua require('config.options')
-lua require('config.plugins')
-lua require('config.lsp').setup()
+lua require('phijor.keymap').setup()
+lua require('phijor.options')
+lua require('phijor.plugins')
+lua require('phijor.lsp').setup()
 
 runtime config/autocommands.vim
 
-command ShowLspClients lua require('config.util').show_available_lsp_clients()
+command ShowLspClients lua require('phijor.util').show_available_lsp_clients()
 
 colorscheme phijor
 

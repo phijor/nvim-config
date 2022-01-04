@@ -13,9 +13,6 @@ require("packer").startup(function(use)
 		-- 'phijor/nvim-lspconfig',
 		"~/usr/src/nvim/nvim-lspconfig",
 		branch = "feature-agda-language-server",
-		config = function()
-			-- require('config.lsp')
-		end,
 	}
 	use {
 		"nvim-lua/lsp-status.nvim",
@@ -37,7 +34,7 @@ require("packer").startup(function(use)
 	use {
 		"kosayoda/nvim-lightbulb",
 		config = function()
-			vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'config.lsp'.update_lightbulb()]]
+			vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'phijor.lsp'.update_lightbulb()]]
 		end,
 	}
 	use {
@@ -66,7 +63,7 @@ require("packer").startup(function(use)
 			"saadparwaiz1/cmp_luasnip",
 		},
 		config = function()
-			require "config.completion"
+			require "phijor.completion"
 		end,
 	}
 	-- Completion sources
@@ -86,7 +83,7 @@ require("packer").startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 		config = function()
-			require "config.treesitter"
+			require "phijor.treesitter"
 		end,
 	}
 	use "nvim-treesitter/playground"
@@ -228,7 +225,7 @@ require("packer").startup(function(use)
 			opt = true,
 		},
 		config = function()
-			require "config.lualine"
+			require "phijor.lualine"
 		end,
 	}
 
@@ -246,7 +243,7 @@ require("packer").startup(function(use)
 		},
 		ft = { "rust" },
 		config = function()
-			local rust_config = require("config.lsp").lsp_get_default_config()
+			local rust_config = require("phijor.lsp").lsp_get_default_config()
 			rust_config.settings = {
 				["rust-analyzer"] = {
 					checkOnSave = { command = "check" },
