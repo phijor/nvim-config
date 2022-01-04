@@ -29,7 +29,6 @@ local color_template = {
     visual = 'yellow',
     replace = 'red',
     command = 'cyan',
-    inactive = 'black',
 }
 
 local function create_section_highlight(section, mode, hl)
@@ -45,9 +44,6 @@ end
 local color_scheme = {}
 for mode, base in pairs(color_template) do
   local dark_base = 'dark' .. base
-  if base == 'black' then
-    dark_base = "black"
-  end
 
   color_scheme[mode] = {
     -- a = {bg = colors[base], fg = colors.black },
@@ -59,10 +55,23 @@ for mode, base in pairs(color_template) do
   }
 end
 
+local inactive_section_highlight =
+  create_section_highlight('buffer', 'inactive', {ctermfg='white', ctermbg='black'})
+
+color_scheme['inactive'] = {
+  a = inactive_section_highlight,
+  b = inactive_section_highlight,
+  c = inactive_section_highlight,
+}
+
+local no_separators = { left = '', right = '' }
+
 require('lualine').setup {
     options = {
         theme = color_scheme,
         icons_enabled = true,
+        component_separators = no_separators,
+        section_separators = no_separators,
     },
     sections = {
       lualine_a = {
@@ -92,7 +101,7 @@ require('lualine').setup {
           icons_enabled = false,
           buffers_color = {
             active = create_section_highlight('buffer', 'active', {ctermfg='black', ctermbg='darkblue', gui='italic'}),
-            inactive = create_section_highlight('buffer', 'inactive', {ctermfg='white', ctermbg='black'}),
+            inactive = inactive_section_highlight,
           },
         }
       }
