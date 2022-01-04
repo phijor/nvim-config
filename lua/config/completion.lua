@@ -2,10 +2,13 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
-local _ = require('cmp_path')
+local _ = require('cmp_emoji')
+local _ = require('cmp_unicode')
+local _ = require('cmp_buffer')
+local _ = require('cmp_cmdline')
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menu,preview'
 
 cmp.setup {
   snippet = {
@@ -22,7 +25,7 @@ cmp.setup {
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
@@ -47,11 +50,29 @@ cmp.setup {
     {
       { name = 'nvim_lsp' },
       { name = 'luasnip' }, -- For luasnip users.
+    },
+    {
       { name = 'path' },
       { name = 'buffer' },
+    },
+    {
+      { name = 'emoji' },
+      { name = 'unicode' },
     }
   ),
   experimental = {
-    native_menu = true,
+    ghost_text = true,
   },
 }
+
+cmp.setup.cmdline(':', {
+  sources = {
+    { name = 'cmdline' }
+  }
+})
+
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
