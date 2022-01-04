@@ -269,6 +269,14 @@ require('packer').startup(function (use)
     end
   }
 
+  -- Idris
+  use {
+    'ShinKage/idris2-nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'MunifTanjim/nui.nvim',
+    },
+  }
   -- Lean
   use 'Julian/lean.nvim'
 

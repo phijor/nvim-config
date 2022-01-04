@@ -161,6 +161,29 @@ local function setup_agda()
   end
 end
 
+local function setup_idris2()
+	local idris_config = lsp_get_default_config()
+	local orig_on_attach = idris_config.on_attach
+
+	idris_config.on_attach = function(client, bufnr)
+		orig_on_attach(client, bufnr)
+
+		local function buf_set_keymap(...)
+			vim.api.nvim_buf_set_keymap(bufnr, ...)
+		end
+
+		local function bufcmd(cmd)
+			return string.format([[<cmd>lua require('idris2.code_action').%s()<CR>]], cmd)
+		end
+
+		local options = { noremap = true, silent = true }
+
+		buf_set_keymap("n", leader .. "is", bufcmd("case_split"), options)
+	end
+
+	require("idris2").setup({})
+end
+
 local function setup_signs()
   -- signs in sign column
   local signs = {
