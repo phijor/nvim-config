@@ -1,7 +1,7 @@
+lua require('config.options')
 lua require('config.plugins')
 lua require('config.lsp').setup()
 
-runtime config/options.vim
 runtime config/variables.vim
 runtime config/autocommands.vim
 runtime config/highlight.vim
