@@ -211,7 +211,7 @@ function M:setup()
 
 	setup_lua()
 	setup_texlab()
-	setup_lean()
+	-- setup_lean()
 	setup_agda()
 
 	setup_signs()
