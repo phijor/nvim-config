@@ -146,6 +146,14 @@ require('packer').startup(function (use)
   use 'wellle/targets.vim'
   use 'kana/vim-operator-user'
 
+  -- Window resiszing
+  use {
+    'beauwilliams/focus.nvim',
+    config = function ()
+      require('focus').setup()
+    end
+  }
+
   use {
     'phaazon/hop.nvim',
     config = function ()
