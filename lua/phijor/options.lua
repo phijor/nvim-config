@@ -5,15 +5,15 @@ local set = vim.opt
 
 -- Provide fold text that ellides folded lines
 function _G.fold_text_ellipsis()
-	local foldstart = vim.v.foldstart
-	local foldend = vim.v.foldend
+  local foldstart = vim.v.foldstart
+  local foldend = vim.v.foldend
 
-	local spaces = (" "):rep(vim.opt.tabstop:get())
-	local line_start = vim.fn.getline(foldstart):gsub("(\t)", spaces)
-	local line_end = vim.fn.trim(vim.fn.getline(foldend))
-	local lines_folded = foldend - foldstart + 1
+  local spaces = (" "):rep(vim.opt.tabstop:get())
+  local line_start = vim.fn.getline(foldstart):gsub("(\t)", spaces)
+  local line_end = vim.fn.trim(vim.fn.getline(foldend))
+  local lines_folded = foldend - foldstart + 1
 
-	return string.format("%s … %s (%d lines)", line_start, line_end, lines_folded)
+  return string.format("%s … %s (%d lines)", line_start, line_end, lines_folded)
 end
 
 set.foldmethod = "expr"
@@ -21,10 +21,10 @@ set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldtext = "v:lua.fold_text_ellipsis()"
 
 set.fillchars = {
-	fold = " ",
-	foldopen = "▾",
-	foldsep = "│",
-	foldclose = "▸",
+  fold = " ",
+  foldopen = "▾",
+  foldsep = "│",
+  foldclose = "▸",
 }
 set.foldnestmax = 3
 set.foldminlines = 1 -- start with one level of folds opened
@@ -64,27 +64,27 @@ set.wildmenu = true
 set.wildmode = { list = "longest" }
 -- Suffixes that get lower priority when doing tab completion for filenames.
 set.suffixes:append {
-	"~",
-	".bak",
-	".swp",
-	".o",
-	".info",
-	".aux",
-	".log",
-	".dvi",
-	".bbl",
-	".blg",
-	".brf",
-	".cb",
-	".ind",
-	".idx",
-	".ilg",
-	".inx",
-	".out",
-	".toc",
-	".png",
-	".jpg",
-	".egg-info",
+  "~",
+  ".bak",
+  ".swp",
+  ".o",
+  ".info",
+  ".aux",
+  ".log",
+  ".dvi",
+  ".bbl",
+  ".blg",
+  ".brf",
+  ".cb",
+  ".ind",
+  ".idx",
+  ".ilg",
+  ".inx",
+  ".out",
+  ".toc",
+  ".png",
+  ".jpg",
+  ".egg-info",
 }
 set.wildignore:append ".egg-info"
 
