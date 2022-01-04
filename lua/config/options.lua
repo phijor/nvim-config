@@ -32,7 +32,7 @@ set.foldminlines = 1 -- start with one level of folds opened
 
 -- Splits
 --#region
-set.fillchars:append("vert:┃")
+set.fillchars:append "vert:┃"
 set.splitbelow = true -- split windows below the current window
 --#endregion
 
@@ -45,7 +45,7 @@ set.softtabstop = -1 -- use value of tabstop
 set.shiftround = true -- align indents to shiftwidth
 set.expandtab = true
 
-set.clipboard:append("unnamedplus")
+set.clipboard:append "unnamedplus"
 set.undolevels = 1000
 --#endregion
 
@@ -59,11 +59,11 @@ set.title = true -- set title of window
 -- Commandline
 set.showcmd = true -- show partial command and highlight dimensions
 set.history = 50 -- keep 50 liens of command line history
-set.shortmess:append("c") -- " don't give |ins-completion-menu| messages
+set.shortmess:append "c"
 set.wildmenu = true
 set.wildmode = { list = "longest" }
 -- Suffixes that get lower priority when doing tab completion for filenames.
-set.suffixes:append({
+set.suffixes:append {
 	"~",
 	".bak",
 	".swp",
@@ -85,8 +85,8 @@ set.suffixes:append({
 	".png",
 	".jpg",
 	".egg-info",
-})
-set.wildignore:append(".egg-info")
+}
+set.wildignore:append ".egg-info"
 
 -- Search
 set.ignorecase = true
@@ -101,7 +101,7 @@ set.writebackup = false
 set.undofile = true -- keep an undo file (undo changes after closing)
 
 -- Set backup-dir for .*.swp-files
-set.directory = vim.env.XDG_RUNTIME_DIR .. '/nvim/swap//'
+set.directory = vim.env.XDG_RUNTIME_DIR .. "/nvim/swap//"
 
 --#endregion
 
