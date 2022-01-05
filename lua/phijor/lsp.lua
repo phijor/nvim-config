@@ -125,13 +125,11 @@ local function setup_texlab()
     orig_on_attach(client, bufnr)
 
     local buf = util.BufKeyMapper:new(bufnr, { noremap = true, silent = true })
-    local function texlab(target)
-      return string.format([[<cmd>lua require('lspconfig').texlab['%s'](%d)<CR>]], target, bufnr)
-    end
+    local cmd = buf.format_cmd
 
     buf:maps {
-      ["n <Leader>ll"] = { texlab "buf_build" },
-      ["n <Leader>lv"] = { texlab "buf_search" },
+      ["n <Leader>ll"] = { cmd "TexlabBuild" },
+      ["n <Leader>lv"] = { cmd "TexlabForward" },
     }
   end
 
