@@ -272,29 +272,7 @@ require("packer").startup(function(use)
       { "nvim-lua/plenary.nvim", opt = true },
       { "nvim-telescope/telescope.nvim", opt = true },
     },
-    ft = { "rust" },
-    config = function()
-      local rust_config = require("phijor.lsp").lsp_get_default_config()
-      rust_config.settings = {
-        ["rust-analyzer"] = {
-          checkOnSave = { command = "check" },
-          inlayHints = {
-            chainingHintsSeparator = "→ ",
-            typeHintsSeparator = "⊢ ",
-          },
-          procMacro = {
-            enable = true,
-          },
-          lens = {
-            enable = true,
-            methodReferences = true,
-          },
-        },
-      }
-      require("rust-tools").setup {
-        server = rust_config,
-      }
-    end,
+    -- configuration is done in lsp.setup
   }
 
   -- Idris

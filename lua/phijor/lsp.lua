@@ -105,6 +105,36 @@ local function setup_default(servers)
   end
 end
 
+local function setup_rust()
+  local rust_config = get_config {
+    on_attach = function(_, bufnr)
+      local buf = util.BufKeyMapper:new(bufnr)
+
+      buf:cmd("n", "<Leader>cr", "CargoReload")
+    end,
+    settings = {
+      ["rust-analyzer"] = {
+        checkOnSave = { command = "check" },
+        inlayHints = {
+          chainingHintsSeparator = "→ ",
+          typeHintsSeparator = "⊢ ",
+        },
+        procMacro = {
+          enable = true,
+        },
+        lens = {
+          enable = true,
+          methodReferences = true,
+        },
+      },
+    },
+  }
+
+  require("rust-tools").setup {
+    server = rust_config,
+  }
+end
+
 local function setup_lua()
   local lua_lsp_lib = "/usr/lib/lua-language-server"
 
@@ -234,6 +264,7 @@ function M:setup()
   }
 
   setup_lua()
+  setup_rust()
   setup_texlab()
   -- setup_lean()
   -- setup_agda()
