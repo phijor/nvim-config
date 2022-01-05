@@ -4,6 +4,8 @@ function M:show_available_lsp_clients()
   print(vim.inspect(require("lspconfig").available_servers()))
 end
 
+vim.cmd [[command ShowLspClients lua require('phijor.util').show_available_lsp_clients()]]
+
 ---@param event string
 ---@param pattern string | string[]
 ---@param cmd string
