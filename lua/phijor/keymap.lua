@@ -88,7 +88,7 @@ function M:map_keys_lsp(bufnr)
     ["n <Leader>a"] = { lsp "buf.code_action" },
 
     -- Diagnostics
-    ["n <Leader>dl"] = { diag "set_loclist" },
+    ["n <Leader>dl"] = { diag "setloclist" },
     ["n <Leader>dL"] = { diag "show_line_diagnostics" },
 
     -- Misc
