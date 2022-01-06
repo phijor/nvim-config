@@ -11,51 +11,7 @@ local default_on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  local buf = util.BufKeyMapper:new(bufnr, { noremap = true, silent = true })
-
-  local function lsp(target)
-    return buf.format_cmd("lua vim.lsp." .. target .. "()")
-  end
-
-  local function diag(target)
-    return buf.format_cmd("lua vim.diagnostic." .. target .. "()")
-  end
-
-  local cmd = buf.format_cmd
-
-  buf:maps {
-    -- Jump to items
-    ["n gd"] = { lsp "buf.definition" },
-    ["n gD"] = { lsp "buf.declaration" },
-    ["n gi"] = { lsp "buf.implementation" },
-    ["n gt"] = { lsp "buf.type_definition" },
-    ["n gr"] = { lsp "buf.references" },
-
-    -- Hovers
-    ["ni <C-k>"] = { lsp "buf.signature_help" },
-    ["n K"] = { lsp "buf.hover" },
-
-    -- Workspace actions
-    ["n <Leader>wa"] = { lsp "buf.add_workspace_folder" },
-    ["n <Leader>wr"] = { lsp "buf.remove_workspace_folder" },
-    ["n <Leader>wl"] = { cmd [[lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))]] },
-
-    -- Navigation
-    ["n [d"] = { diag "goto_prev" },
-    ["n ]d"] = { diag "goto_next" },
-
-    -- Interaction
-    ["nv <Leader>f"] = { lsp "buf.formatting" },
-    ["n <Leader>r"] = { lsp "buf.rename" },
-    ["n <Leader>a"] = { lsp "buf.code_action" },
-
-    -- Diagnostics
-    ["n <Leader>dl"] = { diag "set_loclist" },
-    ["n <Leader>dL"] = { diag "show_line_diagnostics" },
-
-    -- Misc
-    ["n <Leader>R"] = { cmd "LspRestart" },
-  }
+  require("phijor.keymap").map_keys_lsp(bufnr)
 
   lsp_status.on_attach(client)
 end
