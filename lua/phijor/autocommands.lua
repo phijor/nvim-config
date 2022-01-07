@@ -43,6 +43,8 @@ function M.setup()
     },
   }
 
+  require("phijor.keymap").map_keys_autocmd()
+
   M._exists = true
 end
 

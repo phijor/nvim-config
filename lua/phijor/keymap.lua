@@ -45,9 +45,21 @@ function M:setup()
   keys:cmd("n", "<Leader>vo", [[lua phijor_find_config_files()]])
 end
 
+---Map keys that require autocomands to do so, i.e. filetype-specific keys.
+function M:map_keys_autocmd()
+  local augroups = require("phijor.util").augroups
+
+  augroups {
+    quickfix = {
+      -- Exit quickfix and loclist by hitting <Esc> twice
+      { "FileType", "qf", "nmap <buffer> <Esc><Esc> <Cmd>lclose<CR>" },
+    },
+  }
+end
+
 ---Map keys after attaching langauge server to a buffer.
 ---@param bufnr integer Buffer to attach to
-function M:map_keys_lsp(bufnr)
+function M.map_keys_lsp(bufnr)
   local util = require("phijor.util")
   local buf = util.BufKeyMapper:new(bufnr, { noremap = true, silent = true })
 
