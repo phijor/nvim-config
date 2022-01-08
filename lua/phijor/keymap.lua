@@ -13,39 +13,40 @@ function M:setup()
 
   local keys = KeyMapper:new()
 
-  -- Use <Space> to enter command mode
-  keys:map("nv", "<Space>", ":")
-
-  -- Navigate half a page up/down with H/L
-  keys:map("nv", "H", "<C-u>")
-  keys:map("nv", "L", "<C-d>")
-
-  -- Seach visual selection:
-  -- y - yank
-  -- / - enter search mode
-  -- <C-r>" - paste contents of register "
-  keys:map("v", "//", [[y/<C-r>"<CR>]])
-
-  -- Disable search highlighting
-  keys:cmd("n", "<C-n>", "nohlsearch")
-
-  -- Exit terminal mode by hitting <Esc> twice
-  keys:map("t", "<Esc><Esc>", [[<C-\><C-n>]])
-
-  local function telescope(cmd)
-    return require("telescope.builtin")[cmd]
+  local function telescope(builtin, opts)
+    return function()
+      return require("telescope.builtin")[builtin](opts)
+    end
   end
 
-  -- Open telescope pickers
-  keys:cmd("n", "<Leader>o", telescope "git_file")
-  keys:cmd("n", "<Leader>O", telescope "find_files")
-  keys:cmd("n", "<Leader>b", telescope "buffers")
-  keys:cmd("n", "<Leader>/", telescope "live_grep")
+  keys:maps {
+    -- Use <Space> to enter command mode
+    ["nv <Space>"] = { ":" },
 
-  -- Open file picker in nvim config directory
-  keys:cmd("n", "<Leader>vo", function()
-    require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" }
-  end)
+    -- Navigate half a page up/down with H/L
+    ["nv H"] = { "<C-u>" },
+    ["nv L"] = { "<C-d>" },
+    -- Seach visual selection:
+    -- y - yank
+    -- / - enter search mode
+    -- <C-r>" - paste contents of register "
+    ["v //"] = { [[y/<C-r>"<CR>]] },
+
+    -- Disable search highlighting
+    ["n <C-n>"] = { keys.format_cmd "nohlsearch" },
+
+    -- Exit terminal mode by hitting <Esc> twice
+    ["t <Esc><Esc>"] = { [[<C-\><C-n>]] },
+
+    -- Open telescope pickers
+    ["n <Leader>o"] = { telescope "git_files" },
+    ["n <Leader>O"] = { telescope "find_files" },
+    ["n <Leader>b"] = { telescope "buffers" },
+    ["n <Leader>/"] = { telescope "live_grep" },
+
+    -- Open file picker in nvim config directory
+    ["n <Leader>vo"] = { telescope("find_files", { cwd = vim.fn.stdpath "config" }) },
+  }
 end
 
 ---Map keys that require autocomands to do so, i.e. filetype-specific keys.
