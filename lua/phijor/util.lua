@@ -88,7 +88,20 @@ local function explode(str)
   return exploded
 end
 
----@alias MapMode '""' | '"n"' | '"v"' | '"o"' | '"i"' | '"x"' | '"s"' | '"t"' | '"l"' | '"c"'
+---@alias MapMode '""' | '"n"' | '"v"' | '"s"' | '"x"' | '"o"' | '"i"' | '"l"' | '"c"' | '"t"'
+local MapMode = {}
+MapMode.Default = ""
+MapMode.Normal = "n"
+MapMode.VisualSelect = "v"
+MapMode.Select = "s"
+MapMode.Visual = "x"
+MapMode.OperatorPending = "o"
+MapMode.Insert = "i"
+MapMode.InsertCommandLine = "l"
+MapMode.CommandLine = "c"
+MapMode.Terminal = "t"
+MapMode = vim.tbl_add_reverse_lookup(MapMode)
+
 
 ---Create a keymapping for a `chord` of keys.
 ---@param modes MapMode | MapMode[] #modes in which to create the mapping
@@ -96,19 +109,23 @@ end
 ---@param target MapTarget what it maps to
 ---@param opts? MapOpts #mapping options
 function KeyMapper:map(modes, chord, target, opts)
-  vim.validate {
-    modes = { modes, { "string", "table" } },
-    chord = { chord, "string" },
-    target = { target, { "string", "function" } },
-  }
-
   if type(modes) == "string" then
     modes = explode(modes)
   end
 
-  if type(modes) ~= "table" then
-    error "Expected `modes` to a string or a list of strings"
-  end
+  ---@diagnostic disable-next-line: redundant-parameter
+  vim.validate {
+    modes = { modes, function (m)
+      for _, mode in ipairs(m) do
+        if not MapMode[mode] then
+          return false, string.format("%s is not a map mode", vim.inspect(mode))
+        end
+      end
+      return true
+    end, "map mode or list of map modes" },
+    chord = { chord, "string" },
+    target = { target, { "string", "function" } },
+  }
 
   opts = self:get_opts(opts)
   vim.keymap.set(modes, chord, target, opts)
@@ -139,7 +156,13 @@ function KeyMapper:maps(maps)
   for keys, definition in pairs(maps) do
     local modes, chord = string.match(keys, "(%w+)%s+(.*)")
     local target, opts = unpack(definition)
-    self:map(modes, chord, target, opts)
+
+    local success, err = pcall(function ()
+      self:map(modes, chord, target, opts)
+    end)
+    if not success then
+      vim.notify(string.format("Error mapping '%s': %s", keys, vim.inspect(err)), vim.log.levels.ERROR)
+    end
   end
 end
 
