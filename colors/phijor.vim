@@ -46,8 +46,8 @@ highlight DiffDelete    ctermbg=none    ctermfg=red     cterm=bold
 highlight DiffText                                      cterm=bold
 
 " Spelling
-highlight SpellBad       ctermbg=red    ctermfg=NONE    cterm=bold
-highlight SpellCap       ctermbg=12     ctermfg=NONE    cterm=bold
+highlight SpellBad      ctermbg=none    ctermfg=red     cterm=bold,underline
+highlight SpellCap      ctermbg=none    ctermfg=blue    cterm=bold,underline
 
 " Completion menu
 highlight Pmenu    ctermfg=none ctermbg=black
