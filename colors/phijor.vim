@@ -71,12 +71,12 @@ highlight link CmpItemKindModule Include
 highlight link CmpItemKindVariable Identifier
 
 " LSP highlights
-highlight LspDiagnosticsDefaultError       ctermfg=red
-highlight LspDiagnosticsDefaultWarning     ctermfg=yellow
-highlight LspDiagnosticsDefaultHint        ctermfg=cyan
-highlight LspDiagnosticsDefaultInformation ctermfg=green
+highlight DiagnosticsError       ctermfg=red
+highlight DiagnosticsWarning     ctermfg=yellow
+highlight DiagnosticsHint        ctermfg=cyan
+highlight DiagnosticsInformation ctermfg=green
 
-highlight LspDiagnosticsUnderlineError       ctermfg=red    cterm=underline
-highlight LspDiagnosticsUnderlineWarning     ctermfg=yellow cterm=underline
-highlight LspDiagnosticsUnderlineHint        ctermfg=cyan   cterm=underline
-highlight LspDiagnosticsUnderlineInformation ctermfg=green  cterm=underline
+highlight DiagnosticsUnderlineError       ctermfg=red    cterm=underline
+highlight DiagnosticsUnderlineWarning     ctermfg=yellow cterm=underline
+highlight DiagnosticsUnderlineHint        ctermfg=cyan   cterm=underline
+highlight DiagnosticsUnderlineInformation ctermfg=green  cterm=underline
