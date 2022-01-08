@@ -29,7 +29,7 @@ end
 local function format_augroups(name, definitions)
   local cmds = { "augroup " .. name, "autocmd!" }
   for _, definition in ipairs(definitions) do
-    cmds[#cmds+1] = format_autocmd(unpack(definition))
+    cmds[#cmds + 1] = format_autocmd(unpack(definition))
   end
   table.insert(cmds, "augroup END")
   return cmds
@@ -57,6 +57,7 @@ end
 ---@alias MapTarget string | fun()
 
 ---@class KeyMapper
+---@field default_opts MapOpts
 ---@field opts MapOpts
 local KeyMapper = { default_opts = {} }
 KeyMapper.__index = KeyMapper
@@ -71,16 +72,8 @@ function KeyMapper:new(opts)
   return mapper
 end
 
----@param mode '""' | '"n"' | '"v"' | '"o"' | '"i"' | '"x"' | '"s"' | '"t"' | '"l"' | '"c"'
----@param lhs string
----@param rhs MapTarget
 ---@param opts? MapOpts
-function KeyMapper:_set_keymap(mode, lhs, rhs, opts)
-  return vim.keymap.set(mode, lhs, rhs, opts)
-end
-
----@param opts? table<string, boolean>
----@return table<string, boolean>
+---@return MapOpts
 function KeyMapper:get_opts(opts)
   return vim.tbl_extend("force", self.default_opts, self.opts or {}, opts or {})
 end
@@ -95,8 +88,10 @@ local function explode(str)
   return exploded
 end
 
+---@alias MapMode '""' | '"n"' | '"v"' | '"o"' | '"i"' | '"x"' | '"s"' | '"t"' | '"l"' | '"c"'
+
 ---Create a keymapping for a `chord` of keys.
----@param modes string | string[] #modes in which to create the mapping
+---@param modes MapMode | MapMode[] #modes in which to create the mapping
 ---@param chord string #the new key sequence to map
 ---@param target MapTarget what it maps to
 ---@param opts? MapOpts #mapping options
@@ -116,9 +111,7 @@ function KeyMapper:map(modes, chord, target, opts)
   end
 
   opts = self:get_opts(opts)
-  for _, mode in ipairs(modes) do
-    self:_set_keymap(mode, chord, target, opts)
-  end
+  vim.keymap.set(modes, chord, target, opts)
 end
 
 --- Map chord to a command.
