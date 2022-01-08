@@ -115,20 +115,28 @@ function KeyMapper:map(modes, chord, target, opts)
 
   ---@diagnostic disable-next-line: redundant-parameter
   vim.validate {
-    modes = { modes, function (m)
-      for _, mode in ipairs(m) do
-        if not MapMode[mode] then
-          return false, string.format("%s is not a map mode", vim.inspect(mode))
+    modes = {
+      modes,
+      function(m)
+        for _, mode in ipairs(m) do
+          if not MapMode[mode] then
+            return false, string.format("%s is not a map mode", vim.inspect(mode))
+          end
         end
-      end
-      return true
-    end, "map mode or list of map modes" },
+        return true
+      end,
+      "map mode or list of map modes",
+    },
     chord = { chord, "string" },
     target = { target, { "string", "function" } },
   }
 
   opts = self:get_opts(opts)
   vim.keymap.set(modes, chord, target, opts)
+end
+
+local function format_cmd(target)
+  return "<Cmd>" .. target .. "<CR>"
 end
 
 --- Map chord to a command.
@@ -139,27 +147,53 @@ end
 ---@param target string
 ---@param opts? MapOpts
 function KeyMapper:cmd(modes, chord, target, opts)
-  self:map(modes, chord, self.format_cmd(target), opts)
-end
-
-function KeyMapper.format_cmd(target)
-  return "<Cmd>" .. target .. "<CR>"
+  self:map(modes, chord, format_cmd(target), opts)
 end
 
 ---@class MapDefinition
----@field [1] string @chord
----@field [2]? MapOpts @arguments
+---@field [1] string target
+---@field opts? MapOpts options
+---@field cmd? string A command to map via @see KeyMapper.cmd
+
+---@param definition MapDefinition
+---@return string, MapOpts
+local function parse_definition(definition)
+  local optional = true
+  local target = definition[1]
+  local cmd = definition.cmd
+  local opts = definition.opts
+
+  ---@diagnostic disable-next-line: redundant-parameter
+  vim.validate {
+    chord = { target, { "string", "function" }, optional },
+    opts = { opts, "table", optional },
+    cmd = { cmd, "string", optional },
+  }
+
+  if target and cmd then
+    error "`target` and `cmd` are mutually exclusive"
+  end
+
+  if cmd then
+    return format_cmd(cmd), opts
+  elseif target then
+    return target, opts
+  else
+    error "no target given for map"
+  end
+end
 
 ---Map multiple chords at once
 ---@param maps table<string, MapDefinition>
 function KeyMapper:maps(maps)
   for keys, definition in pairs(maps) do
-    local modes, chord = string.match(keys, "(%w+)%s+(.*)")
-    local target, opts = unpack(definition)
-
-    local success, err = pcall(function ()
+    local function do_map()
+      local modes, chord = string.match(keys, "(%w+)%s+(.*)")
+      local target, opts = parse_definition(definition)
       self:map(modes, chord, target, opts)
-    end)
+    end
+
+    local success, err = pcall(do_map)
     if not success then
       vim.notify(string.format("Error mapping '%s': %s", keys, vim.inspect(err)), vim.log.levels.ERROR)
     end

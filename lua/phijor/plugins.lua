@@ -177,13 +177,12 @@ require("packer").startup(function(use)
       c1("", "T", "BEFORE_CURSOR", true, false)
 
       local key = require("phijor.util").KeyMapper:new { silent = true }
-      local cmd = key.format_cmd
 
       key:maps {
-        ["nv gw"] = { cmd "HopWord" },
-        ["nv gW"] = { cmd "HopWordCurrentLine" },
-        ["nv gl"] = { cmd "HopLineStart" },
-        ["nv gL"] = { cmd "HopLine" },
+        ["nv gw"] = { cmd = "HopWord" },
+        ["nv gW"] = { cmd = "HopWordCurrentLine" },
+        ["nv gl"] = { cmd = "HopLineStart" },
+        ["nv gL"] = { cmd = "HopLine" },
       }
     end,
   }

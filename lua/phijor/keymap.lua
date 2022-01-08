@@ -33,7 +33,7 @@ function M:setup()
     ["v //"] = { [[y/<C-r>"<CR>]] },
 
     -- Disable search highlighting
-    ["n <C-n>"] = { keys.format_cmd "nohlsearch" },
+    ["n <C-n>"] = { cmd = "nohlsearch" },
 
     -- Exit terminal mode by hitting <Esc> twice
     ["t <Esc><Esc>"] = { [[<C-\><C-n>]] },
@@ -120,7 +120,7 @@ function M.map_keys_lsp(bufnr)
     },
 
     -- Misc
-    ["n <Leader>R"] = { buf.format_cmd "LspRestart" },
+    ["n <Leader>R"] = { cmd = "LspRestart" },
   }
 end
 

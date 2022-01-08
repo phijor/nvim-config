@@ -154,11 +154,10 @@ local function setup_texlab()
   local texlab_config = get_config {
     on_attach = function(_, bufnr)
       local buf = util.KeyMapper:new { silent = true, buffer = bufnr }
-      local cmd = buf.format_cmd
 
       buf:maps {
-        ["n <Leader>ll"] = { cmd "TexlabBuild" },
-        ["n <Leader>lv"] = { cmd "TexlabForward" },
+        ["n <Leader>ll"] = { cmd = "TexlabBuild" },
+        ["n <Leader>lv"] = { cmd = "TexlabForward" },
       }
     end,
     settings = {
