@@ -144,7 +144,7 @@ end
 ---@param maps table<string, MapDefinition>
 function KeyMapper:maps(maps)
   for keys, definition in pairs(maps) do
-    local modes, chord = string.match(keys, "(%w?)%s+(.*)")
+    local modes, chord = string.match(keys, "(%w+)%s+(.*)")
     local target, opts = unpack(definition)
     self:map(modes, chord, target, opts)
   end
