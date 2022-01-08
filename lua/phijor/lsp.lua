@@ -61,10 +61,25 @@ local function setup_default(servers)
   end
 end
 
+local function setup_python()
+  local python_config = get_config {
+    settings = {
+      python = {
+        analysis = {
+          diagnosticMode = "workspace",
+          useLibraryCodeForTypes = true,
+        },
+      },
+    },
+  }
+
+  nvim_lsp.pyright.setup(python_config)
+end
+
 local function setup_rust()
   local rust_config = get_config {
     on_attach = function(_, bufnr)
-      local buf = util.BufKeyMapper:new(bufnr)
+      local buf = util.KeyMapper:new { buffer = bufnr }
 
       buf:cmd("n", "<Leader>cr", "CargoReload")
     end,
@@ -130,7 +145,7 @@ end
 local function setup_texlab()
   local texlab_config = get_config {
     on_attach = function(_, bufnr)
-      local buf = util.BufKeyMapper:new(bufnr, { noremap = true, silent = true })
+      local buf = util.KeyMapper:new { silent = true, buffer = bufnr }
       local cmd = buf.format_cmd
 
       buf:maps {
@@ -183,14 +198,16 @@ end
 local function setup_idris2()
   local idris_config = get_config {
     on_attach = function(_, bufnr)
-      local buf = util.BufKeyMapper:new(bufnr, { noremap = true, silent = true })
+      local buf = util.KeyMapper:new { silent = true, buffer = bufnr }
 
-      local function idris(target)
-        return string.format([[<cmd>lua require('idris2.code_action').%s()<CR>]], target)
+      local function code_action(target)
+        return function()
+          return require("idris2.code_action")[target]()
+        end
       end
 
       buf:maps {
-        ["n <Leader>is"] = { idris "case_split" },
+        ["n <Leader>is"] = { code_action "case_split" },
       }
     end,
   }
@@ -215,10 +232,10 @@ end
 
 function M:setup()
   setup_default {
-    "pyright",
     "vimls",
   }
 
+  setup_python()
   setup_lua()
   setup_rust()
   setup_texlab()

@@ -39,13 +39,14 @@ end
 function M.augroups(groups)
   local cmds = {}
   for name, definitions in pairs(groups) do
-    cmds[#cmds+1] = format_augroups(name, definitions)
+    cmds[#cmds + 1] = format_augroups(name, definitions)
   end
 
   vim.cmd(table.concat(vim.tbl_flatten(cmds), "\n"))
 end
 
 ---@class MapOpts
+---@field buffer? integer
 ---@field unique? boolean
 ---@field nowait? boolean
 ---@field silent? boolean
@@ -53,9 +54,11 @@ end
 ---@field expr?   boolean
 ---@field noremap? boolean
 
+---@alias MapTarget string | fun()
+
 ---@class KeyMapper
 ---@field opts MapOpts
-local KeyMapper = { default_opts = { noremap = true } }
+local KeyMapper = { default_opts = {} }
 KeyMapper.__index = KeyMapper
 
 ---@param opts? MapOpts
@@ -70,34 +73,11 @@ end
 
 ---@param mode '""' | '"n"' | '"v"' | '"o"' | '"i"' | '"x"' | '"s"' | '"t"' | '"l"' | '"c"'
 ---@param lhs string
----@param rhs string
+---@param rhs MapTarget
 ---@param opts? MapOpts
 function KeyMapper:_set_keymap(mode, lhs, rhs, opts)
-  return vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+  return vim.keymap.set(mode, lhs, rhs, opts)
 end
-
----@class BufKeyMapper
----@field bufnr integer
-local BufKeyMapper = { bufnr = nil }
-BufKeyMapper.__index = BufKeyMapper
-setmetatable(BufKeyMapper, { __index = KeyMapper })
-
----@param bufnr integer
----@param opts? MapOpts
----@return BufKeyMapper
-function BufKeyMapper:new(bufnr, opts)
-  local mapper = setmetatable({}, self)
-
-  mapper.bufnr = bufnr
-  mapper.opts = opts
-
-  return mapper
-end
-
-function BufKeyMapper:_set_keymap(...)
-  return vim.api.nvim_buf_set_keymap(self.bufnr, ...)
-end
-
 
 ---@param opts? table<string, boolean>
 ---@return table<string, boolean>
@@ -108,19 +88,25 @@ end
 ---@param str string
 ---@return string[]
 local function explode(str)
-    local exploded = {}
-    for c in string.gmatch(str, ".") do
-      exploded[#exploded+1] = c
-    end
-    return exploded
+  local exploded = {}
+  for c in string.gmatch(str, ".") do
+    exploded[#exploded + 1] = c
+  end
+  return exploded
 end
 
 ---Create a keymapping for a `chord` of keys.
 ---@param modes string | string[] #modes in which to create the mapping
 ---@param chord string #the new key sequence to map
----@param target string #what it maps to
+---@param target MapTarget what it maps to
 ---@param opts? MapOpts #mapping options
 function KeyMapper:map(modes, chord, target, opts)
+  vim.validate {
+    modes = { modes, { "string", "table" } },
+    chord = { chord, "string" },
+    target = { target, { "string", "function" } },
+  }
+
   if type(modes) == "string" then
     modes = explode(modes)
   end
@@ -165,6 +151,5 @@ function KeyMapper:maps(maps)
 end
 
 M.KeyMapper = KeyMapper
-M.BufKeyMapper = BufKeyMapper
 
 return M

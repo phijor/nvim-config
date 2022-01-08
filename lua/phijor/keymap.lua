@@ -32,17 +32,20 @@ function M:setup()
   -- Exit terminal mode by hitting <Esc> twice
   keys:map("t", "<Esc><Esc>", [[<C-\><C-n>]])
 
+  local function telescope(cmd)
+    return require("telescope.builtin")[cmd]
+  end
+
   -- Open telescope pickers
-  keys:cmd("n", "<Leader>o", [[Telescope git_files]])
-  keys:cmd("n", "<Leader>O", [[Telescope find_files]])
-  keys:cmd("n", "<Leader>b", [[Telescope buffers]])
-  keys:cmd("n", "<Leader>/", [[Telescope live_grep]])
+  keys:cmd("n", "<Leader>o", telescope "git_file")
+  keys:cmd("n", "<Leader>O", telescope "find_files")
+  keys:cmd("n", "<Leader>b", telescope "buffers")
+  keys:cmd("n", "<Leader>/", telescope "live_grep")
 
   -- Open file picker in nvim config directory
-  function _G.phijor_find_config_files()
-    require("telescope.builtin").find_files { cwd = vim.fn.stdpath('config') }
-  end
-  keys:cmd("n", "<Leader>vo", [[lua phijor_find_config_files()]])
+  keys:cmd("n", "<Leader>vo", function()
+    require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" }
+  end)
 end
 
 ---Map keys that require autocomands to do so, i.e. filetype-specific keys.
@@ -60,51 +63,63 @@ end
 ---Map keys after attaching langauge server to a buffer.
 ---@param bufnr integer Buffer to attach to
 function M.map_keys_lsp(bufnr)
-  local util = require("phijor.util")
-  local buf = util.BufKeyMapper:new(bufnr, { noremap = true, silent = true })
+  local util = require "phijor.util"
+  local buf = util.KeyMapper:new { silent = true, buffer = bufnr }
 
-  local function lsp(target)
-    return buf.format_cmd("lua vim.lsp." .. target .. "()")
-  end
-
-  local function diag(target)
-    return buf.format_cmd("lua vim.diagnostic." .. target .. "()")
-  end
-
-  local cmd = buf.format_cmd
+  local lsp = vim.lsp
 
   buf:maps {
     -- Jump to items
-    ["n gd"] = { lsp "buf.definition" },
-    ["n gD"] = { lsp "buf.declaration" },
-    ["n gi"] = { lsp "buf.implementation" },
-    ["n gt"] = { lsp "buf.type_definition" },
-    ["n gr"] = { lsp "buf.references" },
+    ["n gd"] = { lsp.buf.definition },
+    ["n gD"] = { lsp.buf.declaration },
+    ["n gi"] = { lsp.buf.implementation },
+    ["n gt"] = { lsp.buf.type_definition },
+    ["n gr"] = { lsp.buf.references },
 
     -- Hovers
-    ["ni <C-k>"] = { lsp "buf.signature_help" },
-    ["n K"] = { lsp "buf.hover" },
+    ["ni <C-k>"] = { lsp.buf.signature_help },
+    ["n K"] = { lsp.buf.hover },
 
     -- Workspace actions
-    ["n <Leader>wa"] = { lsp "buf.add_workspace_folder" },
-    ["n <Leader>wr"] = { lsp "buf.remove_workspace_folder" },
-    ["n <Leader>wl"] = { cmd [[lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))]] },
+    ["n <Leader>wa"] = { lsp.buf.add_workspace_folder },
+    ["n <Leader>wr"] = { lsp.buf.remove_workspace_folder },
+    ["n <Leader>wl"] = {
+      function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      end,
+    },
 
     -- Navigation
-    ["n [d"] = { diag "goto_prev" },
-    ["n ]d"] = { diag "goto_next" },
+    ["n [d"] = { vim.diagnostic.goto_prev },
+    ["n ]d"] = { vim.diagnostic.goto_next },
 
     -- Interaction
-    ["nv <Leader>f"] = { lsp "buf.formatting" },
-    ["n <Leader>r"] = { lsp "buf.rename" },
-    ["n <Leader>a"] = { lsp "buf.code_action" },
+    ["n <Leader>f"] = { lsp.buf.formatting },
+    ["v <Leader>f"] = { lsp.buf.range_formatting },
+    ["n <Leader>r"] = { lsp.buf.rename },
+    ["n <Leader>a"] = { lsp.buf.code_action },
 
     -- Diagnostics
-    ["n <Leader>dl"] = { diag "setloclist" },
-    ["n <Leader>dL"] = { diag "show_line_diagnostics" },
+    ["n <Leader>dl"] = { vim.diagnostic.setloclist },
+    ["n <Leader>dL"] = {
+      function()
+        local namespace = nil
+        vim.diagnostic.show(namespace, bufnr)
+      end,
+    },
+    ["n <Leader>ds"] = {
+      function()
+        vim.diagnostic.open_float { bufnr = bufnr }
+      end,
+    },
+    ["n <Leader>dS"] = {
+      function()
+        vim.diagnostic.open_float { scope = "buffer", bufnr = bufnr }
+      end,
+    },
 
     -- Misc
-    ["n <Leader>R"] = { cmd "LspRestart" },
+    ["n <Leader>R"] = { buf.format_cmd "LspRestart" },
   }
 end
 
