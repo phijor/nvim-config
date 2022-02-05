@@ -319,6 +319,12 @@ require("packer").startup(function(use)
   -- pass
   use "https://gitlab.com/craftyguy/vim-redact-pass.git"
 
+  -- i3
+  use "mboughaba/i3config.vim"
+
+  -- RON (Rust Object Notation)
+  use "ron-rs/ron.vim"
+
   use "cespare/vim-toml"
 end)
 
