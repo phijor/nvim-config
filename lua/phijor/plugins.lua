@@ -247,6 +247,16 @@ require("packer").startup(function(use)
   use "junegunn/fzf"
   use "junegunn/fzf.vim"
 
+  -- Terminal integration
+  use {
+    "akinsho/toggleterm.nvim",
+    config = function()
+      require("toggleterm").setup {
+        shade_terminals = false,
+      }
+    end,
+  }
+
   use {
     "nvim-telescope/telescope.nvim",
     requires = {

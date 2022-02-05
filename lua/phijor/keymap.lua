@@ -40,6 +40,8 @@ function M:setup()
 
     -- Exit terminal mode by hitting <Esc> twice
     ["t <Esc><Esc>"] = { [[<C-\><C-n>]] },
+    -- Toggle terminal (toggleterm pluging)
+    ["n <Leader>tt"] = { cmd = "ToggleTerm" },
 
     -- Open telescope pickers
     ["n <Leader>o"] = { telescope "git_files" },
