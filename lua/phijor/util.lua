@@ -203,7 +203,7 @@ end
 M.KeyMapper = KeyMapper
 
 ---Parse map definition for lazily loaded functions.
----@param definition string | table<string, any>
+---@param definition string | LazyMapDefinition
 ---@return string, MapOpts
 local function parse_lazy_definition(definition)
   ---@diagnostic disable-next-line: redundant-parameter
@@ -229,25 +229,44 @@ local function parse_lazy_definition(definition)
   end
 end
 
+---@class LazyMapDefinition
+---@field [1] string Name of a function to call
+---@field [2]? string Description for this definition
+---@field opts? MapOpts options
+local LazyMapDefinition = {}
+M.LazyMapDefinition = LazyMapDefinition
+
 ---Create map definitions from a lazily-required module.
+---@param module_path string Path to module to lazy-load functions from
+---@return fun(definition: string | LazyMapDefinition): MapDefinition
+---
+--- This function returns a function that takes either takes a string
+--- containing the function to call in module `module_path`, or a table
+--- with the following keys:
+---
+--- * `[1]`: Name of the function to call
+--- * `[2]`?: Description for this definition
+--- * `opts`?: map options
 ---
 --- Instead of writing
 ---
---- ```
+--- ```lua
 --- local keys = KeyMapper.new()
 --- keys:map {
----   ["n <Leader>b"] = { function() require("foo").bar(), opts = { desc = "bar ..." }}
----   ["n <Leader>f"] = { function() require("foo").frob(), opts = { desc = "frob ..." }}
+---   ["n <Leader>b"] = { function() require("foo").bar() end, opts = { desc = "bar ..." } },
+---   ["n <Leader>f"] = { function() require("foo").frob() end, opts = { desc = "frob ..." } },
+---   ["n <Leader>q"] = { function() require("foo").qux() end },
 --- }
 --- ```
---- use this:
+--- call the returned function to create an equivalent map definition:
 ---
---- ```
+--- ```lua
 --- local keys = KeyMapper.new()
 --- local foo = lazy_mapdef "foo"
 --- keys:map {
 ---   ["n <Leader>b"] = foo { "bar", "bar ..." },
----   ["n <Leader>f"] = foo { "frob", "frob ..." }
+---   ["n <Leader>f"] = foo { "frob", "frob ..." },
+---   ["n <Leader>q"] = foo "qux",
 --- }
 --- ```
 function M.lazy_mapdef(module_path)
