@@ -165,7 +165,7 @@ local function parse_definition(definition)
 
   ---@diagnostic disable-next-line: redundant-parameter
   vim.validate {
-    chord = { target, { "string", "function" }, optional },
+    target = { target, { "string", "function" }, optional },
     opts = { opts, "table", optional },
     cmd = { cmd, "string", optional },
   }
