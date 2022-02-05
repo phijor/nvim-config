@@ -135,6 +135,9 @@ function KeyMapper:map(modes, chord, target, opts)
   vim.keymap.set(modes, chord, target, opts)
 end
 
+---Sourround a string with "<Cmd>...<CR>"
+---@param target string
+---@return string
 local function format_cmd(target)
   return "<Cmd>" .. target .. "<CR>"
 end
@@ -156,7 +159,8 @@ end
 ---@field cmd? string A command to map via @see KeyMapper.cmd
 
 ---@param definition MapDefinition
----@return string, MapOpts
+---@return string | fun()
+---@return MapOpts
 local function parse_definition(definition)
   local optional = true
   local target = definition[1]
