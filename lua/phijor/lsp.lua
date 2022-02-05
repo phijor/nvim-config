@@ -293,6 +293,7 @@ end
 function M:setup()
   setup_default {
     "vimls",
+    "html",
   }
 
   setup_python()
