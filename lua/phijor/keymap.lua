@@ -74,11 +74,11 @@ function M.map_keys_lsp(bufnr)
 
   buf:maps {
     -- Jump to items
-    ["n gd"] = { lsp.buf.definition },
+    ["n gd"] = { telescope "lsp_definitions" },
     ["n gD"] = { lsp.buf.declaration },
-    ["n gi"] = { lsp.buf.implementation },
-    ["n gt"] = { lsp.buf.type_definition },
-    ["n gr"] = { lsp.buf.references },
+    ["n gi"] = { telescope "lsp_implementations" },
+    ["n gt"] = { telescope "lsp_type_definitions" },
+    ["n gr"] = { telescope "lsp_references" },
 
     -- Hovers
     ["ni <C-k>"] = { lsp.buf.signature_help },
@@ -101,10 +101,11 @@ function M.map_keys_lsp(bufnr)
     ["n <Leader>f"] = { lsp.buf.formatting },
     ["v <Leader>f"] = { lsp.buf.range_formatting },
     ["n <Leader>r"] = { lsp.buf.rename },
-    ["n <Leader>a"] = { lsp.buf.code_action },
+    ["n <Leader>a"] = { telescope "lsp_code_actions" },
+    ["v <Leader>a"] = { telescope "lsp_range_code_actions" },
 
     -- Diagnostics
-    ["n <Leader>dl"] = { vim.diagnostic.setloclist },
+    ["n <Leader>dl"] = { telescope "diagnostics" },
     ["n <Leader>dL"] = {
       function()
         local namespace = nil
