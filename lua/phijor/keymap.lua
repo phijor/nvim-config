@@ -108,12 +108,7 @@ function M.map_keys_lsp(bufnr)
 
     -- Diagnostics
     ["n <Leader>dl"] = { telescope "diagnostics" },
-    ["n <Leader>dL"] = {
-      function()
-        local namespace = nil
-        vim.diagnostic.show(namespace, bufnr)
-      end,
-    },
+    ["n <Leader>dL"] = { telescope("diagnostics", { namespace = nil, bufnr = 0 }) },
     ["n <Leader>ds"] = {
       function()
         vim.diagnostic.open_float { bufnr = bufnr }
