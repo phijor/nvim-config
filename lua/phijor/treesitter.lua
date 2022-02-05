@@ -36,5 +36,5 @@ parser_config.ld = {
 local key = require("phijor.util").KeyMapper:new()
 
 key:maps {
-  ["nv <Leader>th"] = { cmd = "TSHighlightCapturesUnderCursor" },
+  ["nv <Leader>hg"] = { cmd = "TSHighlightCapturesUnderCursor" },
 }
