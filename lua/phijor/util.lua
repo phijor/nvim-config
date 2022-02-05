@@ -202,4 +202,73 @@ end
 
 M.KeyMapper = KeyMapper
 
+---Parse map definition for lazily loaded functions.
+---@param definition string | table<string, any>
+---@return string, MapOpts
+local function parse_lazy_definition(definition)
+  ---@diagnostic disable-next-line: redundant-parameter
+  vim.validate {
+    definition = { definition, { "string", "table" } },
+  }
+
+  if type(definition) == "string" then
+    return definition, {}
+  elseif type(definition) == "table" then
+    local optional = true
+    ---@diagnostic disable-next-line: redundant-parameter
+    vim.validate {
+      target = { definition[1], "string", not optional },
+      desc = { definition[2], "string", optional },
+      opts = { definition.opts, "table", optional },
+    }
+
+    local opts = vim.tbl_extend("error", definition.opts or {}, { desc = definition[2] })
+    return definition[1], opts
+  else
+    error "Invalid lazy definition"
+  end
+end
+
+---Create map definitions from a lazily-required module.
+---
+--- Instead of writing
+---
+--- ```
+--- local keys = KeyMapper.new()
+--- keys:map {
+---   ["n <Leader>b"] = { function() require("foo").bar(), opts = { desc = "bar ..." }}
+---   ["n <Leader>f"] = { function() require("foo").frob(), opts = { desc = "frob ..." }}
+--- }
+--- ```
+--- use this:
+---
+--- ```
+--- local keys = KeyMapper.new()
+--- local foo = lazy_mapdef "foo"
+--- keys:map {
+---   ["n <Leader>b"] = foo { "bar", "bar ..." },
+---   ["n <Leader>f"] = foo { "frob", "frob ..." }
+--- }
+--- ```
+function M.lazy_mapdef(module_path)
+  ---@diagnostic disable-next-line: redundant-parameter
+  vim.validate {
+    module_path = { module_path, "string" },
+  }
+
+  local function create_def(definition)
+    ---@diagnostic disable-next-line: redundant-parameter
+    local target, opts = parse_lazy_definition(definition)
+
+    return {
+      function()
+        require(module_path)[target]()
+      end,
+      opts,
+    }
+  end
+
+  return create_def
+end
+
 return M
