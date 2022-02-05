@@ -16,14 +16,15 @@ highlight StatusLineNC ctermbg=black ctermfg=gray cterm=NONE
 " Default highlight groups
 highlight Error      ctermfg=red      ctermbg=none  cterm=undercurl
 highlight Todo                        ctermbg=green cterm=bold
-" highlight Comment    ctermfg=green                  cterm=italic
-highlight Comment    ctermfg=darkgreen
+highlight Comment    ctermfg=darkgreen                  cterm=italic
 highlight Constant   ctermfg=darkmagenta
-highlight Identifier ctermfg=darkcyan
-highlight PreProc    ctermfg=darkyellow
-highlight Special    ctermfg=darkyellow                 cterm=bold
+highlight Identifier ctermfg=darkcyan                   cterm=none
+highlight PreProc    ctermfg=darkyellow                 cterm=bold
+highlight Special    ctermfg=darkyellow
 highlight Delimiter  ctermfg=darkred
 highlight Statement  ctermfg=darkblue
+highlight Keyword    ctermfg=darkblue
+highlight Operator   ctermfg=darkblue
 highlight Type       ctermfg=darkgreen
 
 highlight CursorLine                                    cterm=underline,bold
