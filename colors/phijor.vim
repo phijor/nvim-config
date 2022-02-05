@@ -81,3 +81,9 @@ highlight DiagnosticsUnderlineError       ctermfg=red    cterm=underline
 highlight DiagnosticsUnderlineWarning     ctermfg=yellow cterm=underline
 highlight DiagnosticsUnderlineHint        ctermfg=cyan   cterm=underline
 highlight DiagnosticsUnderlineInformation ctermfg=green  cterm=underline
+
+" nvim-notify
+highlight link NotifyINFOBorder  DiagnosticsInformation
+highlight link NotifyDEBUGBorder DiagnosticsHint
+highlight link NotifyWARNBorder  DiagnosticsWarning
+highlight link NotifyERRORBorder DiagnosticsError

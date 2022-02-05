@@ -1,3 +1,8 @@
+local success, notify = pcall(require, "notify")
+if success then
+  vim.notify = notify
+end
+
 require("phijor.keymap").setup()
 require "phijor.options"
 require "phijor.plugins"

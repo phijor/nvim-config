@@ -5,6 +5,19 @@ vim.cmd [[packadd packer.nvim]]
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
 
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      local notify = require "notify"
+
+      notify.setup {
+        stages = "static",
+      }
+
+      vim.notify = notify
+    end,
+  }
+
   use "flazz/vim-colorschemes"
 
   -- LSP
