@@ -5,6 +5,15 @@ function M:set_leader(leader)
   vim.g.localmapleader = vim.g.mapleader
 end
 
+local function telescope(builtin, opts)
+  return function()
+    local success, err = pcall(require("telescope.builtin")[builtin], opts)
+    if not success then
+      vim.notify(vim.inspect(err), vim.log.levels.ERROR)
+    end
+  end
+end
+
 function M:setup()
   local KeyMapper = require("phijor.util").KeyMapper
 
@@ -12,12 +21,6 @@ function M:setup()
   M:set_leader ";"
 
   local keys = KeyMapper:new()
-
-  local function telescope(builtin, opts)
-    return function()
-      return require("telescope.builtin")[builtin](opts)
-    end
-  end
 
   keys:maps {
     -- Use <Space> to enter command mode
