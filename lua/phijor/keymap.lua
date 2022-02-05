@@ -48,7 +48,7 @@ function M:setup()
     ["n <Leader>/"] = { telescope "live_grep" },
 
     -- Open file picker in nvim config directory
-    ["n <Leader>vo"] = { telescope("find_files", { cwd = vim.fn.stdpath "config" }) },
+    ["n <Leader>vo"] = { telescope("git_files", { cwd = vim.fn.stdpath "config" }) },
   }
 end
 
