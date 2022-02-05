@@ -264,6 +264,14 @@ require("packer").startup(function(use)
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
     },
+    config = function()
+      require("telescope").setup {
+        defaults = {
+          file_ignore_patterns = { ".cache" },
+          layout_strategy = "vertical",
+        },
+      }
+    end,
   }
 
   -- Symbol explorer
