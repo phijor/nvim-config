@@ -316,6 +316,14 @@ require("packer").startup(function(use)
   -- Lean
   use "Julian/lean.nvim"
 
+  -- Agda
+  use {
+    "~/usr/src/nvim/agda-nvim",
+    requires = {
+      "neovim/nvim-lspconfig",
+    },
+  }
+
   -- pass
   use "https://gitlab.com/craftyguy/vim-redact-pass.git"
 
