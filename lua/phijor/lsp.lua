@@ -269,6 +269,12 @@ local function setup_idris2()
   }
 end
 
+local function setup_haskell()
+  local haskell_config = get_config {}
+
+  nvim_lsp.hls.setup(haskell_config)
+end
+
 local function setup_signs()
   -- signs in sign column
   local signs = {
@@ -296,6 +302,7 @@ function M:setup()
   setup_idris2()
   -- setup_lean()
   setup_agda()
+  setup_haskell()
 
   setup_signs()
 end
