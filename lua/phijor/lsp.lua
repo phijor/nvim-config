@@ -206,20 +206,58 @@ local function setup_idris2()
   local idris_config = get_config {
     on_attach = function(_, bufnr)
       local buf = util.KeyMapper:new { silent = true, buffer = bufnr }
+      local code_action = util.lazy_mapdef "idris2.code_action"
+      local hover = util.lazy_mapdef "idris2.hover"
+      local browse = util.lazy_mapdef "idris2.browse"
+      local repl = util.lazy_mapdef "idris2.repl"
+      local metavars = util.lazy_mapdef "idris2.metavars"
 
-      local function code_action(target)
-        return function()
-          return require("idris2.code_action")[target]()
-        end
+      local filters = vim.tbl_values(require("idris2.code_action").filters)
+      local function select_code_actions()
+        local params = vim.lsp.util.make_range_params()
+        params["context"] = { diagnostics = {}, only = filters }
+
+        require("telescope.builtin").lsp_code_actions { params = params }
       end
 
       buf:maps {
-        ["n <Leader>is"] = { code_action "case_split" },
+        ["n <Leader>is"] = code_action { "case_split", "Idris: Split function argument cases" },
+        ["n <Leader>ic"] = code_action { "make_case", "Idris: Create `case` expression" },
+        ["n <Leader>iw"] = code_action { "make_with", "Idris: Create `with` clause" },
+        ["n <Leader>il"] = code_action { "make_lemma", "Idris: Make a lemma" },
+        ["n <Leader>ia"] = code_action { "add_clause", "Idris: Add clause to declaration" },
+        ["n <Leader>id"] = code_action { "generate_def", "Idris: Generate definition" },
+
+        ["n <Leader>ie"] = code_action { "expr_search", "Idris: Expression search" },
+        ["n <Leader>iE"] = code_action { "expr_search_hints", "Idris: Expression search (+hints)" },
+
+        ["n <Leader>ir"] = code_action { "refine_hole", "Idris: Refine hole" },
+        ["n <Leader>iR"] = code_action { "refine_hole_hints", "Idris: Refine hole (with hints)" },
+
+        ["n <Leader>ib"] = browse { "browse", "Idris: Browse namespace" },
+        ["n <Leader>it"] = repl { "evaluate", "Idris: Eval expression in REPL" },
+
+        ["n <Leader>io"] = hover { "open_split", "Idris: Show hovers in split" },
+        ["n <Leader>iO"] = hover { "close_split", "Idris: Show hovers in popup" },
+
+        ["n <Leader>iA"] = { select_code_actions, opts = { desc = "Idris show all code actions" } },
+
+        -- TODO: not yet implemented in idris2-lsp 0.5.1
+        ["n <Leader>im"] = metavars { "request_all", "Idris: Request all meta-variables" },
       }
     end,
   }
 
-  require("idris2").setup {}
+  require("idris2").setup {
+    client = {
+      hover = {
+        use_split = false,
+        auto_split_size = true,
+      },
+    },
+    autostart_semantic = true,
+    server = idris_config,
+  }
 end
 
 local function setup_signs()
@@ -246,6 +284,7 @@ function M:setup()
   setup_lua()
   setup_rust()
   setup_texlab()
+  setup_idris2()
   -- setup_lean()
   -- setup_agda()
 
