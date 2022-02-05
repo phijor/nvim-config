@@ -67,6 +67,13 @@ require("packer").startup(function(use)
       }
     end,
   }
+  -- Lsp status messages
+  use {
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup { text = { spinner = "dots" } }
+    end,
+  }
 
   -- Autocompletion
   use {
