@@ -15,12 +15,14 @@ local function telescope(builtin, opts)
 end
 
 function M:setup()
-  local KeyMapper = require("phijor.util").KeyMapper
+  local util = require "phijor.util"
 
   -- Map <Leader> to ';' because '\' is just to far away
   M:set_leader ";"
 
-  local keys = KeyMapper:new()
+  local keys = util.KeyMapper:new()
+
+  local toggle_term = util.cmd { "ToggleTerm", "Toggle terminal (provided by toggleterm plugin)" }
 
   keys:maps {
     -- Use <Space> to enter command mode
@@ -35,13 +37,12 @@ function M:setup()
     -- <C-r>" - paste contents of register "
     ["v //"] = { [[y/<C-r>"<CR>]] },
 
-    -- Disable search highlighting
-    ["n <C-n>"] = { cmd = "nohlsearch" },
+    ["n <C-n>"] = util.cmd { "nohlsearch", "Disable search highlighting" },
 
     -- Exit terminal mode by hitting <Esc> twice
     ["t <Esc><Esc>"] = { [[<C-\><C-n>]] },
-    -- Toggle terminal (toggleterm pluging)
-    ["n <Leader>tt"] = { cmd = "ToggleTerm" },
+    ["t <Esc>t"] = toggle_term,
+    ["n <Leader>tt"] = toggle_term,
 
     -- Open telescope pickers
     ["n <Leader>o"] = { telescope "git_files" },
@@ -121,7 +122,7 @@ function M.map_keys_lsp(bufnr)
     },
 
     -- Misc
-    ["n <Leader>R"] = { cmd = "LspRestart" },
+    ["n <Leader>R"] = util.cmd { "LspRestart", "Restart LSP server" },
   }
 end
 
