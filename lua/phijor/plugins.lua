@@ -122,6 +122,9 @@ require("packer").startup(function(use)
       require("spellsitter").setup()
     end,
   }
+  -- Treesitter: commentstring
+  -- Set `commentstring` based on location in file
+  use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Git changes
   use {
@@ -160,6 +163,7 @@ require("packer").startup(function(use)
   -- Misc highlighting/naviagtion
   use "tpope/vim-surround"
   use "tpope/vim-repeat"
+  use "tpope/vim-commentary" -- Comment stuff out
   -- use 'tpope/vim-fugitive'
   use "tpope/vim-unimpaired"
   use "Raimondi/delimitMate"
