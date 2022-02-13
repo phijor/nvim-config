@@ -192,25 +192,6 @@ local function setup_lean()
   }
 end
 
-local function setup_agda()
-  local agda_config = get_config {
-    on_attach = function(_, bufnr)
-      local buf = util.KeyMapper:new { silent = true, buffer = bufnr }
-
-      local request = util.lazy_mapdef "agda.request"
-
-      buf:maps {
-        ["n <Leader>cl"] = request { "load", "Agda: Load file" },
-        ["n <Leader>cg"] = request { "show_goals", "Agda: Show goals in file" },
-      }
-    end,
-  }
-
-  require("agda").setup {
-    server = agda_config,
-  }
-end
-
 local function setup_idris2()
   local idris_config = get_config {
     on_attach = function(_, bufnr)
@@ -302,7 +283,6 @@ function M:setup()
   setup_texlab()
   setup_idris2()
   -- setup_lean()
-  setup_agda()
   setup_haskell()
 
   setup_signs()

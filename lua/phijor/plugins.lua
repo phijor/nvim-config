@@ -22,10 +22,7 @@ require("packer").startup(function(use)
 
   -- LSP
   use {
-    -- 'neovim/nvim-lspconfig',
-    -- 'phijor/nvim-lspconfig',
-    "~/usr/src/nvim/nvim-lspconfig",
-    branch = "feature-agda-language-server",
+    "neovim/nvim-lspconfig",
   }
   use {
     "nvim-lua/lsp-status.nvim",
@@ -331,12 +328,6 @@ require("packer").startup(function(use)
   use "Julian/lean.nvim"
 
   -- Agda
-  use {
-    "~/usr/src/nvim/agda-nvim",
-    requires = {
-      "neovim/nvim-lspconfig",
-    },
-  }
 
   -- pass
   use "https://gitlab.com/craftyguy/vim-redact-pass.git"
