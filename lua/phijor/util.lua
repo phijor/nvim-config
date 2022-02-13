@@ -240,6 +240,28 @@ end
 local LazyMapDefinition = {}
 M.LazyMapDefinition = LazyMapDefinition
 
+---@class CmdMapDefinition
+---@field [1] string Name of command to execute
+---@field [2]? string Description for this definition
+---@field opts? MapOpts options
+
+---Create a map definition with a Vim command as a target.
+---
+---Behaves like the function returned by @see M.lazy_mapdef, but the
+---first argument is wrapped in `<Cmd>...<CR>`.
+---
+---@param definition string|CmdMapDefinition
+---@return function
+function M.cmd(definition)
+  ---@diagnostic disable-next-line: redundant-parameter
+  local target, opts = parse_lazy_definition(definition)
+
+  return {
+    format_cmd(target),
+    opts = opts,
+  }
+end
+
 ---Create map definitions from a lazily-required module.
 ---@param module_path string Path to module to lazy-load functions from
 ---@return fun(definition: string | LazyMapDefinition): MapDefinition
