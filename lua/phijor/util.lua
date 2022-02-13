@@ -287,7 +287,7 @@ function M.lazy_mapdef(module_path)
       function()
         require(module_path)[target]()
       end,
-      opts,
+      opts = opts,
     }
   end
 
