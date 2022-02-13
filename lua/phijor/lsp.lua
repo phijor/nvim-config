@@ -264,7 +264,7 @@ local function setup_idris2()
         auto_split_size = true,
       },
     },
-    autostart_semantic = true,
+    autostart_semantic = false,
     server = idris_config,
   }
 end
