@@ -4,7 +4,7 @@ local set = vim.opt
 --#region
 
 -- Provide fold text that ellides folded lines
-function _G.fold_text_ellipsis()
+function _G.phijor_fold_text_ellipsis()
   local foldstart = vim.v.foldstart
   local foldend = vim.v.foldend
 
@@ -18,7 +18,7 @@ end
 
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
-set.foldtext = "v:lua.fold_text_ellipsis()"
+set.foldtext = "v:lua.phijor_fold_text_ellipsis()"
 
 set.fillchars = {
   fold = " ",
