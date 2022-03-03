@@ -286,6 +286,9 @@ require("packer").startup(function(use)
       "kyazdani42/nvim-web-devicons",
       opt = true, -- for file icons
     },
+    config = function ()
+      require("nvim-tree").setup {}
+    end
   }
 
   -- Status line (used to be airline)
