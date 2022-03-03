@@ -14,6 +14,7 @@ local default_on_attach = function(client, bufnr)
   require("phijor.keymap").map_keys_lsp(bufnr)
 
   vim.diagnostic.config {
+    virtual_text = false,
     underline = true,
     severity_sort = true,
     float = {
