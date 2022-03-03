@@ -37,7 +37,9 @@ function M:setup()
     -- <C-r>" - paste contents of register "
     ["v //"] = { [[y/<C-r>"<CR>]] },
 
-    ["n <C-n>"] = util.cmd { "nohlsearch", "Disable search highlighting" },
+    ["n <C-n>"] = { function()
+      vim.notify("Use <C-l>, idiot!", vim.log.levels.ERROR)
+    end },
 
     -- Exit terminal mode by hitting <Esc> twice
     ["t <Esc><Esc>"] = { [[<C-\><C-n>]] },
