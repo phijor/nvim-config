@@ -42,6 +42,18 @@ parser_config.ld = {
   filetype = "ld",
 }
 
+parser_config.wgsl = {
+  install_info = {
+    url = "~/usr/src/tree-sitter/tree-sitter-wgsl",
+    branch = "main",
+    files = { "src/parser.c", "src/scanner.c" },
+  },
+  filetype = "wgsl",
+}
+
+local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+ft_to_parser.wgsl = "wgsl"
+
 local key = require("phijor.util").KeyMapper:new()
 
 key:maps {
