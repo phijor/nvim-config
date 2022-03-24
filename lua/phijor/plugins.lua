@@ -292,20 +292,30 @@ require("packer").startup(function(use)
   use {
     "kyazdani42/nvim-tree.lua",
     requires = {
-      "kyazdani42/nvim-web-devicons",
-      opt = true, -- for file icons
+      {
+        "kyazdani42/nvim-web-devicons",
+        opt = true, -- for file icons
+      },
     },
-    config = function ()
+    config = function()
+      vim.g.nvim_tree_show_icons = {
+        git = 0,
+        folders = 0,
+        files = 0,
+        folder_arrows = 0,
+      }
       require("nvim-tree").setup {}
-    end
+    end,
   }
 
   -- Status line (used to be airline)
   use {
     "nvim-lualine/lualine.nvim",
     requires = {
-      "kyazdani42/nvim-web-devicons",
-      opt = true,
+      {
+        "kyazdani42/nvim-web-devicons",
+        opt = true, -- for file icons
+      },
     },
     config = function()
       require "phijor.lualine"

@@ -71,8 +71,8 @@ local no_separators = { left = "", right = "" }
 
 require("lualine").setup {
   options = {
-    theme = color_scheme,
-    icons_enabled = true,
+    -- theme = color_scheme,
+    icons_enabled = false,
     component_separators = no_separators,
     section_separators = no_separators,
   },
