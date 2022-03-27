@@ -6,43 +6,34 @@ end
 
 vim.cmd [[command ShowLspClients lua require('phijor.util').show_available_lsp_clients()]]
 
----@param event string
----@param pattern string | string[]
----@param cmd string
----@return string
-local function format_autocmd(event, pattern, cmd)
-  if type(pattern) == "table" then
-    pattern = table.concat(pattern, ",")
-  end
-
-  return table.concat({ "autocmd! ", event, pattern, cmd }, " ")
-end
-
 ---@class AugroupDefinition
----@field [1] string #event
+---@field [1] string | string[] #event
 ---@field [2] string | string[] #pattern
----@field [3] string #command
-
----@param name string
----@param definitions AugroupDefinition[]
----@return string[]
-local function format_augroups(name, definitions)
-  local cmds = { "augroup " .. name, "autocmd!" }
-  for _, definition in ipairs(definitions) do
-    cmds[#cmds + 1] = format_autocmd(unpack(definition))
-  end
-  table.insert(cmds, "augroup END")
-  return cmds
-end
+---@field [3] fun() | string #callback
 
 ---@param groups table<string, AugroupDefinition[]>
 function M.augroups(groups)
-  local cmds = {}
   for name, definitions in pairs(groups) do
-    cmds[#cmds + 1] = format_augroups(name, definitions)
-  end
+    local group = vim.api.nvim_create_augroup(name, {})
+    for _, definition in ipairs(definitions) do
+      local event = definition[1]
+      local pattern = definition[2]
+      local callback = definition[3]
 
-  vim.cmd(table.concat(vim.tbl_flatten(cmds), "\n"))
+      local opts = {
+        group = group,
+        pattern = pattern,
+      }
+
+      if type(callback) == "string" then
+        opts.command = callback
+      else
+        opts.callback = callback
+      end
+
+      vim.api.nvim_create_autocmd(event, opts)
+    end
+  end
 end
 
 ---@class MapOpts
