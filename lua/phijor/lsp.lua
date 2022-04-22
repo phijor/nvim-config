@@ -242,12 +242,17 @@ local function setup_idris2()
   require("idris2").setup {
     client = {
       hover = {
-        use_split = false,
+        use_split = true,
         auto_split_size = true,
+        split_position = "right",
+        with_history = true,
       },
     },
     autostart_semantic = false,
     server = idris_config,
+    code_action_post_hook = function()
+      vim.cmd [[silent write]]
+    end
   }
 end
 
