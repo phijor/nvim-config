@@ -8,7 +8,7 @@ local _ = require "cmp_buffer"
 local _ = require "cmp_cmdline"
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = "menu,preview"
+vim.o.completeopt = "menu,menuone,noselect"
 
 cmp.setup {
   snippet = {
@@ -68,13 +68,15 @@ cmp.setup {
 }
 
 cmp.setup.cmdline(":", {
-  sources = {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources {
     { name = "cmdline" },
   },
 })
 
 cmp.setup.cmdline("/", {
-  sources = {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources {
     { name = "buffer" },
   },
 })
