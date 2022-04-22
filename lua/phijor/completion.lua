@@ -28,7 +28,7 @@ cmp.setup {
       luasnip.jump(-1)
     end,
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<Esc>"] = cmp.mapping.close(),
+    ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
