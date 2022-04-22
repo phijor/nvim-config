@@ -22,9 +22,9 @@ highlight Identifier ctermfg=darkcyan                   cterm=none
 highlight PreProc    ctermfg=darkyellow                 cterm=bold
 highlight Special    ctermfg=darkyellow
 highlight Delimiter  ctermfg=darkred
-highlight Statement  ctermfg=darkblue
-highlight Keyword    ctermfg=darkblue
-highlight Operator   ctermfg=darkblue
+highlight Keyword    ctermfg=blue                       cterm=bold
+highlight Statement  ctermfg=cyan                       cterm=bold
+highlight Operator   ctermfg=blue
 highlight Type       ctermfg=darkgreen
 
 highlight CursorLine                                    cterm=underline,bold
