@@ -9,7 +9,7 @@ local function telescope(builtin, opts)
   return function()
     local success, err = pcall(require("telescope.builtin")[builtin], opts)
     if not success then
-      vim.notify(vim.inspect(err), vim.log.levels.ERROR)
+      vim.notify(("Error calling telescope builting '%s': %s"):format(builtin, vim.inspect(err)), vim.log.levels.ERROR)
     end
   end
 end
@@ -106,8 +106,8 @@ function M.map_keys_lsp(bufnr)
     ["n <Leader>f"] = { lsp.buf.formatting },
     ["v <Leader>f"] = { lsp.buf.range_formatting },
     ["n <Leader>r"] = { lsp.buf.rename },
-    ["n <Leader>a"] = { telescope "lsp_code_actions" },
-    ["v <Leader>a"] = { telescope "lsp_range_code_actions" },
+    ["n <Leader>a"] = { lsp.buf.code_action },
+    ["v <Leader>a"] = { lsp.buf.range_code_action },
 
     -- Diagnostics
     ["n <Leader>dl"] = { telescope "diagnostics" },

@@ -274,14 +274,19 @@ require("packer").startup(function(use)
     requires = {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
+      -- XXX: Temporary hack to use telescope UI for code actions
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
-      require("telescope").setup {
+      local telescope = require("telescope")
+      telescope.setup {
         defaults = {
           file_ignore_patterns = { ".cache" },
           layout_strategy = "vertical",
         },
       }
+      -- XXX: UI hack
+      telescope.load_extension("ui-select")
     end,
   }
 
