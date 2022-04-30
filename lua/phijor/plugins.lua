@@ -183,6 +183,14 @@ require("packer").startup(function(use)
     end,
   }
 
+  -- Restore cursor position
+  use {
+    "vladdoster/remember.nvim",
+    config = function()
+      require("remember").setup {}
+    end,
+  }
+
   use {
     "phaazon/hop.nvim",
     config = function()
