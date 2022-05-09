@@ -363,6 +363,13 @@ require("packer").startup(function(use)
   use "Julian/lean.nvim"
 
   -- Agda
+  use {
+    "ashinkarov/nvim-agda",
+    rocks = { "luautf8" },
+    config = function()
+      require('agda').setup {}
+    end
+  }
 
   -- pass
   use "https://gitlab.com/craftyguy/vim-redact-pass.git"
