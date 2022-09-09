@@ -16,25 +16,31 @@ highlight StatusLineNC ctermbg=black ctermfg=gray cterm=NONE
 " Default highlight groups
 highlight Error      ctermfg=red      ctermbg=none  cterm=undercurl
 highlight Todo                        ctermbg=green cterm=bold
-highlight Comment    ctermfg=darkgreen                  cterm=italic
+highlight Comment    ctermfg=lightgreen
 highlight Constant   ctermfg=darkmagenta
-highlight Identifier ctermfg=darkcyan                   cterm=none
-highlight PreProc    ctermfg=darkyellow                 cterm=bold
-highlight Special    ctermfg=darkyellow
+highlight Identifier ctermfg=cyan                       cterm=none
+highlight PreProc    ctermfg=darkyellow
+highlight Special    ctermfg=yellow
 highlight Delimiter  ctermfg=darkred
-highlight Keyword    ctermfg=blue                       cterm=bold
-highlight Statement  ctermfg=cyan                       cterm=bold
+highlight Keyword    ctermfg=blue                       cterm=none
+highlight Statement  ctermfg=darkcyan                   cterm=bold
 highlight Operator   ctermfg=blue
 highlight Type       ctermfg=darkgreen
 
-highlight CursorLine                                    cterm=underline,bold
-highlight ColorColumn  ctermbg=black
+highlight default CursorLines ctermbg=black cterm=NONE
+highlight! link   CursorLine   CursorLines
+highlight! link   CursorColumn CursorLines
 highlight CursorLineNr ctermbg=black    ctermfg=yellow  cterm=bold
 highlight LineNr                        ctermfg=white
+highlight Visual       ctermbg=darkgray                 cterm=bold
 
 highlight ErrorMsg     ctermbg=none    ctermfg=red     cterm=bold
 highlight Folded       ctermbg=none    ctermfg=white   cterm=italic
-highlight MatchParen   cterm=reverse
+" highlight MatchParen   ctermbg=none    ctermfg=none    cterm=italic,bold
+highlight MatchParen   ctermbg=none    ctermfg=none    cterm=italic,underline
+
+" Indent guides
+highlight IndentBlankLine ctermfg=white cterm=nocombine
 
 " Sign columns
 highlight SignColumn    ctermbg=none
@@ -87,3 +93,27 @@ highlight link NotifyINFOBorder  DiagnosticsInformation
 highlight link NotifyDEBUGBorder DiagnosticsHint
 highlight link NotifyWARNBorder  DiagnosticsWarning
 highlight link NotifyERRORBorder DiagnosticsError
+
+" Fixes
+highlight link IdrisPragma Special
+highlight link IdrisType Type
+highlight link IdrisModule Keyword
+highlight link IdrisImport Keyword
+highlight link IdrisStructure Keyword
+highlight link IdrisWhere Keyword
+highlight link IdrisVisibility Special
+
+highlight CornelisFunction  ctermfg=blue
+highlight CornelisArgument  ctermfg=gray cterm=italic,bold
+highlight CornelisSymbol    ctermfg=gray
+highlight CornelisInductiveConstructor  ctermfg=darkmagenta
+highlight CornelisPrimitive ctermfg=darkyellow cterm=italic
+highlight link CornelisPostulate        Special
+highlight link CornelisField            CornelisInductiveConstructor
+highlight link CornelisBound            Normal
+highlight link CornelisGeneralizable    Constant
+highlight link CornelisModule           Include
+highlight link CornelisFallback         CornelisErrorWarning
+highlight CornelisErrorWarning cterm=undercurl
+highlight CornelisHole ctermfg=yellow ctermbg=NONE cterm=undercurl
+
