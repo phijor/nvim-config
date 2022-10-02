@@ -98,23 +98,28 @@ local function setup_rust()
     end,
     settings = {
       ["rust-analyzer"] = {
-        checkOnSave = { command = "check" },
-        inlayHints = {
-          chainingHintsSeparator = "→ ",
-          typeHintsSeparator = "⊢ ",
+        checkOnSave = { command = "clippy" },
+        diagnostics = {
+          disabled = { "unresolved-proc-macro" }
         },
         procMacro = {
           enable = true,
         },
         lens = {
           enable = true,
-          methodReferences = true,
+          references = { enable = true },
         },
       },
     },
   }
 
   require("rust-tools").setup {
+    tools = {
+      inlay_hints = {
+        parameter_hints_prefix = "λ ",
+        other_hints_prefix = "→ ",
+      }
+    },
     server = rust_config,
   }
 end
@@ -170,7 +175,9 @@ local function setup_texlab()
         build = {
           onSave = true,
           args = {
+            "-rc-report",
             "-pdf",
+            "-pdflatex=lualatex",
             "-interaction=nonstopmode",
             "-synctex=1",
             "%f",
@@ -220,6 +227,8 @@ local function setup_idris2()
         ["n <Leader>ir"] = code_action { "refine_hole", "Idris: Refine hole" },
         ["n <Leader>iR"] = code_action { "refine_hole_hints", "Idris: Refine hole (with hints)" },
 
+        ["n <Leader>ii"] = code_action { "intro", "Idris: Introduce constructor" },
+
         ["n <Leader>ib"] = browse { "browse", "Idris: Browse namespace" },
         ["n <Leader>it"] = repl { "evaluate", "Idris: Eval expression in REPL" },
 
@@ -230,6 +239,9 @@ local function setup_idris2()
 
         -- TODO: not yet implemented in idris2-lsp 0.5.1
         ["n <Leader>im"] = metavars { "request_all", "Idris: Request all meta-variables" },
+
+        ["n ]g"] = metavars { "goto_next", "Idris: Jump to next hole" },
+        ["n [g"] = metavars { "goto_prev", "Idris: Jump to previous hole" },
       }
     end,
   }
@@ -252,7 +264,20 @@ local function setup_idris2()
 end
 
 local function setup_haskell()
-  local haskell_config = get_config {}
+  local haskell_config = get_config {
+    on_attach = function(client, _)
+      client.server_capabilities.document_formatting = false
+    end,
+    settings = {
+      haskell = {
+        plugin = {
+          tactics = {
+            globalOn = true,
+          }
+        }
+      }
+    }
+  }
 
   nvim_lsp.hls.setup(haskell_config)
 end
