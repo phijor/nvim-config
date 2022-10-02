@@ -282,6 +282,12 @@ local function setup_haskell()
   nvim_lsp.hls.setup(haskell_config)
 end
 
+local function setup_rnix()
+  local rnix_config = get_config {}
+
+  nvim_lsp.rnix.setup(rnix_config)
+end
+
 local function setup_signs()
   -- signs in sign column
   local signs = {
@@ -324,6 +330,7 @@ function M.setup()
   setup_texlab()
   setup_idris2()
   setup_haskell()
+  setup_rnix()
 
   setup_signs()
   setup_null_ls()
