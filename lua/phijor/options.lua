@@ -1,38 +1,48 @@
 local set = vim.opt
 
--- Folds
---#region
+---Folds
+---#region
 
 -- Provide fold text that ellides folded lines
 function _G.phijor_fold_text_ellipsis()
   local foldstart = vim.v.foldstart
   local foldend = vim.v.foldend
+  local getline = vim.fn.getline
 
-  local spaces = (" "):rep(vim.opt.tabstop:get())
-  local line_start = vim.fn.getline(foldstart):gsub("(\t)", spaces)
-  local line_end = vim.fn.trim(vim.fn.getline(foldend))
-  local lines_folded = foldend - foldstart + 1
+  local span = foldend - foldstart + 1
 
-  return string.format("%s … %s (%d lines)", line_start, line_end, lines_folded)
+  return require('phijor.util').format_fold(
+    getline(foldstart),
+    getline(foldend),
+    span
+  )
 end
 
+set.foldcolumn = "auto:1"
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldtext = "v:lua.phijor_fold_text_ellipsis()"
 
 set.fillchars = {
-  fold = " ",
-  foldopen = "▾",
-  foldsep = "│",
+  fold      = " ",
+  foldopen  = "▾",
   foldclose = "▸",
+  foldsep   = " ",
+  horiz     = '─',
+  horizup   = '┴',
+  horizdown = '┬',
+  vert      = '│',
+  vertleft  = '┤',
+  vertright = '├',
+  verthoriz = '┼',
 }
 set.foldnestmax = 3
 set.foldminlines = 1 -- start with one level of folds opened
---#endregion
+---#endregion
 
 -- Splits
 --#region
-set.fillchars:append "vert:┃"
+set.laststatus = 3 -- display status line only once
 set.splitbelow = true -- split windows below the current window
 --#endregion
 

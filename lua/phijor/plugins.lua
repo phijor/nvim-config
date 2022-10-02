@@ -152,6 +152,24 @@ require("packer").startup(function(use)
   use "wellle/targets.vim"
   use "kana/vim-operator-user"
 
+  -- editorconfig support
+  use "gpanders/editorconfig.nvim"
+
+  -- Indent highlighting
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup {
+        char = "│",
+        space_char_blankline = " ",
+        char_highlight_list = {
+          "IndentBlankLine"
+        },
+        show_current_context = true,
+      }
+    end
+  }
+
   -- Window resiszing
   use {
     "beauwilliams/focus.nvim",

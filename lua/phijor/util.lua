@@ -307,4 +307,34 @@ function M.lazy_mapdef(module_path)
   return create_def
 end
 
+---Format fold text for lines between `header` and `footer`.
+---@param header string   Line at the start of the fold
+---@param footer string   Line at the end of the fold
+---@param span integer    Total number of lines folded
+---@return string
+---
+--- Example:
+--- The code
+--- ```
+---     function foo()
+---       print("Hello!")
+---     end
+--- ```
+--- gets folded into
+--- ```
+--- ⋯⋯⋯ function foo() … end (3 lines)
+--- ```
+function M.format_fold(header, footer, span)
+  local fold_header = header
+
+  local ws = header:match("%s*")
+  if ws then
+    fold_header = ("⋯"):rep(vim.fn.strdisplaywidth(ws) - 1) .. ' ' .. vim.fn.trim(header)
+  end
+
+  local fold_footer = vim.fn.trim(footer)
+
+  return string.format("%s … %s (%d lines)", fold_header, fold_footer, span)
+end
+
 return M
