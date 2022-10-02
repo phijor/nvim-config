@@ -59,18 +59,6 @@ require("packer").startup(function(use)
     requires = {
       "nvim-lua/plenary.nvim",
     },
-    config = function()
-      local null_ls = require "null-ls"
-      null_ls.setup {
-        sources = {
-          null_ls.builtins.formatting.black,
-          null_ls.builtins.diagnostics.proselint,
-          null_ls.builtins.code_actions.gitsigns.with {
-            disabled_filetypes = { "idris2", "lidris2" },
-          },
-        },
-      }
-    end,
   }
   -- Lsp status messages
   use {

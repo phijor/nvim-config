@@ -271,6 +271,21 @@ local function setup_signs()
   end
 end
 
+local function setup_null_ls()
+  local null_ls = require "null-ls"
+  local config = get_config {
+    sources = {
+      null_ls.builtins.formatting.black,
+      null_ls.builtins.diagnostics.proselint,
+      null_ls.builtins.code_actions.gitsigns.with {
+        disabled_filetypes = { "idris2", "lidris2" },
+      },
+    },
+  }
+
+  null_ls.setup(config)
+end
+
 function M:setup()
   setup_default {
     "vimls",
@@ -285,6 +300,7 @@ function M:setup()
   setup_haskell()
 
   setup_signs()
+  setup_null_ls()
 end
 
 function M:update_lightbulb()
