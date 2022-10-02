@@ -356,8 +356,6 @@ require("packer").startup(function(use)
       "MunifTanjim/nui.nvim",
     },
   }
-  -- Lean
-  use "Julian/lean.nvim"
 
   -- Agda
   use {

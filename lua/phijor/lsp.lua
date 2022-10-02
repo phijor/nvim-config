@@ -187,15 +187,6 @@ local function setup_texlab()
   nvim_lsp.texlab.setup(texlab_config)
 end
 
-local function setup_lean()
-  local config = lsp_get_default_config()
-  require("lean").setup {
-    lsp = config,
-    lsp3 = config,
-    mappings = true,
-  }
-end
-
 local function setup_idris2()
   local idris_config = get_config {
     on_attach = function(_, bufnr)
@@ -291,7 +282,6 @@ function M:setup()
   setup_rust()
   setup_texlab()
   setup_idris2()
-  -- setup_lean()
   setup_haskell()
 
   setup_signs()
