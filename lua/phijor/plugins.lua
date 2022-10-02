@@ -32,23 +32,6 @@ require("packer").startup(function(use)
     "neovim/nvim-lspconfig",
   }
   use {
-    "nvim-lua/lsp-status.nvim",
-    config = function()
-      local lsp_status = require "lsp-status"
-      lsp_status.register_progress()
-      lsp_status.config {
-        current_function = true,
-        show_filename = false,
-        indicator_errors = "✗",
-        indicator_warnings = "!",
-        indicator_info = "ℹ",
-        indicator_hint = "ℹ",
-        indicator_ok = "✓",
-        status_symbol = "ƒ",
-      }
-    end,
-  }
-  use {
     "kosayoda/nvim-lightbulb",
     config = function()
       vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'phijor.lsp'.update_lightbulb()]]

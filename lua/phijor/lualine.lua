@@ -86,7 +86,6 @@ require("lualine").setup {
       { "diagnostics", sources = { "nvim_diagnostic" } },
     },
     lualine_c = {
-      [[require('lsp-status').status()]],
       [[require('nvim-lightbulb').get_status_text()]],
     },
     lualine_x = {

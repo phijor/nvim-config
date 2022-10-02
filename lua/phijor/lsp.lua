@@ -1,7 +1,6 @@
 -- vim: ts=2:
 
 local nvim_lsp = require "lspconfig"
-local lsp_status = require "lsp-status"
 
 local util = require "phijor.util"
 
@@ -24,15 +23,12 @@ local default_on_attach = function(client, bufnr)
       source = "if_many",
     },
   }
-
-  lsp_status.on_attach(client)
 end
 
 local lsp_get_default_config = function()
   -- Add additional capabilities supported by nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-  capabilities = vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
   return {
     on_attach = default_on_attach,
     flags = {
