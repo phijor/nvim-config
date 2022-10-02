@@ -127,4 +127,41 @@ function M.map_keys_lsp(bufnr)
   }
 end
 
+function M.setup_agda_keys()
+  local util = require "phijor.util"
+  local buf = util.KeyMapper:new { buffer = 0 }
+
+  local rw = "Simplified"
+  local rw_force = "Normalised"
+
+  local function write_and_load()
+    vim.cmd [[ silent! write ]]
+    vim.cmd [[ CornelisLoad ]]
+  end
+
+  buf:maps {
+    ["n <Leader>cl"] = { write_and_load },
+    ["n <Leader>c?"] = { cmd = "CornelisQuestionToMeta" },
+    ["n <Leader>cn"] = { cmd = "CornelisNormalize" },
+    ["n <Leader>ucn"] = { cmd = "CornelisNormalize HeadCompute" },
+    ["n <Leader>cr"] = { cmd = "CornelisRefine" },
+    ["n <Leader>cg"] = { cmd = "CornelisGive" },
+    ["n <Leader>cm"] = { cmd = "CornelisElaborate " .. rw },
+    ["n <Leader>cs"] = { cmd = "CornelisMakeCase" },
+    ["n <Leader>c,"] = { cmd = "CornelisTypeContext " .. rw },
+    ["n <Leader>cc,"] = { cmd = "CornelisTypeContext " .. rw_force },
+    ["n <Leader>c."] = { cmd = "CornelisTypeContextInfer " .. rw },
+    ["n <Leader>cc."] = { cmd = "CornelisTypeContextInfer " .. rw_force },
+    ["n <Leader>cd"] = { cmd = "CornelisGoToDefinition" },
+    ["n <Leader>cf"] = { cmd = "CornelisHelperFunc" },
+
+    ["n <Leader>xr"] = { cmd = "CornelisRestart" },
+    ["n <Leader>xa"] = { cmd = "CornelisAbort" },
+
+    ["n [g"] = { cmd = "CornelisPrevGoal" },
+    ["n ]g"] = { cmd = "CornelisNextGoal" },
+  }
+
+end
+
 return M

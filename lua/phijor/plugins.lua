@@ -359,11 +359,19 @@ require("packer").startup(function(use)
 
   -- Agda
   use {
-    "ashinkarov/nvim-agda",
-    rocks = { "luautf8" },
+    "phijor/cornelis",
+    branch = "custom",
+    requires = {
+      "kana/vim-textobj-user",
+      "neovimhaskell/nvim-hs.vim",
+      "liuchengxu/vim-which-key",
+    },
+    setup = function()
+      require("phijor.plugins.agda").cornelis_setup()
+    end,
     config = function()
-      require('agda').setup {}
-    end
+      require("phijor.plugins.agda").cornelis_config()
+    end,
   }
 
   -- pass
