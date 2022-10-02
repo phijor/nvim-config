@@ -58,6 +58,7 @@ cmp.setup {
   }, {
     { name = "path" },
     { name = "buffer" },
+    { name = "git" },
   }, {
     { name = "emoji" },
   }),

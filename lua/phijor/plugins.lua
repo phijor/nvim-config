@@ -102,6 +102,14 @@ require("packer").startup(function(use)
     "davidsierradz/cmp-conventionalcommits",
     filetype = { "gitcommit" },
   }
+  use {
+    "petertriho/cmp-git",
+    requires = { "nvim-lua/plenary.nvim" },
+    filetype = { "gitcommit" },
+    config = function()
+      require("cmp_git").setup()
+    end
+  }
 
   -- Treesitter
   use {
