@@ -1,32 +1,30 @@
 local M = {}
 
 local function setup()
-  require("filetype").setup {
-    overrides = {
-      extensions = {
-        -- Agda files
-        agda = "agda",
-        lagda = "agda",
+  vim.filetype.add {
+    extension = {
+      -- (literate) Agda files
+      agda = "agda",
+      lagda = "agda",
 
-        -- Idris2 files
-        idr = "idris2",
-        lidr = "idris2",
+      -- (literate) Idris files
+      idr = "idris2",
+      lidr = "idris2",
 
-        -- PulseAudio config files
-        pa = "conf",
+      -- PulseAudio config files
+      pa = "conf",
 
-        -- Ghidra specific files
-        slaspec = "slaspec",
-        slainc = "slaspec",
+      -- Ghidra specific files
+      slaspec = "slaspec",
+      slainc = "slaspec",
 
-        cdefs = "xml",
-        ldefs = "xml",
-        pspec = "xml",
-      },
-      literal = {
-        [".latexmkrc"] = "perl",
-      }
+      cdefs = "xml",
+      ldefs = "xml",
+      pspec = "xml",
     },
+    filename = {
+      [".latexmkrc"] = "perl",
+    }
   }
 end
 

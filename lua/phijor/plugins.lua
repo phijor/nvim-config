@@ -21,12 +21,9 @@ require("packer").startup(function(use)
   use "flazz/vim-colorschemes"
   use "EdenEast/nightfox.nvim"
 
-  -- Performance
   --
-  -- Improved startup time with better filetype detection
-  -- Configuration happens in `phijor.filetype`
-  use "nathom/filetype.nvim"
 
+  -- Performance
   -- Lua module caching
   use "lewis6991/impatient.nvim"
 
