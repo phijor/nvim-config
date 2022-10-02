@@ -3,7 +3,6 @@ local cmp = require "cmp"
 local luasnip = require "luasnip"
 
 local _ = require "cmp_emoji"
-local _ = require "cmp_unicode"
 local _ = require "cmp_buffer"
 local _ = require "cmp_cmdline"
 
@@ -61,7 +60,6 @@ cmp.setup {
     { name = "buffer" },
   }, {
     { name = "emoji" },
-    { name = "unicode" },
   }),
   experimental = {
     ghost_text = true,

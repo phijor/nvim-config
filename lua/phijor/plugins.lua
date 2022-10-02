@@ -98,7 +98,6 @@ require("packer").startup(function(use)
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-emoji"
   use "hrsh7th/cmp-cmdline"
-  use "~/usr/src/nvim/cmp-unicode"
   use {
     "davidsierradz/cmp-conventionalcommits",
     filetype = { "gitcommit" },
