@@ -51,14 +51,15 @@ end
 local get_config = function(args)
   local config = lsp_get_default_config()
 
-  if args.on_attach then
+  local on_attach = args.on_attach
+  args.on_attach = nil
+
+  if on_attach then
     local old_on_attach = config.on_attach
-    local on_attach = args.on_attach
-    args.on_attach = nil
 
     config.on_attach = function(client, bufnr)
-      old_on_attach(client, bufnr)
       on_attach(client, bufnr)
+      old_on_attach(client, bufnr)
     end
   end
 
@@ -286,7 +287,7 @@ local function setup_null_ls()
   null_ls.setup(config)
 end
 
-function M:setup()
+function M.setup()
   setup_default {
     "vimls",
     "html",

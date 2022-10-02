@@ -14,7 +14,7 @@ local function telescope(builtin, opts)
   end
 end
 
-function M:setup()
+function M.setup()
   local util = require "phijor.util"
 
   -- Map <Leader> to ';' because '\' is just to far away
@@ -58,7 +58,7 @@ function M:setup()
 end
 
 ---Map keys that require autocomands to do so, i.e. filetype-specific keys.
-function M:map_keys_autocmd()
+function M.map_keys_autocmd()
   local augroups = require("phijor.util").augroups
 
   augroups {

@@ -1,6 +1,6 @@
 local M = {}
 
-function M:show_available_lsp_clients()
+function M.show_available_lsp_clients()
   print(vim.inspect(require("lspconfig").available_servers()))
 end
 
@@ -49,7 +49,7 @@ end
 
 ---@class KeyMapper
 ---@field default_opts MapOpts
----@field opts MapOpts
+---@field opts? MapOpts
 local KeyMapper = { default_opts = {} }
 KeyMapper.__index = KeyMapper
 
@@ -151,7 +151,7 @@ end
 
 ---@param definition MapDefinition
 ---@return string | fun()
----@return MapOpts
+---@return MapOpts?
 local function parse_definition(definition)
   local optional = true
   local target = definition[1]
@@ -242,7 +242,7 @@ M.LazyMapDefinition = LazyMapDefinition
 ---first argument is wrapped in `<Cmd>...<CR>`.
 ---
 ---@param definition string|CmdMapDefinition
----@return function
+---@return table
 function M.cmd(definition)
   ---@diagnostic disable-next-line: redundant-parameter
   local target, opts = parse_lazy_definition(definition)
