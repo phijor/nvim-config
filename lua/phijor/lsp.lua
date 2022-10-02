@@ -12,6 +12,9 @@ local default_on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   require("phijor.keymap").map_keys_lsp(bufnr)
+  if client.server_capabilities.document_formatting then
+    require("phijor.autocommands").enable_formatting_on_write()
+  end
 
   vim.diagnostic.config {
     virtual_text = false,

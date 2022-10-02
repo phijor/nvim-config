@@ -103,8 +103,7 @@ function M.map_keys_lsp(bufnr)
     ["n ]d"] = { vim.diagnostic.goto_next },
 
     -- Interaction
-    ["n <Leader>f"] = { lsp.buf.formatting },
-    ["v <Leader>f"] = { lsp.buf.range_formatting },
+    ["nv <Leader>f"] = { lsp.buf.format },
     ["n <Leader>r"] = { lsp.buf.rename },
     ["n <Leader>a"] = { lsp.buf.code_action },
     ["v <Leader>a"] = { lsp.buf.range_code_action },

@@ -26,14 +26,19 @@ function M.setup()
         [[setlocal noundofile]],
       },
     },
-    code_format = {
-      { "BufWritePre", "<buffer>", vim.lsp.buf.formatting_sync },
-    },
   }
 
   require("phijor.keymap").map_keys_autocmd()
 
   M._exists = true
+end
+
+function M.enable_formatting_on_write()
+  augroups {
+    code_format = {
+      { "BufWritePre", "<buffer>", vim.lsp.buf.format },
+    }
+  }
 end
 
 return M
