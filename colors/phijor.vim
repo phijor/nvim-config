@@ -42,6 +42,8 @@ highlight MatchParen   ctermbg=none    ctermfg=none    cterm=italic,underline
 " Indent guides
 highlight IndentBlankLine ctermfg=white cterm=nocombine
 
+highlight FoldColumn    ctermbg=none
+
 " Sign columns
 highlight SignColumn    ctermbg=none
 highlight Conceal       ctermbg=none    ctermfg=magenta

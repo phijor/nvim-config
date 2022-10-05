@@ -93,17 +93,6 @@ require("packer").startup(function(use)
   use "nvim-treesitter/playground"
   use "p00f/nvim-ts-rainbow"
 
-  -- Treesitter: spell checking
-  use {
-    "lewis6991/spellsitter.nvim",
-    requires = {
-      "nvim-treesitter/nvim-treesitter",
-      opt = true,
-    },
-    config = function()
-      require("spellsitter").setup()
-    end,
-  }
   -- Treesitter: commentstring
   -- Set `commentstring` based on location in file
   use "JoosepAlviste/nvim-ts-context-commentstring"
