@@ -233,8 +233,8 @@ require("packer").startup(function(use)
           [".*"] = {
             cmdline = "neovim",
             content = "text",
+            takeover = 'never'
           },
-          -- [ [[https?://[^/]+www\.example\.com/]] ] = { takeover = 'never', priority = 1 },
         },
       }
 
