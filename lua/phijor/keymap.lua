@@ -109,8 +109,10 @@ function M.map_keys_lsp(bufnr)
     ["v <Leader>a"] = { lsp.buf.range_code_action },
 
     -- Diagnostics
-    ["n <Leader>dl"] = { telescope "diagnostics" },
-    ["n <Leader>dL"] = { telescope("diagnostics", { namespace = nil, bufnr = 0 }) },
+    -- * open diagnostics popup for current buffer
+    ["n <Leader>dl"] = { telescope("diagnostics", { bufnr = 0 }) },
+    -- * open diagnostics popup for *all* buffers
+    ["n <Leader>dL"] = { telescope "diagnostics" },
     ["n <Leader>ds"] = {
       function()
         vim.diagnostic.open_float { bufnr = bufnr }
