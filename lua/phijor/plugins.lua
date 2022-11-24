@@ -177,6 +177,7 @@ require("packer").startup(function(use)
 
   use {
     "phaazon/hop.nvim",
+    branch = "v2",
     config = function()
       require("hop").setup {
         keys = "asdghklwertyuiopzxcvbnmfj",
@@ -254,6 +255,7 @@ require("packer").startup(function(use)
   -- Terminal integration
   use {
     "akinsho/toggleterm.nvim",
+    tag = "v2.*",
     config = function()
       require("toggleterm").setup {
         shade_terminals = false,
