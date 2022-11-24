@@ -6,6 +6,20 @@ end
 
 vim.cmd [[command ShowLspClients lua require('phijor.util').show_available_lsp_clients()]]
 
+function M.syn_stack()
+  local line = vim.fn.line('.')
+  local col = vim.fn.col('.')
+  local stack = vim.fn.synstack(line, col)
+
+  for _, synid in ipairs(stack) do
+    local translated = vim.fn.synIDtrans(synid)
+    local msg = ("%s → %s"):format(vim.fn.synIDattr(synid, "name"), vim.fn.synIDattr(translated, "name"))
+    print(msg)
+  end
+end
+
+vim.cmd [[command SynStack lua require('phijor.util').syn_stack()]]
+
 ---@class AugroupDefinition
 ---@field [1] string | string[] #event
 ---@field [2] string | string[] #pattern
