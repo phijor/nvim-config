@@ -328,8 +328,9 @@ function M.format_fold(header, footer, span)
   local fold_header = header
 
   local ws = header:match("%s*")
-  if ws then
-    fold_header = ("⋯"):rep(vim.fn.strdisplaywidth(ws) - 1) .. ' ' .. vim.fn.trim(header)
+  if ws ~= nil and ws ~= "" then
+    -- ·⋯
+    fold_header = ("·"):rep(vim.fn.strdisplaywidth(ws) - 1) .. ' ' .. vim.fn.trim(header)
   end
 
   local fold_footer = vim.fn.trim(footer)

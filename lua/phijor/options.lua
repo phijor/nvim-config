@@ -24,7 +24,6 @@ set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldtext = "v:lua.phijor_fold_text_ellipsis()"
 
 set.fillchars = {
-  fold      = " ",
   foldopen  = "▾",
   foldclose = "▸",
   foldsep   = " ",
