@@ -320,9 +320,6 @@ require("packer").startup(function(use)
     end,
   }
 
-  -- search using The Silver Searcher -- ag
-  use "Numkil/ag.nvim"
-
   -- Rust
   use {
     "simrat39/rust-tools.nvim",
