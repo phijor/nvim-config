@@ -283,6 +283,17 @@ local function setup_rnix()
   nvim_lsp.rnix.setup(rnix_config)
 end
 
+local function setup_yamlls()
+  local yaml_config = get_config {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+      }
+    }
+  }
+  nvim_lsp.yamlls.setup(yaml_config)
+end
+
 local function setup_signs()
   -- signs in sign column
   local signs = {
@@ -326,6 +337,7 @@ function M.setup()
   setup_idris2()
   setup_haskell()
   setup_rnix()
+  setup_yamlls()
 
   setup_signs()
   setup_null_ls()
