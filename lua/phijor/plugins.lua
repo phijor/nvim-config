@@ -280,6 +280,7 @@ require("packer").startup(function(use)
           layout_strategy = "vertical",
         },
       }
+      telescope.load_extension("notify")
     end,
   }
 
