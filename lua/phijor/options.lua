@@ -53,6 +53,7 @@ set.shiftwidth = 0 -- use value of tabstop
 set.softtabstop = -1 -- use value of tabstop
 set.shiftround = true -- align indents to shiftwidth
 set.expandtab = true
+set.wrap = false
 
 set.clipboard:append "unnamedplus"
 set.undolevels = 1000
@@ -62,6 +63,7 @@ set.undolevels = 1000
 set.number = true -- show line numbers
 set.ruler = true -- show cursor position in status line
 set.cursorline = true -- underline the line the cursor is on
+set.cursorcolumn = true -- highlight the column the cursor is on
 set.errorbells = false -- don't beep/flash on error
 set.title = true -- set title of window
 
