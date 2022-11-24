@@ -42,7 +42,8 @@ highlight MatchParen   ctermbg=none    ctermfg=none    cterm=italic,underline
 " Indent guides
 highlight IndentBlankLine ctermfg=white cterm=nocombine
 
-highlight FoldColumn    ctermbg=none
+" Fold indicator columns
+highlight FoldColumn    ctermbg=none    ctermfg=White
 
 " Sign columns
 highlight SignColumn    ctermbg=none
@@ -55,8 +56,8 @@ highlight DiffDelete    ctermbg=none    ctermfg=red     cterm=bold
 highlight DiffText                                      cterm=bold
 
 " Spelling
-highlight SpellBad      ctermbg=none    ctermfg=red     cterm=bold,underline
-highlight SpellCap      ctermbg=none    ctermfg=blue    cterm=bold,underline
+highlight SpellBad      ctermbg=none                    cterm=bold,underline
+highlight SpellCap      ctermbg=none                    cterm=bold,underline
 
 " Completion menu
 highlight Pmenu    ctermfg=none ctermbg=black
@@ -105,7 +106,7 @@ highlight link IdrisStructure Keyword
 highlight link IdrisWhere Keyword
 highlight link IdrisVisibility Special
 
-highlight CornelisFunction  ctermfg=blue
+highlight link CornelisFunction Identifier
 highlight CornelisArgument  ctermfg=gray cterm=italic,bold
 highlight CornelisSymbol    ctermfg=gray
 highlight CornelisInductiveConstructor  ctermfg=darkmagenta
@@ -116,6 +117,6 @@ highlight link CornelisBound            Normal
 highlight link CornelisGeneralizable    Constant
 highlight link CornelisModule           Include
 highlight link CornelisFallback         CornelisErrorWarning
-highlight CornelisErrorWarning cterm=undercurl
+highlight CornelisErrorWarning ctermfg=red cterm=undercurl
 highlight CornelisHole ctermfg=yellow ctermbg=NONE cterm=undercurl
 
