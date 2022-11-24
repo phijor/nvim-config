@@ -263,13 +263,14 @@ require("packer").startup(function(use)
     end,
   }
 
+  -- UI customization
+  use { "stevearc/dressing.nvim" }
+
   use {
     "nvim-telescope/telescope.nvim",
     requires = {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
-      -- XXX: Temporary hack to use telescope UI for code actions
-      { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
       local telescope = require("telescope")
@@ -279,8 +280,6 @@ require("packer").startup(function(use)
           layout_strategy = "vertical",
         },
       }
-      -- XXX: UI hack
-      telescope.load_extension("ui-select")
     end,
   }
 
