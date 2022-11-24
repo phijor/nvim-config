@@ -168,11 +168,10 @@ local function setup_texlab()
     settings = {
       texlab = {
         build = {
+          executable = "latexmk",
           onSave = true,
           args = {
             "-rc-report",
-            "-pdf",
-            "-pdflatex=lualatex",
             "-interaction=nonstopmode",
             "-synctex=1",
             "%f",
