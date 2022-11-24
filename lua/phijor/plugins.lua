@@ -371,6 +371,8 @@ require("packer").startup(function(use)
   use "ron-rs/ron.vim"
 
   use "cespare/vim-toml"
+
+  use "ARM9/arm-syntax-vim"
 end)
 
 vim.cmd [[
