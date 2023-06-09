@@ -19,10 +19,12 @@ highlight Todo                        ctermbg=green cterm=bold
 highlight Comment    ctermfg=lightgreen
 highlight Constant   ctermfg=darkmagenta
 highlight Identifier ctermfg=cyan                       cterm=none
+highlight Function   ctermfg=blue
 highlight PreProc    ctermfg=darkyellow
+highlight Include    ctermfg=darkyellow
 highlight Special    ctermfg=yellow
 highlight Delimiter  ctermfg=darkred
-highlight Keyword    ctermfg=blue                       cterm=none
+highlight Keyword    ctermfg=darkgray                   cterm=none
 highlight Statement  ctermfg=darkcyan                   cterm=bold
 highlight Operator   ctermfg=blue
 highlight Type       ctermfg=darkgreen
