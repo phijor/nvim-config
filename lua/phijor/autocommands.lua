@@ -1,6 +1,6 @@
 local augroups = require("phijor.util").augroups
 
-function highlight_yank()
+local function highlight_yank()
   require("vim.highlight").on_yank { timeout = 2000 }
 end
 
