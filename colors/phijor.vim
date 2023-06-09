@@ -108,17 +108,17 @@ highlight link IdrisStructure Keyword
 highlight link IdrisWhere Keyword
 highlight link IdrisVisibility Special
 
-highlight link CornelisFunction Identifier
-highlight CornelisArgument  ctermfg=gray cterm=italic,bold
-highlight CornelisSymbol    ctermfg=gray
-highlight CornelisInductiveConstructor  ctermfg=darkmagenta
-highlight CornelisPrimitive ctermfg=darkyellow cterm=italic
-highlight link CornelisPostulate        Special
-highlight link CornelisField            CornelisInductiveConstructor
-highlight link CornelisBound            Normal
-highlight link CornelisGeneralizable    Constant
-highlight link CornelisModule           Include
-highlight link CornelisFallback         CornelisErrorWarning
-highlight CornelisErrorWarning ctermfg=red cterm=undercurl
-highlight CornelisHole ctermfg=yellow ctermbg=NONE cterm=undercurl
 
+" Agda (via Cornelis)
+highlight CornelisCustomData ctermfg=darkmagenta
+highlight link CornelisField        CornelisCustomData
+highlight link CornelisConstructor  CornelisCustomData
+highlight link CornelisModule       Include
+
+highlight CornelisOperator      ctermfg=darkcyan
+highlight CornelisName          ctermfg=gray cterm=bold
+highlight CornelisArgument      ctermfg=gray cterm=italic
+highlight CornelisBound         ctermfg=lightgray cterm=bold
+highlight CornelisSymbol        ctermfg=darkgray
+highlight CornelisGeneralizable ctermfg=magenta cterm=italic
+highlight CornelisHole          ctermfg=yellow ctermbg=NONE cterm=undercurl
