@@ -105,8 +105,7 @@ function M.map_keys_lsp(bufnr)
     -- Interaction
     ["nv <Leader>f"] = { lsp.buf.format },
     ["n <Leader>r"] = { lsp.buf.rename },
-    ["n <Leader>a"] = { lsp.buf.code_action },
-    ["v <Leader>a"] = { lsp.buf.range_code_action },
+    ["nv <Leader>a"] = { lsp.buf.code_action },
 
     -- Diagnostics
     -- * open diagnostics popup for current buffer
@@ -133,16 +132,11 @@ function M.setup_agda_keys()
   local util = require "phijor.util"
   local buf = util.KeyMapper:new { buffer = 0 }
 
-  local rw = "Simplified"
+  local rw = "AsIs"
   local rw_force = "Normalised"
 
-  local function write_and_load()
-    vim.cmd [[ silent! write ]]
-    vim.cmd [[ CornelisLoad ]]
-  end
-
   buf:maps {
-    ["n <Leader>cl"] = { write_and_load },
+    ["n <Leader>cl"] = { cmd = "CornelisLoad" },
     ["n <Leader>c?"] = { cmd = "CornelisQuestionToMeta" },
     ["n <Leader>cn"] = { cmd = "CornelisNormalize" },
     ["n <Leader>ucn"] = { cmd = "CornelisNormalize HeadCompute" },
@@ -150,6 +144,7 @@ function M.setup_agda_keys()
     ["n <Leader>cg"] = { cmd = "CornelisGive" },
     ["n <Leader>cm"] = { cmd = "CornelisElaborate " .. rw },
     ["n <Leader>cs"] = { cmd = "CornelisMakeCase" },
+    ["n <Leader>ct"] = { cmd = "CornelisTypeInfer" },
     ["n <Leader>c,"] = { cmd = "CornelisTypeContext " .. rw },
     ["n <Leader>cc,"] = { cmd = "CornelisTypeContext " .. rw_force },
     ["n <Leader>c."] = { cmd = "CornelisTypeContextInfer " .. rw },
@@ -163,7 +158,6 @@ function M.setup_agda_keys()
     ["n [g"] = { cmd = "CornelisPrevGoal" },
     ["n ]g"] = { cmd = "CornelisNextGoal" },
   }
-
 end
 
 return M
