@@ -285,9 +285,12 @@ end
 
 local function setup_yamlls()
   local yaml_config = get_config {
-    yaml = {
-      schemas = {
-        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+    settings = {
+      yaml = {
+        schemas = {
+          ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+        },
+        keyOrdering = false,
       }
     }
   }
