@@ -7,8 +7,8 @@ setlocal list listchars+=extends:⬎,precedes:↳
 setlocal list
 setlocal linebreak
 
-nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
-nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+nnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 
 " https://www.reddit.com/r/neovim/comments/991kmv/annoying_auto_indentation_in_tex_files/
 " setlocal autoindent
