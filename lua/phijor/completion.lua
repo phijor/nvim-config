@@ -77,6 +77,10 @@ cmp.setup.cmdline(":", {
 cmp.setup.cmdline("/", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources {
-    { name = "buffer" },
+    { name = "buffer",
+      option = {
+        max_indexed_line_length = 200,
+      },
+    },
   },
 })
