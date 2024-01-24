@@ -359,6 +359,7 @@ function M.setup()
   setup_default {
     "vimls",
     "html",
+    "tsserver",
   }
 
   setup_python()
