@@ -360,8 +360,8 @@ require("packer").startup(function(use)
 
   -- Agda
   use {
-    "phijor/cornelis",
-    branch = "custom",
+    "isovector/cornelis",
+    branch = "master",
     requires = {
       "kana/vim-textobj-user",
       "neovimhaskell/nvim-hs.vim",
