@@ -312,6 +312,18 @@ local function setup_typst()
   nvim_lsp.typst_lsp.setup(typst_config)
 end
 
+local function setup_ltex()
+  local config = get_config {
+    settings = {
+      ltex = { language = "en-US" }
+    },
+    on_attach = function(client, bufnr)
+      require("ltex-utils").on_attach(bufnr)
+    end,
+  }
+  nvim_lsp.ltex.setup(config)
+end
+
 local function setup_signs()
   -- signs in sign column
   local signs = {
@@ -333,7 +345,6 @@ local function setup_null_ls()
     sources = {
       null_ls.builtins.formatting.black,
       null_ls.builtins.formatting.alejandra,
-      null_ls.builtins.diagnostics.proselint,
       null_ls.builtins.code_actions.gitsigns.with {
         disabled_filetypes = { "idris2", "lidris2" },
       },
@@ -358,6 +369,7 @@ function M.setup()
   setup_nix()
   setup_yamlls()
   setup_typst()
+  setup_ltex()
 
   setup_signs()
   setup_null_ls()

@@ -377,6 +377,22 @@ require("packer").startup(function(use)
     ft = { 'typst' },
   }
 
+  -- LTex language server (spell checking)
+  use {
+    "jhofscheier/ltex-utils.nvim",
+    requires = {
+      "neovim/nvim-lspconfig",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("ltex-utils").setup {
+        dictionary = {
+          path = vim.api.nvim_call_function("stdpath", { "state" }) .. "/ltex/",
+        }
+      }
+    end
+  }
+
   -- RON (Rust Object Notation)
   use "ron-rs/ron.vim"
 
