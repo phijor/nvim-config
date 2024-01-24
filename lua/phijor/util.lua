@@ -212,7 +212,7 @@ end
 M.KeyMapper = KeyMapper
 
 ---Parse map definition for lazily loaded functions.
----@param definition string | LazyMapDefinition
+---@param definition string | LazyMapDefinition | CmdMapDefinition
 ---@return string, MapOpts
 local function parse_lazy_definition(definition)
   ---@diagnostic disable-next-line: redundant-parameter
@@ -249,6 +249,8 @@ M.LazyMapDefinition = LazyMapDefinition
 ---@field [1] string Name of command to execute
 ---@field [2]? string Description for this definition
 ---@field opts? MapOpts options
+local CmdMapDefinition = {}
+M.CmdMapDefinition = CmdMapDefinition
 
 ---Create a map definition with a Vim command as a target.
 ---
