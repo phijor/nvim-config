@@ -2,7 +2,14 @@
 
 vim.cmd [[packadd packer.nvim]]
 
-require("packer").startup(function(use)
+local packer = require("packer")
+
+packer.init {
+  snapshot = "Packer.lock",
+  snapshot_path = vim.fn.stdpath('config'),
+}
+
+packer.startup(function(use)
   use "wbthomason/packer.nvim"
 
   use "flazz/vim-colorschemes"
