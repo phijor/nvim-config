@@ -48,7 +48,7 @@ set.splitbelow = true -- split windows below the current window
 -- Indentation, insertion
 --#region
 set.autoindent = true
-set.tabstop = 4
+set.tabstop = 2
 set.shiftwidth = 0 -- use value of tabstop
 set.softtabstop = -1 -- use value of tabstop
 set.shiftround = true -- align indents to shiftwidth
