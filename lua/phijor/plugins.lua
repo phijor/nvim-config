@@ -144,7 +144,7 @@ require("packer").startup(function(use)
   use "tpope/vim-commentary" -- Comment stuff out
   -- use 'tpope/vim-fugitive'
   use "tpope/vim-unimpaired"
-  use "Raimondi/delimitMate"
+  use "m4xshen/autoclose.nvim"
   use "wellle/targets.vim"
   use "kana/vim-operator-user"
 
