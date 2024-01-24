@@ -135,6 +135,9 @@ require("packer").startup(function(use)
     end,
   }
 
+  -- Diff viewer / merge tool
+  use "sindrets/diffview.nvim"
+
   -- Misc highlighting/naviagtion
   use "tpope/vim-surround"
   use "tpope/vim-repeat"
