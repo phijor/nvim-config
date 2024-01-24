@@ -78,7 +78,7 @@ function M.cornelis_config()
   local augroups = require('phijor.util').augroups
   augroups {
     Agda = {
-      { "BufRead,BufNewFile", { "*.agda", "*.lagda*" }, M.input_mode }
+      { { "BufRead", "BufNewFile" }, { "*.agda", "*.lagda*" }, M.input_mode }
     }
   }
 end
