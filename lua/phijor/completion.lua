@@ -9,6 +9,10 @@ local _ = require "cmp_cmdline"
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menu,menuone,noselect"
 
+require("luasnip.loaders.from_lua").load {
+  paths = vim.fn.stdpath "config" .. "/snippets"
+}
+
 cmp.setup {
   snippet = {
     expand = function(args)
