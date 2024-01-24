@@ -102,6 +102,14 @@ highlight link IdrisStructure Keyword
 highlight link IdrisWhere Keyword
 highlight link IdrisVisibility Special
 
+" Rainbow Delimiters
+highlight RainbowDelimiterRed     ctermfg=Red
+highlight RainbowDelimiterYellow  ctermfg=Yellow
+highlight RainbowDelimiterBlue    ctermfg=Blue
+highlight RainbowDelimiterOrange  ctermfg=Red
+highlight RainbowDelimiterGreen   ctermfg=Green
+highlight RainbowDelimiterViolet  ctermfg=Magenta
+highlight RainbowDelimiterCyan    ctermfg=Cyan
 
 " Agda (via Cornelis)
 highlight CornelisCustomData ctermfg=darkmagenta

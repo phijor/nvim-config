@@ -91,7 +91,26 @@ packer.startup(function(use)
     end,
   }
   use "nvim-treesitter/playground"
-  use "p00f/nvim-ts-rainbow"
+  use {
+    "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+    config = function()
+      require('rainbow-delimiters.setup').setup {
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          -- 'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          ['latex'] = 'rainbow-blocks',
+        },
+      }
+    end
+  }
 
   -- Treesitter: commentstring
   -- Set `commentstring` based on location in file

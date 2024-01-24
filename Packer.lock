@@ -128,9 +128,6 @@
   "nvim-ts-context-commentstring": {
     "commit": "92e688f"
   },
-  "nvim-ts-rainbow": {
-    "commit": "ef95c15"
-  },
   "nvim-web-devicons": {
     "commit": "5de460c"
   },
@@ -145,6 +142,9 @@
   },
   "popup.nvim": {
     "commit": "b7404d3"
+  },
+  "rainbow-delimiters.nvim": {
+    "commit": "35530b4"
   },
   "remember.nvim": {
     "commit": "b7613e1"
