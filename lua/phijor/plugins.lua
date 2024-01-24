@@ -97,6 +97,29 @@ require("packer").startup(function(use)
   -- Set `commentstring` based on location in file
   use "JoosepAlviste/nvim-ts-context-commentstring"
 
+  -- Treesitter: textobjects
+  -- Naviate using treesitter-defined textobjects
+  use "nvim-treesitter/nvim-treesitter-textobjects"
+  use "RRethy/nvim-treesitter-textsubjects"
+  use {
+    "mfussenegger/nvim-treehopper",
+    config = function()
+      local key = require("phijor.util").KeyMapper:new { silent = true }
+
+      local move = function(side)
+        return function()
+          require('tsht').move { side = side }
+        end
+      end
+
+      key:maps {
+        ["ox m"] = { require('tsht').nodes },
+        ["n m"] = { move 'end' },
+        ["n M"] = { move 'start' },
+      }
+    end
+  }
+
   -- Git changes
   use {
     "lewis6991/gitsigns.nvim",
