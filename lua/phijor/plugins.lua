@@ -139,7 +139,15 @@ require("packer").startup(function(use)
   use "sindrets/diffview.nvim"
 
   -- Misc highlighting/naviagtion
-  use "tpope/vim-surround"
+  use {
+    "kylechui/nvim-surround",
+    tag = "*",
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('nvim-surround').setup {}
+    end
+  }
+
   use "tpope/vim-repeat"
   use "tpope/vim-commentary" -- Comment stuff out
   -- use 'tpope/vim-fugitive'
