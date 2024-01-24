@@ -155,13 +155,16 @@ require("packer").startup(function(use)
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
-      require("indent_blankline").setup {
-        char = vim.opt.fillchars:get().vert or "│",
-        space_char_blankline = " ",
-        char_highlight_list = {
-          "IndentBlankLine"
+      require("ibl").setup {
+        indent = {
+          char = "▏",
         },
-        show_current_context = true,
+        whitespace = {
+          highlight = { "IndentBlankLine" },
+        },
+        scope = {
+          enabled = false,
+        },
       }
     end
   }
