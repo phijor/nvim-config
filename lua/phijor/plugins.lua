@@ -342,8 +342,8 @@ require("packer").startup(function(use)
     "simrat39/rust-tools.nvim",
     requires = {
       { "neovim/nvim-lspconfig" },
-      { "nvim-lua/popup.nvim", opt = true },
-      { "nvim-lua/plenary.nvim", opt = true },
+      { "nvim-lua/popup.nvim",           opt = true },
+      { "nvim-lua/plenary.nvim",         opt = true },
       { "nvim-telescope/telescope.nvim", opt = true },
     },
     -- configuration is done in lsp.setup
