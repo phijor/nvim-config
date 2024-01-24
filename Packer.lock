@@ -24,7 +24,7 @@
     "commit": "f900a4c"
   },
   "cmp-nvim-lsp": {
-    "commit": "44b16d1"
+    "commit": "5af77f5"
   },
   "cmp-nvim-lsp-signature-help": {
     "commit": "3d8912e"
@@ -39,7 +39,7 @@
     "commit": "8202a42"
   },
   "diffview.nvim": {
-    "commit": "d38c1b5"
+    "commit": "3dc498c"
   },
   "dressing.nvim": {
     "commit": "fe30713"
@@ -63,7 +63,7 @@
     "commit": "1e054c1"
   },
   "gitsigns.nvim": {
-    "commit": "af0f583"
+    "commit": "300a306"
   },
   "hop.nvim": {
     "commit": "90db1b2"
@@ -162,10 +162,10 @@
     "commit": "f206011"
   },
   "telescope.nvim": {
-    "commit": "20bf205"
+    "commit": "301505d"
   },
   "toggleterm.nvim": {
-    "commit": "faee9d6"
+    "commit": "cbd041d"
   },
   "typst.vim": {
     "commit": "2fddf2b"
