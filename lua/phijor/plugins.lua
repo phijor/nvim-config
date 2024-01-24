@@ -199,33 +199,32 @@ require("packer").startup(function(use)
     config = function()
       require("hop").setup {
         keys = "asdghklwertyuiopzxcvbnmfj",
-        quit_key = "q",
+        uppercase_labels = true,
       }
 
-      local c1 = function(mode, key, dir, current_line_only, inclusive_jump)
-        local opts = string.format(
-          [[{direction = require'hop.hint'.HintDirection.%s, current_line_only = %s, inclusive_jump = %s}]],
-          dir,
-          tostring(current_line_only),
-          tostring(inclusive_jump)
-        )
-        vim.api.nvim_set_keymap(mode, key, string.format([[<cmd>lua require'hop'.hint_char1(%s)<cr>]], opts), {})
+      local key = require("phijor.util").KeyMapper:new { silent = true, remap = true }
+
+      local hop_curline = function(direction, offset)
+        local hint = require 'hop.hint'
+        return function()
+          require("hop").hint_char1 {
+            direction = hint.HintDirection[direction],
+            current_line_only = true,
+            hint_offset = offset,
+          }
+        end
       end
 
-      c1("n", "f", "AFTER_CURSOR", true, false)
-      c1("n", "F", "BEFORE_CURSOR", true, false)
-      c1("o", "f", "AFTER_CURSOR", true, true)
-      c1("o", "F", "AFTER_CURSOR", true, true)
-      c1("", "t", "AFTER_CURSOR", true, false)
-      c1("", "T", "BEFORE_CURSOR", true, false)
-
-      local key = require("phijor.util").KeyMapper:new { silent = true }
-
       key:maps {
+        ["nxo f"] = { hop_curline("AFTER_CURSOR", 0) },
+        ["nxo F"] = { hop_curline("BEFORE_CURSOR", 0) },
+        ["nxo t"] = { hop_curline("AFTER_CURSOR", -1) },
+        ["nxo T"] = { hop_curline("BEFORE_CURSOR", 1) },
         ["nv gw"] = { cmd = "HopWord" },
         ["nv gW"] = { cmd = "HopWordCurrentLine" },
         ["nv gl"] = { cmd = "HopLineStart" },
         ["nv gL"] = { cmd = "HopLine" },
+        ["n g/"] = { cmd = "HopPattern" },
       }
     end,
   }
