@@ -345,6 +345,7 @@ local function setup_null_ls()
     sources = {
       null_ls.builtins.formatting.black,
       null_ls.builtins.formatting.alejandra,
+      null_ls.builtins.formatting.mdformat,
       null_ls.builtins.code_actions.gitsigns.with {
         disabled_filetypes = { "idris2", "lidris2" },
       },
