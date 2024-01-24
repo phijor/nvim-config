@@ -261,15 +261,20 @@ end
 local function setup_haskell()
   local haskell_config = get_config {
     on_attach = function(client, _)
-      client.server_capabilities.document_formatting = false
+      client.server_capabilities.document_formatting = true
     end,
     settings = {
       haskell = {
         plugin = {
           tactics = {
             globalOn = true,
-          }
-        }
+            config = {
+              hole_severity = "hint",
+            },
+          },
+          ["ghcide-code-actions-fill-holes"] = { globalOn = false },
+        },
+        formattingProvider = "fourmolu",
       }
     }
   }
