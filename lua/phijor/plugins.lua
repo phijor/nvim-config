@@ -38,8 +38,8 @@ require("packer").startup(function(use)
       require("fidget").setup {
         progress = {
           suppress_on_insert = true,
+          ignore = { "ltex" },
         },
-        ignore = { "ltex" },
       }
     end,
   }
