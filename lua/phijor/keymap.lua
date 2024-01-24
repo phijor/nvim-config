@@ -132,7 +132,7 @@ function M.setup_agda_keys()
   local util = require "phijor.util"
   local buf = util.KeyMapper:new { buffer = 0 }
 
-  local rw = "AsIs"
+  local rw = "Simplified"
   local rw_force = "Normalised"
 
   buf:maps {
