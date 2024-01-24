@@ -160,4 +160,44 @@ function M.setup_agda_keys()
   }
 end
 
+function M.setup_gitsigns_keys()
+  local util = require "phijor.util"
+  local gitsigns = require "gitsigns"
+
+  local keys = util.KeyMapper:new()
+
+  keys:maps {
+    ["n ]h"] = {
+      function()
+        if vim.wo.diff then return ']c' end
+        vim.schedule(function() gitsigns.next_hunk() end)
+        return '<Ignore>'
+      end
+    },
+    ["n [h"] = {
+      function()
+        if vim.wo.diff then return '[c' end
+        vim.schedule(function() gitsigns.prev_hunk() end)
+        return '<Ignore>'
+      end
+    },
+    ["n <leader>hs"] = { gitsigns.stage_hunk },
+    ["v <leader>hs"] = {
+      function() gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end
+    },
+    ["n <leader>hu"] = { gitsigns.undo_stage_hunk },
+    ["n <leader>hr"] = { gitsigns.reset_hunk },
+    ["v <leader>hr"] = {
+      function() gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end
+    },
+    ["n <leader>hR"] = { gitsigns.reset_buffer },
+    ["n <leader>hp"] = { gitsigns.preview_hunk },
+    ["n <leader>hb"] = { function() gitsigns.blame_line { full = true } end },
+    ["n <leader>hS"] = { gitsigns.stage_buffer },
+    ["n <leader>hU"] = { gitsigns.reset_buffer_index },
+
+    ["ox ih"] = { ":<C-U>Gitsigns select_hunk<CR>" },
+  }
+end
+
 return M
