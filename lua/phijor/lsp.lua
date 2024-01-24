@@ -302,6 +302,16 @@ local function setup_yamlls()
   nvim_lsp.yamlls.setup(yaml_config)
 end
 
+local function setup_typst()
+  local typst_config = get_config {
+    settings = {
+      exportPdf = "onSave"
+    }
+  }
+
+  nvim_lsp.typst_lsp.setup(typst_config)
+end
+
 local function setup_signs()
   -- signs in sign column
   local signs = {
@@ -347,6 +357,7 @@ function M.setup()
   setup_haskell()
   setup_nix()
   setup_yamlls()
+  setup_typst()
 
   setup_signs()
   setup_null_ls()

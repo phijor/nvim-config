@@ -371,6 +371,12 @@ require("packer").startup(function(use)
   -- i3
   use "mboughaba/i3config.vim"
 
+  -- typst
+  use {
+    "kaarmu/typst.vim",
+    ft = { 'typst' },
+  }
+
   -- RON (Rust Object Notation)
   use "ron-rs/ron.vim"
 
