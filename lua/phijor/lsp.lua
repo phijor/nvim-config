@@ -282,10 +282,10 @@ local function setup_haskell()
   nvim_lsp.hls.setup(haskell_config)
 end
 
-local function setup_rnix()
-  local rnix_config = get_config {}
+local function setup_nix()
+  local nix_config = get_config {}
 
-  nvim_lsp.rnix.setup(rnix_config)
+  nvim_lsp.nixd.setup(nix_config)
 end
 
 local function setup_yamlls()
@@ -345,7 +345,7 @@ function M.setup()
   setup_texlab()
   setup_idris2()
   setup_haskell()
-  setup_rnix()
+  setup_nix()
   setup_yamlls()
 
   setup_signs()
