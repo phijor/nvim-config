@@ -1,11 +1,6 @@
 -- Set up Lua module cache
 pcall(require, "impatient")
 
-local success, notify = pcall(require, "notify")
-if success then
-  vim.notify = notify
-end
-
 local colorscheme = "phijor"
 
 if vim.g.neovide then

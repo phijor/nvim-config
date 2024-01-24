@@ -5,19 +5,6 @@ vim.cmd [[packadd packer.nvim]]
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
 
-  use {
-    "rcarriga/nvim-notify",
-    config = function()
-      local notify = require "notify"
-
-      notify.setup {
-        stages = "static",
-      }
-
-      vim.notify = notify
-    end,
-  }
-
   use "flazz/vim-colorschemes"
   use "EdenEast/nightfox.nvim"
 
@@ -46,8 +33,14 @@ require("packer").startup(function(use)
   -- Lsp status messages
   use {
     "j-hui/fidget.nvim",
+    tag = "*",
     config = function()
-      require("fidget").setup { text = { spinner = "dots" } }
+      require("fidget").setup {
+        progress = {
+          suppress_on_insert = true,
+        },
+        ignore = { "ltex" },
+      }
     end,
   }
 
@@ -297,7 +290,6 @@ require("packer").startup(function(use)
           layout_strategy = "vertical",
         },
       }
-      telescope.load_extension("notify")
     end,
   }
 
