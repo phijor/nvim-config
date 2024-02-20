@@ -104,6 +104,9 @@ local function setup_rust()
           enable = true,
           references = { enable = true },
         },
+        completion = {
+          termSearch = { enable = true },
+        },
       },
     },
   }
