@@ -15,6 +15,9 @@ local default_on_attach = function(client, bufnr)
     require("phijor.autocommands").enable_formatting_on_write()
   end
 
+  vim.lsp.set_log_level("off")
+  require('vim.lsp.log').set_format_func(vim.inspect)
+
   vim.diagnostic.config {
     virtual_text = false,
     underline = true,
