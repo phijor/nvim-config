@@ -116,6 +116,7 @@ local function setup_rust()
       inlay_hints = {
         parameter_hints_prefix = "λ ",
         other_hints_prefix = "→ ",
+        highlight = "DiagnosticVirtualTextHint",
       }
     },
     server = rust_config,

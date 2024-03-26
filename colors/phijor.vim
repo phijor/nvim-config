@@ -93,6 +93,12 @@ highlight DiagnosticsUnderlineWarning     ctermfg=yellow cterm=underline
 highlight DiagnosticsUnderlineHint        ctermfg=cyan   cterm=underline
 highlight DiagnosticsUnderlineInformation ctermfg=green  cterm=underline
 
+highlight DiagnosticVirtualTextError  ctermfg=red    cterm=italic
+highlight DiagnosticVirtualTextWarn   ctermfg=yellow cterm=italic
+highlight DiagnosticVirtualTextHint   ctermfg=grey   cterm=italic
+highlight DiagnosticVirtualTextInfo   ctermfg=white  cterm=italic
+highlight DiagnosticVirtualTextOk     ctermfg=green  cterm=italic
+
 " Fixes
 highlight link IdrisPragma Special
 highlight link IdrisType Type
