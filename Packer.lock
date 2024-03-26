@@ -1,6 +1,6 @@
 {
   "LuaSnip": {
-    "commit": "f3b3d34"
+    "commit": "a7a4b46"
   },
   "arm-syntax-vim": {
     "commit": "84ee5c4"
@@ -42,7 +42,7 @@
     "commit": "3dc498c"
   },
   "dressing.nvim": {
-    "commit": "6f21226"
+    "commit": "18e5beb"
   },
   "editorconfig.nvim": {
     "commit": "5b9e303"
@@ -51,7 +51,7 @@
     "commit": "4e854f3"
   },
   "firenvim": {
-    "commit": "f2dd6d3"
+    "commit": "3363c14"
   },
   "focus.nvim": {
     "commit": "4135f97"
@@ -63,7 +63,7 @@
     "commit": "8ea9574"
   },
   "gitsigns.nvim": {
-    "commit": "2c2463d"
+    "commit": "078041e"
   },
   "hop.nvim": {
     "commit": "90db1b2"
@@ -78,13 +78,13 @@
     "commit": "47302af"
   },
   "indent-blankline.nvim": {
-    "commit": "821a7ac"
+    "commit": "3d08501"
   },
   "ltex-utils.nvim": {
     "commit": "8c6ef83"
   },
   "lualine.nvim": {
-    "commit": "7d131a8"
+    "commit": "b5e8bb6"
   },
   "nightfox.nvim": {
     "commit": "a408e6b"
@@ -96,7 +96,7 @@
     "commit": "0010ea9"
   },
   "nvim-cmp": {
-    "commit": "04e0ca3"
+    "commit": "97dc716"
   },
   "nvim-hs.vim": {
     "commit": "d4a6b72"
@@ -105,31 +105,31 @@
     "commit": "8f00b89"
   },
   "nvim-lspconfig": {
-    "commit": "1699ce1"
+    "commit": "6e5c78e"
   },
   "nvim-surround": {
-    "commit": "703ec63"
+    "commit": "d47001f"
   },
   "nvim-tree.lua": {
-    "commit": "030defd"
+    "commit": "e508bdc"
   },
   "nvim-treehopper": {
     "commit": "5a28bff"
   },
   "nvim-treesitter": {
-    "commit": "6bd108a6"
+    "commit": "1c3fb9ea"
   },
   "nvim-treesitter-textobjects": {
-    "commit": "7f00d94"
+    "commit": "d2a4ffc"
   },
   "nvim-treesitter-textsubjects": {
-    "commit": "55d1112"
+    "commit": "9f9a6b3"
   },
   "nvim-ts-context-commentstring": {
     "commit": "7ab799a"
   },
   "nvim-web-devicons": {
-    "commit": "14ac588"
+    "commit": "3ee60de"
   },
   "packer.nvim": {
     "commit": "ea0cc3c"
@@ -162,7 +162,7 @@
     "commit": "a6d0127"
   },
   "telescope.nvim": {
-    "commit": "b744cf5"
+    "commit": "c2b8311"
   },
   "toggleterm.nvim": {
     "commit": "193786e"
@@ -198,6 +198,6 @@
     "commit": "470cd19"
   },
   "vista.vim": {
-    "commit": "290b815"
+    "commit": "f76cecc"
   }
 }
