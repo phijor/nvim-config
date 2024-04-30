@@ -290,9 +290,17 @@ local function setup_haskell()
 end
 
 local function setup_nix()
-  local nix_config = get_config {}
+  local nix_config = get_config {
+    settigns = {
+      ["nil"] = {
+        formatting = {
+          command = { "nixfmt" },
+        },
+      },
+    },
+  }
 
-  nvim_lsp.nixd.setup(nix_config)
+  nvim_lsp.nil_ls.setup(nix_config)
 end
 
 local function setup_yamlls()
@@ -351,7 +359,7 @@ local function setup_null_ls()
   local config = get_config {
     sources = {
       null_ls.builtins.formatting.black,
-      null_ls.builtins.formatting.alejandra,
+      null_ls.builtins.formatting.nixfmt,
       null_ls.builtins.formatting.mdformat,
       null_ls.builtins.code_actions.gitsigns.with {
         disabled_filetypes = { "idris2", "lidris2" },
