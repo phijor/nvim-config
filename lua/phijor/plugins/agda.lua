@@ -74,11 +74,16 @@ function M.input_mode()
   end
 end
 
+function M.close_info_windows()
+  vim.cmd [[:CornelisCloseInfoWindows]]
+end
+
 function M.cornelis_config()
   local augroups = require('phijor.util').augroups
   augroups {
     Agda = {
-      { { "BufRead", "BufNewFile" }, { "*.agda", "*.lagda*" }, M.input_mode }
+      { { "BufRead", "BufNewFile" }, { "*.agda", "*.lagda*" }, M.input_mode },
+      { { "QuitPre" }, { "*.agda", "*.lagda*" }, M.close_info_windows }
     }
   }
 end
