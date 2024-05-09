@@ -4,6 +4,14 @@ local function highlight_yank()
   require("vim.highlight").on_yank { timeout = 2000 }
 end
 
+local ignored_filetypes = {
+  "DiffviewFiles"
+}
+
+local function disable_focus(_)
+  vim.b.focus_disable = vim.tbl_contains(ignored_filetypes, vim.bo.filetype)
+end
+
 local M = {}
 M._exists = nil
 
@@ -25,6 +33,9 @@ function M.setup()
         { "/tmp/*", "/var/tmp/*", vim.env.XDG_RUNTIME_DIR .. "/*", "*/.git/*" },
         [[setlocal noundofile]],
       },
+    },
+    focus_disable = {
+      { "FileType", nil, disable_focus }
     },
   }
 
