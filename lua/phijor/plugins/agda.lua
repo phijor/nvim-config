@@ -46,10 +46,8 @@ local bindings = {
   ["rtr"] = "▷",
 }
 
-local setup_done = false;
-
 function M.input_mode()
-  if setup_done then
+  if vim.b.phijor_agda_setup_done then
     return
   end
 
@@ -60,6 +58,8 @@ function M.input_mode()
   for abbrev, symbol in pairs(bindings) do
     bind_input(abbrev, symbol)
   end
+
+  vim.b.phijor_agda_setup_done = true
 end
 
 function M.close_info_windows()
