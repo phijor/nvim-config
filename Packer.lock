@@ -117,7 +117,7 @@
     "commit": "5a28bff"
   },
   "nvim-treesitter": {
-    "commit": "1b2f0067"
+    "commit": "f197a15b"
   },
   "nvim-treesitter-textobjects": {
     "commit": "23b8201"
