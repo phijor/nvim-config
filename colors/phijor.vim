@@ -1,17 +1,19 @@
 set background=dark
 highlight clear
+colorscheme vim
 
 if exists('syntax_on')
     syntax reset
 endif
 
 let colors_name = "phijor"
+set notermguicolors
 
 highlight ExtraWhitespace ctermfg=yellow cterm=undercurl
 
-highlight VertSplit ctermbg=none ctermfg=black cterm=nocombine
-highlight StatusLine ctermbg=black ctermfg=white cterm=NONE
-highlight StatusLineNC ctermbg=black ctermfg=gray cterm=NONE
+highlight WinSeparator ctermbg=none ctermfg=black cterm=nocombine
+highlight WinBar ctermbg=black ctermfg=white cterm=NONE
+highlight WinBarNC ctermbg=black ctermfg=gray cterm=NONE
 
 " Default highlight groups
 highlight Error      ctermfg=red      ctermbg=none  cterm=undercurl
@@ -28,6 +30,7 @@ highlight Keyword    ctermfg=darkgray                   cterm=none
 highlight Statement  ctermfg=darkcyan                   cterm=bold
 highlight Operator   ctermfg=blue
 highlight Type       ctermfg=darkgreen
+highlight! link String Constant
 
 highlight default CursorLines ctermbg=black cterm=NONE
 highlight! link   CursorLine   CursorLines
@@ -62,8 +65,10 @@ highlight SpellBad      ctermbg=none                    cterm=bold,underline
 highlight SpellCap      ctermbg=none                    cterm=bold,underline
 
 " Completion menu
-highlight Pmenu    ctermfg=none ctermbg=black
-highlight PmenuSel cterm=bold,reverse
+highlight Pmenu       ctermfg=none ctermbg=black
+highlight PmenuSel                                cterm=bold,reverse
+highlight PmenuSbar   ctermfg=none ctermbg=white
+highlight PmenuThumb  ctermfg=none ctermbg=none   cterm=reverse
 
 " Highlight for completion items (from nvim-cmp)
 highlight CmpItemAbbrMatch ctermfg=cyan
