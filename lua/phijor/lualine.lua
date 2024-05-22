@@ -26,7 +26,7 @@ local colors = {
 local color_template = {
   normal = "blue",
   insert = "green",
-  visual = "yellow",
+  visual = "magenta",
   replace = "red",
   command = "cyan",
 }
@@ -43,6 +43,7 @@ end
 
 local color_scheme = {}
 for mode, base in pairs(color_template) do
+  local light_base = "light" .. base
   local dark_base = "dark" .. base
 
   color_scheme[mode] = {
@@ -50,15 +51,15 @@ for mode, base in pairs(color_template) do
     -- b = {bg = colors.black, fg = colors['bright_' .. base], gui = 'bold'},
     -- c = {bg = colors.background, fg = colors['bright_' .. base], },
     a = create_section_highlight("a", mode, { ctermfg = "black", ctermbg = dark_base }),
-    b = create_section_highlight("b", mode, { ctermfg = base, ctermbg = "black", gui = "bold" }),
-    c = create_section_highlight("c", mode, { ctermfg = base, ctermbg = "none" }),
+    b = create_section_highlight("b", mode, { ctermfg = "none", ctermbg = base, cterm = "bold" }),
+    c = create_section_highlight("c", mode, { ctermfg = "white", ctermbg = "black" }),
   }
 end
 
 local inactive_section_highlight = create_section_highlight(
   "buffer",
   "inactive",
-  { ctermfg = "white", ctermbg = "black" }
+  { ctermfg = "none", ctermbg = "none" }
 )
 
 color_scheme["inactive"] = {
@@ -71,7 +72,7 @@ local no_separators = { left = "", right = "" }
 
 require("lualine").setup {
   options = {
-    -- theme = color_scheme,
+    theme = color_scheme,
     icons_enabled = false,
     component_separators = no_separators,
     section_separators = no_separators,
@@ -82,10 +83,27 @@ require("lualine").setup {
     },
     lualine_b = {
       "branch",
-      "diff",
-      { "diagnostics", sources = { "nvim_diagnostic" } },
     },
     lualine_c = {
+      {
+        "diff",
+        -- FIXME: See comment in `colors/phijor.vim`
+        diff_color = {
+          added    = 'LuaLineDiffAdd',
+          modified = 'LuaLineDiffChange',
+          removed  = 'LuaLineDiffDelete',
+        },
+      },
+      {
+        "diagnostics",
+        sources = { "nvim_diagnostic" },
+        diagnostics_color = {
+          error = 'LuaLineDiagnosticsError',
+          warn  = 'LuaLineDiagnosticsWarn',
+          info  = 'LuaLineDiagnosticsInfo',
+          hint  = 'LuaLineDiagnosticsHint',
+        },
+      },
     },
     lualine_x = {
       "encoding",

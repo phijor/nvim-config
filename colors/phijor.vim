@@ -135,3 +135,15 @@ highlight CornelisBound         ctermfg=lightgray cterm=bold
 highlight CornelisSymbol        ctermfg=darkgray
 highlight CornelisGeneralizable ctermfg=magenta cterm=italic
 highlight CornelisHole          ctermfg=yellow ctermbg=NONE cterm=undercurl
+
+" Lualine
+" FIXME: Using Diff{Add,Change,Delete} in lunaline inherits wrong bg
+highlight LuaLineDiffAdd    ctermbg=black ctermfg=green   cterm=bold
+highlight LuaLineDiffChange ctermbg=black ctermfg=yellow  cterm=bold
+highlight LuaLineDiffDelete ctermbg=black ctermfg=red     cterm=bold
+
+" FIXME: Same goes for Diagnostics* highlight groups
+highlight LuaLineDiagnosticsError       ctermbg=black ctermfg=red
+highlight LuaLineDiagnosticsWarning     ctermbg=black ctermfg=yellow
+highlight LuaLineDiagnosticsHint        ctermbg=black ctermfg=cyan
+highlight LuaLineDiagnosticsInformation ctermbg=black ctermfg=green
