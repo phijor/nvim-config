@@ -26,12 +26,6 @@ packer.startup(function(use)
     "neovim/nvim-lspconfig",
   }
   use {
-    "kosayoda/nvim-lightbulb",
-    config = function()
-      vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'phijor.lsp'.update_lightbulb()]]
-    end,
-  }
-  use {
     "jose-elias-alvarez/null-ls.nvim",
     requires = {
       "nvim-lua/plenary.nvim",

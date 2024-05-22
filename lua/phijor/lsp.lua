@@ -392,17 +392,6 @@ function M.setup()
   setup_null_ls()
 end
 
-function M:update_lightbulb()
-  require("nvim-lightbulb").update_lightbulb {
-    sign = {
-      enabled = false,
-    },
-    status_text = {
-      enabled = true,
-    },
-  }
-end
-
 M.lsp_get_default_config = lsp_get_default_config
 M.get_config = get_config
 

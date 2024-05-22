@@ -101,9 +101,6 @@
   "nvim-hs.vim": {
     "commit": "d4a6b72"
   },
-  "nvim-lightbulb": {
-    "commit": "8f00b89"
-  },
   "nvim-lspconfig": {
     "commit": "6d2ae9f"
   },
