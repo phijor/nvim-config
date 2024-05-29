@@ -330,7 +330,14 @@ end
 local function setup_ltex()
   local config = get_config {
     settings = {
-      ltex = { language = "en-US" }
+      ltex = {
+        language = "en-US",
+        checkFrequency = "save",
+        java = {
+          minimumHeapSize = 256,
+          maximumHeapSize = 1024 * 8,
+        },
+      }
     },
     on_attach = function(client, bufnr)
       require("ltex-utils").on_attach(bufnr)

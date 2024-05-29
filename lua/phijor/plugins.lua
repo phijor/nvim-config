@@ -401,7 +401,10 @@ packer.startup(function(use)
       require("ltex-utils").setup {
         dictionary = {
           path = vim.api.nvim_call_function("stdpath", { "state" }) .. "/ltex/",
-        }
+        },
+        diagnostics = {
+          debounce_time_ms = 2000,
+        },
       }
     end
   }
