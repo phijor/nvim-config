@@ -66,6 +66,7 @@ set.cursorline = true -- underline the line the cursor is on
 set.cursorcolumn = true -- highlight the column the cursor is on
 set.errorbells = false -- don't beep/flash on error
 set.title = true -- set title of window
+set.showmode = false -- do not show "-- {mode} --" messages
 
 -- Commandline
 set.showcmd = true -- show partial command and highlight dimensions
