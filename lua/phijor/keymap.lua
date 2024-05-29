@@ -39,8 +39,7 @@ function M.setup()
 
     -- Exit terminal mode by hitting <Esc> twice
     ["t <Esc><Esc>"] = { [[<C-\><C-n>]] },
-    ["t <Esc>t"] = toggle_term,
-    ["n <Leader>tt"] = toggle_term,
+    ["tn <Leader>t"] = toggle_term,
 
     -- Open telescope pickers
     ["n <Leader>o"] = { telescope "git_files" },
