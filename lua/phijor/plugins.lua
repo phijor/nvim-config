@@ -412,6 +412,21 @@ packer.startup(function(use)
   -- RON (Rust Object Notation)
   use "ron-rs/ron.vim"
 
+  -- Forester
+  use {
+    "kentookura/forester.nvim",
+    requires = {
+      { "nvim-telescope/telescope.nvim" },
+      { "nvim-treesitter/nvim-treesitter" },
+      { "nvim-lua/plenary.nvim" },
+      { "hrsh7th/nvim-cmp" },
+    },
+    config = function()
+      require("forester").setup()
+      require("phijor.keymap").setup_forester_keys()
+    end,
+  }
+
   use "cespare/vim-toml"
 
   use "ARM9/arm-syntax-vim"

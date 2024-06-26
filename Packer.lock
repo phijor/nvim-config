@@ -56,6 +56,9 @@
   "focus.nvim": {
     "commit": "c9bc6a9"
   },
+  "forester.nvim": {
+    "commit": "4898912"
+  },
   "fzf": {
     "commit": "daa6024"
   },

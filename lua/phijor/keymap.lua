@@ -195,4 +195,18 @@ function M.setup_gitsigns_keys()
   }
 end
 
+function M.setup_forester_keys()
+  local util = require "phijor.util"
+  local forester = require("forester.commands").commands
+
+  local keys = util.KeyMapper:new()
+
+  keys:maps {
+    ["n <leader>vb"] = { forester.browse },
+    ["n <leader>vn"] = { forester.new_random },
+    ["n <leader>vl"] = { forester.link_new },
+    ["n <leader>vt"] = { forester.transclude_new },
+  }
+end
+
 return M
