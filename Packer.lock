@@ -92,11 +92,11 @@
   "nightfox.nvim": {
     "commit": "df75a6a"
   },
+  "none-ls.nvim": {
+    "commit": "0d1b3fa"
+  },
   "nui.nvim": {
     "commit": "b1b3dcd"
-  },
-  "null-ls.nvim": {
-    "commit": "0010ea9"
   },
   "nvim-cmp": {
     "commit": "5260e5e"
