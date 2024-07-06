@@ -42,7 +42,7 @@ function M.setup()
     ["tn <Leader>t"] = toggle_term,
 
     -- Open telescope pickers
-    ["n <Leader>o"] = { telescope "git_files" },
+    ["n <Leader>o"] = { telescope("git_files", { recurse_submodules = true, }) },
     ["n <Leader>O"] = { telescope "find_files" },
     ["n <Leader>b"] = { telescope "buffers" },
     ["n <Leader>/"] = { telescope "live_grep" },
