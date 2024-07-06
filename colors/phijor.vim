@@ -65,7 +65,7 @@ highlight SpellBad      ctermbg=none                    cterm=bold,underline
 highlight SpellCap      ctermbg=none                    cterm=bold,underline
 
 " Completion menu
-highlight Pmenu       ctermfg=none ctermbg=black
+highlight Pmenu       ctermfg=none ctermbg=black  ctermfg=none
 highlight PmenuSel                                cterm=bold,reverse
 highlight PmenuSbar   ctermfg=none ctermbg=white
 highlight PmenuThumb  ctermfg=none ctermbg=none   cterm=reverse
