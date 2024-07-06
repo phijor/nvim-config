@@ -129,10 +129,6 @@ end
 local function setup_lua()
   local lua_lsp_lib = "/usr/lib/lua-language-server"
 
-  local runtime_path = vim.split(package.path, ";")
-  table.insert(runtime_path, "lua/?.lua")
-  table.insert(runtime_path, "lua/?/init.lua")
-
   local lua_config = get_config {
     cmd = { "lua-language-server", "-E", lua_lsp_lib .. "/main.lua" },
     settings = {
@@ -141,7 +137,11 @@ local function setup_lua()
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
           version = "LuaJIT",
           -- Setup your lua path
-          path = runtime_path,
+          -- Recommended setup: https://luals.github.io/wiki/configuration/#neovim
+          path = {
+            "lua/?.lua",
+            "?/init.lua",
+          }
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
