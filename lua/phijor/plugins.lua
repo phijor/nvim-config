@@ -4,10 +4,16 @@ vim.cmd [[packadd packer.nvim]]
 
 local packer = require("packer")
 
-packer.init {
-  snapshot = "Packer.lock",
-  snapshot_path = vim.fn.stdpath('config'),
-}
+local packer_cfg = {}
+
+if vim.fn.filereadable(vim.fn.stdpath("config") .. "/Packer.lock") then
+  packer_cfg = {
+    snapshot = "Packer.lock",
+    snapshot_path = vim.fn.stdpath('config'),
+  }
+end
+
+packer.init(packer_cfg)
 
 packer.startup(function(use)
   use "wbthomason/packer.nvim"
