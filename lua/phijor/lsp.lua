@@ -265,6 +265,18 @@ local function setup_idris2()
   }
 end
 
+local function setup_agda()
+  if vim.fn.executable('AgdaLSP') ~= 1 then
+    return
+  end
+
+  local config = get_config {
+    cmd = { "AgdaLSP" },
+  }
+
+  nvim_lsp.agda_ls.setup(config)
+end
+
 local function setup_haskell()
   local haskell_config = get_config {
     on_attach = function(client, _)
@@ -388,6 +400,7 @@ function M.setup()
   setup_lua()
   setup_rust()
   setup_texlab()
+  setup_agda()
   setup_idris2()
   setup_haskell()
   setup_nix()
