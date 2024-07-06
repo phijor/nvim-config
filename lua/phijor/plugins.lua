@@ -313,7 +313,7 @@ packer.startup(function(use)
       local telescope = require("telescope")
       telescope.setup {
         defaults = {
-          file_ignore_patterns = { ".cache" },
+          file_ignore_patterns = { ".cache", "build" },
           layout_strategy = "vertical",
         },
       }
