@@ -63,6 +63,7 @@ cmp.setup {
     { name = "path" },
     { name = "buffer" },
     { name = "git" },
+    { name = "forester" },
   }, {
     { name = "emoji" },
   }),
