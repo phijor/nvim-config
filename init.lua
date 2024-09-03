@@ -1,6 +1,3 @@
--- Set up Lua module cache
-pcall(require, "impatient")
-
 local colorscheme = "phijor"
 
 if vim.g.neovide then

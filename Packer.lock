@@ -77,9 +77,6 @@
   "idris2-nvim": {
     "commit": "8bff029"
   },
-  "impatient.nvim": {
-    "commit": "47302af"
-  },
   "indent-blankline.nvim": {
     "commit": "18603eb"
   },

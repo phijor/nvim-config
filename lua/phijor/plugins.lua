@@ -21,12 +21,6 @@ packer.startup(function(use)
   use "flazz/vim-colorschemes"
   use "EdenEast/nightfox.nvim"
 
-  --
-
-  -- Performance
-  -- Lua module caching
-  use "lewis6991/impatient.nvim"
-
   -- LSP
   use {
     "neovim/nvim-lspconfig",
