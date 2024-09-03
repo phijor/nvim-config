@@ -421,7 +421,8 @@ packer.startup(function(use)
 
   -- Forester
   use {
-    "kentookura/forester.nvim",
+    "phijor/forester.nvim",
+    branch = "completion-enhancements",
     requires = {
       { "nvim-telescope/telescope.nvim" },
       { "nvim-treesitter/nvim-treesitter" },
