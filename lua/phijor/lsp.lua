@@ -173,6 +173,7 @@ local function setup_texlab()
         ["n <Leader>lv"] = { cmd = "TexlabForward" },
       }
     end,
+    root_dir = require('lspconfig.util').root_pattern('latexmkrc', '.latexmkrc', 'texlabroot', '.texlabroot', '.git'),
     settings = {
       texlab = {
         build = {
