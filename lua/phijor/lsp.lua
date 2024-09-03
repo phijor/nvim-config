@@ -278,6 +278,16 @@ local function setup_agda()
   nvim_lsp.agda_ls.setup(config)
 end
 
+local function setup_ocaml()
+  if vim.fn.executable('ocamllsp') ~= 1 then
+    return
+  end
+
+  local config = get_config {}
+
+  nvim_lsp.ocamllsp.setup(config)
+end
+
 local function setup_haskell()
   local haskell_config = get_config {
     on_attach = function(client, _)
@@ -405,6 +415,7 @@ function M.setup()
   setup_idris2()
   setup_haskell()
   setup_nix()
+  setup_ocaml()
   setup_yamlls()
   setup_typst()
   setup_ltex()
