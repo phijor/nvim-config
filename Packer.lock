@@ -107,9 +107,6 @@
   "nvim-surround": {
     "commit": "ec2dc76"
   },
-  "nvim-tree.lua": {
-    "commit": "ea55ef1"
-  },
   "nvim-treehopper": {
     "commit": "1355907"
   },
@@ -127,6 +124,9 @@
   },
   "nvim-web-devicons": {
     "commit": "3722e3d"
+  },
+  "oil.nvim": {
+    "commit": "39dbf87"
   },
   "packer.nvim": {
     "commit": "ea0cc3c"

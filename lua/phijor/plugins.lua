@@ -319,15 +319,11 @@ packer.startup(function(use)
   -- Symbol explorer
   use "liuchengxu/vista.vim"
 
-  -- File tree
+  -- Buffer based file explorer
   use {
-    "kyazdani42/nvim-tree.lua",
-    requires = {
-      -- File icons
-      "kyazdani42/nvim-web-devicons",
-    },
+    "stevearc/oil.nvim",
     config = function()
-      require("nvim-tree").setup {}
+      require("oil").setup()
     end,
   }
 
