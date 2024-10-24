@@ -85,8 +85,9 @@ packer.startup(function(use)
     end,
   }
   use "nvim-treesitter/playground"
+
   use {
-    "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+    "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",
     config = function()
       require('rainbow-delimiters.setup').setup {
         highlight = {

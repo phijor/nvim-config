@@ -140,7 +140,7 @@
   "popup.nvim": {
     "commit": "b7404d3"
   },
-  "rainbow-delimiters.nvim": {
+  "rainbow-delimiters.nvim.git": {
     "commit": "8f47c3d"
   },
   "remember.nvim": {
