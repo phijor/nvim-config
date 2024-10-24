@@ -159,7 +159,7 @@ function KeyMapper:cmd(modes, chord, target, opts)
 end
 
 ---@class MapDefinition
----@field [1] string | fun() target
+---@field [1]? string | fun() target
 ---@field opts? MapOpts options
 ---@field cmd? string A command to map via @see KeyMapper.cmd
 
