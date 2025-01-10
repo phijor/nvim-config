@@ -23,7 +23,7 @@ local default_on_attach = function(client, bufnr)
     underline = true,
     severity_sort = true,
     float = {
-      source = "always",
+      source = true,
     },
   }
 end
