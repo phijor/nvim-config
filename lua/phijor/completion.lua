@@ -6,9 +6,6 @@ local _ = require "cmp_emoji"
 local _ = require "cmp_buffer"
 local _ = require "cmp_cmdline"
 
--- Set completeopt to have a better completion experience
-vim.o.completeopt = "menu,menuone,noselect"
-
 require("luasnip.loaders.from_lua").load {
   paths = vim.fn.stdpath "config" .. "/snippets"
 }
