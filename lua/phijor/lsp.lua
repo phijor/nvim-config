@@ -171,6 +171,7 @@ local function setup_texlab()
       buf:maps {
         ["n <Leader>ll"] = { cmd = "TexlabBuild" },
         ["n <Leader>lv"] = { cmd = "TexlabForward" },
+        ["n <Leader>le"] = { cmd = "TexlabChangeEnvironment" },
       }
     end,
     root_dir = require('lspconfig.util').root_pattern('latexmkrc', '.latexmkrc', 'texlabroot', '.texlabroot', '.git'),
