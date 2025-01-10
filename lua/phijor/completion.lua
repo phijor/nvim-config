@@ -64,9 +64,6 @@ cmp.setup {
   }, {
     { name = "emoji" },
   }),
-  experimental = {
-    ghost_text = true,
-  },
 }
 
 cmp.setup.cmdline(":", {
