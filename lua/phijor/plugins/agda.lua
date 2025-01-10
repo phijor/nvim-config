@@ -3,6 +3,7 @@ local M = {}
 function M.cornelis_setup()
   vim.g.cornelis_max_size = 10
   vim.g.cornelis_use_global_binary = vim.fn.executable('cornelis')
+  vim.g.cornelis_no_agda_input = true
 end
 
 ---@type table<string, string>

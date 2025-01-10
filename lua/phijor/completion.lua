@@ -13,6 +13,8 @@ require("luasnip.loaders.from_lua").load {
   paths = vim.fn.stdpath "config" .. "/snippets"
 }
 
+local kw_pattern = [[[^ \n\t'"(){}:=]\+]]
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -62,7 +64,8 @@ cmp.setup {
     { name = "luasnip" }, -- For luasnip users.
   }, {
     { name = "path" },
-    { name = "buffer" },
+    { name = "buffer", option = { keyword_pattern = kw_pattern }, },
+    { name = "agda-symbols", },
     { name = "git" },
     { name = "forester" },
   }, {
@@ -86,6 +89,7 @@ cmp.setup.cmdline("/", {
     { name = "buffer",
       option = {
         max_indexed_line_length = 200,
+        keyword_pattern = kw_pattern,
       },
     },
   },
