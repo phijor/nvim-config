@@ -45,7 +45,7 @@ highlight Folded       ctermbg=none    ctermfg=white   cterm=italic
 highlight MatchParen   ctermbg=none    ctermfg=none    cterm=italic,underline
 
 " Indent guides
-highlight IndentBlankLine ctermfg=white cterm=nocombine
+highlight IblWhitespace ctermfg=white cterm=nocombine
 
 " Fold indicator columns
 highlight FoldColumn    ctermbg=none    ctermfg=White

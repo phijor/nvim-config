@@ -182,9 +182,6 @@ packer.startup(function(use)
         indent = {
           char = "▏",
         },
-        whitespace = {
-          highlight = { "IndentBlankLine" },
-        },
         scope = {
           enabled = false,
         },
