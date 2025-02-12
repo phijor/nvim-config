@@ -1,38 +1,43 @@
 -- vim: ts=2:
 
-vim.cmd [[packadd packer.nvim]]
+local function bootstrap_pckr()
+  local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
 
-local packer = require("packer")
+  if not (vim.uv or vim.loop).fs_stat(pckr_path) then
+    vim.fn.system({
+      'git',
+      'clone',
+      "--filter=blob:none",
+      'https://github.com/lewis6991/pckr.nvim',
+      pckr_path
+    })
+  end
 
-local packer_cfg = {}
-
-if vim.fn.filereadable(vim.fn.stdpath("config") .. "/Packer.lock") then
-  packer_cfg = {
-    snapshot = "Packer.lock",
-    snapshot_path = vim.fn.stdpath('config'),
-  }
+  vim.opt.rtp:prepend(pckr_path)
 end
 
-packer.init(packer_cfg)
+bootstrap_pckr()
 
-packer.startup(function(use)
-  use "wbthomason/packer.nvim"
+local cmd = require('pckr.loader.cmd')
+local keys = require('pckr.loader.keys')
+local pckr = require('pckr')
 
-  use "flazz/vim-colorschemes"
-  use "EdenEast/nightfox.nvim"
+pckr.add {
+  "flazz/vim-colorschemes",
+  "EdenEast/nightfox.nvim",
 
   -- LSP
-  use {
+  {
     "neovim/nvim-lspconfig",
-  }
-  use {
+  },
+  {
     "nvimtools/none-ls.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
     },
-  }
+  },
   -- Lsp status messages
-  use {
+  {
     "j-hui/fidget.nvim",
     tag = "*",
     config = function()
@@ -43,10 +48,10 @@ packer.startup(function(use)
         },
       }
     end,
-  }
+  },
 
   -- Autocompletion
-  use {
+  {
     "hrsh7th/nvim-cmp",
     requires = {
       "L3MON4D3/LuaSnip",
@@ -55,39 +60,39 @@ packer.startup(function(use)
     config = function()
       require "phijor.completion"
     end,
-  }
+  },
   -- Completion sources
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lsp-signature-help"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-emoji"
-  use "hrsh7th/cmp-cmdline"
-  use "phijor/cmp-agda-symbols"
-  use {
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-nvim-lsp-signature-help",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-emoji",
+  "hrsh7th/cmp-cmdline",
+  "phijor/cmp-agda-symbols",
+  {
     "davidsierradz/cmp-conventionalcommits",
     filetype = { "gitcommit" },
-  }
-  use {
+  },
+  {
     "petertriho/cmp-git",
     requires = { "nvim-lua/plenary.nvim" },
     filetype = { "gitcommit" },
     config = function()
       require("cmp_git").setup()
     end
-  }
+  },
 
   -- Treesitter
-  use {
+  {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     config = function()
       require "phijor.treesitter"
     end,
-  }
-  use "nvim-treesitter/playground"
+  },
+  "nvim-treesitter/playground",
 
-  use {
+  {
     "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",
     config = function()
       require('rainbow-delimiters.setup').setup {
@@ -106,17 +111,17 @@ packer.startup(function(use)
         },
       }
     end
-  }
+  },
 
   -- Treesitter: commentstring
   -- Set `commentstring` based on location in file
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+  "JoosepAlviste/nvim-ts-context-commentstring",
 
   -- Treesitter: textobjects
   -- Naviate using treesitter-defined textobjects
-  use "nvim-treesitter/nvim-treesitter-textobjects"
-  use "RRethy/nvim-treesitter-textsubjects"
-  use {
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  "RRethy/nvim-treesitter-textsubjects",
+  {
     "mfussenegger/nvim-treehopper",
     config = function()
       local key = require("phijor.util").KeyMapper:new { silent = true }
@@ -133,10 +138,10 @@ packer.startup(function(use)
         ["n M"] = { move 'start' },
       }
     end
-  }
+  },
 
   -- Git changes
-  use {
+  {
     "lewis6991/gitsigns.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
@@ -148,34 +153,33 @@ packer.startup(function(use)
         end
       }
     end,
-  }
+  },
 
   -- Diff viewer / merge tool
-  use "sindrets/diffview.nvim"
+  "sindrets/diffview.nvim",
 
   -- Misc highlighting/naviagtion
-  use {
+  {
     "kylechui/nvim-surround",
     tag = "*",
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-surround').setup {}
     end
-  }
+  },
 
-  use "tpope/vim-repeat"
-  use "tpope/vim-commentary" -- Comment stuff out
-  -- use 'tpope/vim-fugitive'
-  use "tpope/vim-unimpaired"
-  use "m4xshen/autoclose.nvim"
-  use "wellle/targets.vim"
-  use "kana/vim-operator-user"
+  "tpope/vim-repeat",
+  "tpope/vim-commentary", -- Comment stuff out
+  "tpope/vim-unimpaired",
+  "m4xshen/autoclose.nvim",
+  "wellle/targets.vim",
+  "kana/vim-operator-user",
 
   -- editorconfig support
-  use "gpanders/editorconfig.nvim"
+  "gpanders/editorconfig.nvim",
 
   -- Indent highlighting
-  use {
+  {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require("ibl").setup {
@@ -187,25 +191,25 @@ packer.startup(function(use)
         },
       }
     end
-  }
+  },
 
   -- Window resiszing
-  use {
+  {
     "beauwilliams/focus.nvim",
     config = function()
       require("focus").setup()
     end,
-  }
+  },
 
   -- Restore cursor position
-  use {
+  {
     "vladdoster/remember.nvim",
     config = function()
       require("remember").setup {}
     end,
-  }
+  },
 
-  use {
+  {
     "phaazon/hop.nvim",
     branch = "v2",
     config = function()
@@ -239,10 +243,10 @@ packer.startup(function(use)
         ["n g/"] = { cmd = "HopPattern" },
       }
     end,
-  }
+  },
 
   -- Firenvim browser integration
-  use {
+  {
     "glacambre/firenvim",
     run = function()
       vim.fn["firenvim#install"](0)
@@ -275,14 +279,14 @@ packer.startup(function(use)
         },
       }
     end,
-  }
+  },
 
   -- fuzzy searching
-  use "junegunn/fzf"
-  use "junegunn/fzf.vim"
+  "junegunn/fzf",
+  "junegunn/fzf.vim",
 
   -- Terminal integration
-  use {
+  {
     "akinsho/toggleterm.nvim",
     tag = "v2.*",
     config = function()
@@ -290,12 +294,12 @@ packer.startup(function(use)
         shade_terminals = false,
       }
     end,
-  }
+  },
 
   -- UI customization
-  use { "stevearc/dressing.nvim" }
+  "stevearc/dressing.nvim",
 
-  use {
+  {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     requires = {
@@ -311,22 +315,22 @@ packer.startup(function(use)
         },
       }
     end,
-  }
+  },
 
-  use "nvim-telescope/telescope-symbols.nvim"
+  "nvim-telescope/telescope-symbols.nvim",
   -- Symbol explorer
-  use "liuchengxu/vista.vim"
+  "liuchengxu/vista.vim",
 
   -- Buffer based file explorer
-  use {
+  {
     "stevearc/oil.nvim",
     config = function()
       require("oil").setup()
     end,
-  }
+  },
 
   -- Status line (used to be airline)
-  use {
+  {
     "nvim-lualine/lualine.nvim",
     requires = {
       "kyazdani42/nvim-web-devicons",
@@ -334,31 +338,31 @@ packer.startup(function(use)
     config = function()
       require "phijor.lualine"
     end,
-  }
+  },
 
   -- Rust
-  use {
+  {
     "simrat39/rust-tools.nvim",
     requires = {
-      { "neovim/nvim-lspconfig" },
-      { "nvim-lua/popup.nvim",           opt = true },
-      { "nvim-lua/plenary.nvim",         opt = true },
-      { "nvim-telescope/telescope.nvim", opt = true },
+      "neovim/nvim-lspconfig",
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
     },
     -- configuration is done in lsp.setup
-  }
+  },
 
   -- Idris
-  use {
+  {
     "ShinKage/idris2-nvim",
     requires = {
       "neovim/nvim-lspconfig",
       "MunifTanjim/nui.nvim",
     },
-  }
+  },
 
   -- Agda
-  use {
+  {
     "isovector/cornelis",
     branch = "master",
     requires = {
@@ -372,22 +376,22 @@ packer.startup(function(use)
     config = function()
       require("phijor.plugins.agda").cornelis_config()
     end,
-  }
+  },
 
   -- pass
-  use "https://gitlab.com/craftyguy/vim-redact-pass.git"
+  "https://gitlab.com/craftyguy/vim-redact-pass.git",
 
   -- i3
-  use "mboughaba/i3config.vim"
+  "mboughaba/i3config.vim",
 
   -- typst
-  use {
+  {
     "kaarmu/typst.vim",
     ft = { 'typst' },
-  }
+  },
 
   -- LTex language server (spell checking)
-  use {
+  {
     "jhofscheier/ltex-utils.nvim",
     requires = {
       "neovim/nvim-lspconfig",
@@ -403,35 +407,28 @@ packer.startup(function(use)
         },
       }
     end
-  }
+  },
 
   -- RON (Rust Object Notation)
-  use "ron-rs/ron.vim"
+  "ron-rs/ron.vim",
 
   -- Forester
-  use {
+  {
     "phijor/forester.nvim",
     branch = "completion-enhancements",
     requires = {
-      { "nvim-telescope/telescope.nvim" },
-      { "nvim-treesitter/nvim-treesitter" },
-      { "nvim-lua/plenary.nvim" },
-      { "hrsh7th/nvim-cmp" },
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
     },
     config = function()
       require("forester").setup()
       require("phijor.keymap").setup_forester_keys()
     end,
-  }
+  },
 
-  use "cespare/vim-toml"
+  "cespare/vim-toml",
 
-  use "ARM9/arm-syntax-vim"
-end)
-
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]]
+  "ARM9/arm-syntax-vim",
+}
