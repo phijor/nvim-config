@@ -54,12 +54,6 @@ function M.input_mode()
 
   require("phijor.keymap").setup_agda_keys()
 
-  local bind_input = vim.fn['cornelis#bind_input']
-
-  for abbrev, symbol in pairs(bindings) do
-    bind_input(abbrev, symbol)
-  end
-
   vim.b.phijor_agda_setup_done = true
 end
 
