@@ -54,7 +54,6 @@ cmp.setup {
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
-    { name = "luasnip" }, -- For luasnip users.
   }, {
     { name = "path" },
     { name = "buffer", option = { keyword_pattern = kw_pattern }, },
@@ -62,6 +61,7 @@ cmp.setup {
     { name = "git" },
     { name = "forester" },
   }, {
+    { name = "luasnip" }, -- For luasnip users.
     { name = "emoji" },
   }),
 }
