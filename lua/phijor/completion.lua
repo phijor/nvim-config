@@ -70,6 +70,7 @@ cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources {
     { name = "cmdline" },
+    { name = "agda-symbols", },
   },
 })
 
@@ -82,5 +83,6 @@ cmp.setup.cmdline("/", {
         keyword_pattern = kw_pattern,
       },
     },
+    { name = "agda-symbols", },
   },
 })
