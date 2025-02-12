@@ -2,10 +2,6 @@
 local cmp = require "cmp"
 local luasnip = require "luasnip"
 
-local _ = require "cmp_emoji"
-local _ = require "cmp_buffer"
-local _ = require "cmp_cmdline"
-
 require("luasnip.loaders.from_lua").load {
   paths = vim.fn.stdpath "config" .. "/snippets"
 }
