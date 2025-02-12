@@ -342,13 +342,13 @@ local function setup_yamlls()
 end
 
 local function setup_typst()
-  local typst_config = get_config {
+  local tinymist_config = get_config {
     settings = {
       exportPdf = "onSave"
     }
   }
 
-  nvim_lsp.typst_lsp.setup(typst_config)
+  nvim_lsp.tinymist.setup(tinymist_config)
 end
 
 local function setup_ltex()
@@ -405,7 +405,7 @@ function M.setup()
   setup_default {
     "vimls",
     "html",
-    "tsserver",
+    "ts_ls",
   }
 
   setup_python()
