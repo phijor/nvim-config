@@ -10,7 +10,7 @@ require("luasnip.loaders.from_lua").load {
   paths = vim.fn.stdpath "config" .. "/snippets"
 }
 
-local kw_pattern = [[[^ \n\t'"(){}:=]\+]]
+local kw_pattern = [[[^ \n\t'"(){}:=.!]\+]]
 
 cmp.setup {
   snippet = {
