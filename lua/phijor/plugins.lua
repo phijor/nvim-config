@@ -3,6 +3,7 @@
 local function bootstrap_pckr()
   local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
 
+  ---@diagnostic disable-next-line: undefined-field
   if not (vim.uv or vim.loop).fs_stat(pckr_path) then
     vim.fn.system({
       'git',
@@ -18,8 +19,8 @@ end
 
 bootstrap_pckr()
 
-local cmd = require('pckr.loader.cmd')
-local keys = require('pckr.loader.keys')
+local _ = require('pckr.loader.cmd')
+local _ = require('pckr.loader.keys')
 local pckr = require('pckr')
 
 pckr.add {
@@ -220,6 +221,7 @@ pckr.add {
       local hop_curline = function(direction, offset)
         local hint = require 'hop.hint'
         return function()
+          ---@diagnostic disable-next-line: missing-fields
           require("hop").hint_char1 {
             direction = hint.HintDirection[direction],
             current_line_only = true,
@@ -399,6 +401,7 @@ pckr.add {
         dictionary = {
           path = vim.api.nvim_call_function("stdpath", { "state" }) .. "/ltex/",
         },
+        ---@diagnostic disable-next-line: missing-fields
         diagnostics = {
           debounce_time_ms = 2000,
         },
