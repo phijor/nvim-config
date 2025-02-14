@@ -57,9 +57,6 @@ pckr.add {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
     },
-    config = function()
-      require "phijor.completion"
-    end,
   },
   -- Completion sources
   "hrsh7th/cmp-path",
@@ -210,8 +207,8 @@ pckr.add {
   },
 
   {
-    "phaazon/hop.nvim",
-    branch = "v2",
+    "smoka7/hop.nvim",
+    tag = "v2.*",
     config = function()
       require("hop").setup {
         keys = "asdghklwertyuiopzxcvbnmfj",

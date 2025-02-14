@@ -11,5 +11,6 @@ require "phijor.options"
 require "phijor.plugins"
 require("phijor.lsp").setup()
 require("phijor.autocommands").setup()
+require("phijor.completion")
 
 vim.cmd("colorscheme " .. colorscheme)
