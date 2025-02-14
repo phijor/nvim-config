@@ -76,7 +76,7 @@ pckr.add {
     requires = { "nvim-lua/plenary.nvim" },
     filetype = { "gitcommit" },
     config = function()
-      require("cmp_git").setup()
+      require("cmp_git").setup {}
     end
   },
 
@@ -250,9 +250,7 @@ pckr.add {
     run = function()
       vim.fn["firenvim#install"](0)
     end,
-    config = function()
-      local augroup = require("phijor.util").augroup
-
+    config_pre = function()
       if not vim.g.started_by_firenvim then
         return
       end
@@ -270,11 +268,10 @@ pckr.add {
         },
       }
 
-      augroup {
+      local augroups = require("phijor.util").augroups
+      augroups {
         firenvim = {
-          "BufEnter",
-          "github.com_*.txt",
-          [[set filetype=markdown]],
+          { "BufEnter", "github.com_*.txt", [[set filetype=markdown]], },
         },
       }
     end,
@@ -369,7 +366,7 @@ pckr.add {
       "neovimhaskell/nvim-hs.vim",
       "liuchengxu/vim-which-key",
     },
-    setup = function()
+    config_pre = function()
       require("phijor.plugins.agda").cornelis_setup()
     end,
     config = function()
