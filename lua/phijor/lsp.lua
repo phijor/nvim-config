@@ -367,7 +367,7 @@ local function setup_ltex()
       require("ltex-utils").on_attach(bufnr)
     end,
   }
-  nvim_lsp.ltex.setup(config)
+  nvim_lsp.ltex_plus.setup(config)
 end
 
 local function setup_signs()
