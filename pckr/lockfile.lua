@@ -12,7 +12,6 @@ return {
   ["https://github.com/davidsierradz/cmp-conventionalcommits"] = { commit = "a4dfacf0601130b7f8afa7c948d735c27802fb7f" },
   ["https://github.com/flazz/vim-colorschemes"] = { commit = "fd8f122cef604330c96a6a6e434682dbdfb878c9" },
   ["https://github.com/glacambre/firenvim"] = { commit = "f8a5fa6f1ed42536490acf0840497c40331c184f" },
-  ["https://github.com/gpanders/editorconfig.nvim"] = { commit = "67758c3e8a2f79019322a60013e4ce0aad09dafa" },
   ["https://github.com/hrsh7th/cmp-buffer"] = { commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   ["https://github.com/hrsh7th/cmp-cmdline"] = { commit = "d250c63aa13ead745e3a40f61fdd3470efde3923" },
   ["https://github.com/hrsh7th/cmp-emoji"] = { commit = "e8398e2adf512a03bb4e1728ca017ffeac670a9f" },

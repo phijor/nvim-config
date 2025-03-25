@@ -173,9 +173,6 @@ pckr.add {
   "wellle/targets.vim",
   "kana/vim-operator-user",
 
-  -- editorconfig support
-  "gpanders/editorconfig.nvim",
-
   -- Indent highlighting
   {
     "lukas-reineke/indent-blankline.nvim",
