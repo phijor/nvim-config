@@ -30,7 +30,6 @@ return {
   ["https://github.com/kylechui/nvim-surround"] = { commit = "f70d56275710e202af59148f52100d34b786aecb" },
   ["https://github.com/lewis6991/gitsigns.nvim"] = { commit = "011dc6718bcebdf92a5336bb0da79189c3afe621" },
   ["https://github.com/liuchengxu/vim-which-key"] = { commit = "4843811d6f2104fe2140d4cddbb49352976647df" },
-  ["https://github.com/liuchengxu/vista.vim"] = { commit = "1e90efad6e32c4f7d16b1ca8f49bf63d0693802e" },
   ["https://github.com/lukas-reineke/indent-blankline.nvim"] = { commit = "e10626f7fcd51ccd56d7ffc00883ba7e0aa28f78" },
   ["https://github.com/m4xshen/autoclose.nvim"] = { commit = "b2077aa2c83df7ebc19b2a20a3a0654b24ae9c8f" },
   ["https://github.com/mboughaba/i3config.vim"] = { commit = "5c753c56c033d3b17e5005a67cdb9653bbb88ba7" },

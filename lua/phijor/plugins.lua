@@ -311,8 +311,6 @@ pckr.add {
   },
 
   "nvim-telescope/telescope-symbols.nvim",
-  -- Symbol explorer
-  "liuchengxu/vista.vim",
 
   -- Buffer based file explorer
   {
