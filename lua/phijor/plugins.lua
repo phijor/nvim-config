@@ -371,9 +371,6 @@ pckr.add {
     end,
   },
 
-  -- pass
-  "https://gitlab.com/craftyguy/vim-redact-pass.git",
-
   -- i3
   "mboughaba/i3config.vim",
 

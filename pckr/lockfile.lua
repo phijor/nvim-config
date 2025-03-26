@@ -63,5 +63,4 @@ return {
   ["https://github.com/vladdoster/remember.nvim"] = { commit = "1b5176283bcf91d052b5755d9ba6e8ce14dfc95b" },
   ["https://github.com/wellle/targets.vim"] = { commit = "6325416da8f89992b005db3e4517aaef0242602e" },
   ["https://gitlab.com/HiPhish/rainbow-delimiters.nvim"] = { commit = "7a578f43b7390b5135242cc0b1b70addcc53a2d2" },
-  ["https://gitlab.com/craftyguy/vim-redact-pass"] = { commit = "403a44dc32533e631384dfcca40d520b9088b0db" },
 }
