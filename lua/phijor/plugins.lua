@@ -19,8 +19,6 @@ end
 
 bootstrap_pckr()
 
-local _ = require('pckr.loader.cmd')
-local _ = require('pckr.loader.keys')
 local pckr = require('pckr')
 
 pckr.add {
