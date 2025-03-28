@@ -28,9 +28,9 @@ return {
   ["https://github.com/kana/vim-textobj-user"] = { commit = "41a675ddbeefd6a93664a4dc52f302fe3086a933" },
   ["https://github.com/kyazdani42/nvim-web-devicons"] = { commit = "ab4cfee554e501f497bce0856788d43cf2eb93d7" },
   ["https://github.com/kylechui/nvim-surround"] = { commit = "f70d56275710e202af59148f52100d34b786aecb" },
-  ["https://github.com/lewis6991/gitsigns.nvim"] = { commit = "011dc6718bcebdf92a5336bb0da79189c3afe621" },
+  ["https://github.com/lewis6991/gitsigns.nvim"] = { commit = "7010000889bfb6c26065e0b0f7f1e6aa9163edd9" },
   ["https://github.com/liuchengxu/vim-which-key"] = { commit = "4843811d6f2104fe2140d4cddbb49352976647df" },
-  ["https://github.com/lukas-reineke/indent-blankline.nvim"] = { commit = "e10626f7fcd51ccd56d7ffc00883ba7e0aa28f78" },
+  ["https://github.com/lukas-reineke/indent-blankline.nvim"] = { commit = "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
   ["https://github.com/m4xshen/autoclose.nvim"] = { commit = "b2077aa2c83df7ebc19b2a20a3a0654b24ae9c8f" },
   ["https://github.com/mboughaba/i3config.vim"] = { commit = "5c753c56c033d3b17e5005a67cdb9653bbb88ba7" },
   ["https://github.com/mfussenegger/nvim-treehopper"] = { commit = "0b9f5c8980ab1427644ff70059f7ae0fd89b547e" },
@@ -61,5 +61,5 @@ return {
   ["https://github.com/tpope/vim-unimpaired"] = { commit = "6d44a6dc2ec34607c41ec78acf81657248580bf1" },
   ["https://github.com/vladdoster/remember.nvim"] = { commit = "1b5176283bcf91d052b5755d9ba6e8ce14dfc95b" },
   ["https://github.com/wellle/targets.vim"] = { commit = "6325416da8f89992b005db3e4517aaef0242602e" },
-  ["https://gitlab.com/HiPhish/rainbow-delimiters.nvim"] = { commit = "de39919a57e1a40a4c7dc5bae0de276f9c616ef3" },
+  ["https://gitlab.com/HiPhish/rainbow-delimiters.nvim"] = { commit = "1ab18259472d9fe5756750fec722c31bab1712da" },
 }

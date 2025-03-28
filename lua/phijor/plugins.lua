@@ -90,6 +90,7 @@ pckr.add {
 
   {
     "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",
+    tag = "*",
     config = function()
       require('rainbow-delimiters.setup').setup {
         highlight = {
@@ -139,6 +140,7 @@ pckr.add {
   -- Git changes
   {
     "lewis6991/gitsigns.nvim",
+    tag = "*",
     requires = {
       "nvim-lua/plenary.nvim",
     },
@@ -174,6 +176,7 @@ pckr.add {
   -- Indent highlighting
   {
     "lukas-reineke/indent-blankline.nvim",
+    tag = "*",
     config = function()
       require("ibl").setup {
         indent = {
