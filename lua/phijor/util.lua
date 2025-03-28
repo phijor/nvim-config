@@ -117,23 +117,18 @@ function KeyMapper:map(modes, chord, target, opts)
     modes = explode(modes)
   end
 
-  ---@diagnostic disable-next-line: redundant-parameter
-  vim.validate {
-    modes = {
-      modes,
-      function(m)
-        for _, mode in ipairs(m) do
-          if not MapMode.is_mode(mode) then
-            return false, string.format("%s is not a map mode", vim.inspect(mode))
-          end
-        end
-        return true
-      end,
-      "map mode or list of map modes",
-    },
-    chord = { chord, "string" },
-    target = { target, { "string", "function" } },
-  }
+  local function validate_modes(m)
+    for _, mode in ipairs(m) do
+      if not MapMode.is_mode(mode) then
+        return false, string.format("%s is not a map mode", vim.inspect(mode))
+      end
+    end
+    return true
+  end
+
+  vim.validate('modes', modes, validate_modes, false, "map mode or list of map modes")
+  vim.validate('chord', chord, "string")
+  vim.validate('target', target, { "string", "function" })
 
   opts = self:get_opts(opts)
   vim.keymap.set(modes, chord, target, opts)
@@ -172,11 +167,9 @@ local function parse_definition(definition)
   local opts = definition.opts
 
   ---@diagnostic disable-next-line: redundant-parameter
-  vim.validate {
-    target = { target, { "string", "function" }, optional },
-    opts = { opts, "table", optional },
-    cmd = { cmd, "string", optional },
-  }
+  vim.validate("target", target, { "string", "function" }, optional)
+  vim.validate("opts", opts, "table", optional)
+  vim.validate("cmd", cmd, "string", optional)
 
   if target and cmd then
     error "`target` and `cmd` are mutually exclusive"
@@ -214,21 +207,15 @@ M.KeyMapper = KeyMapper
 ---@param definition string | LazyMapDefinition | CmdMapDefinition
 ---@return string, MapOpts
 local function parse_lazy_definition(definition)
-  ---@diagnostic disable-next-line: redundant-parameter
-  vim.validate {
-    definition = { definition, { "string", "table" } },
-  }
+  vim.validate("definition", definition, { "string", "table" })
 
   if type(definition) == "string" then
     return definition, {}
   elseif type(definition) == "table" then
     local optional = true
-    ---@diagnostic disable-next-line: redundant-parameter
-    vim.validate {
-      target = { definition[1], "string", not optional },
-      desc = { definition[2], "string", optional },
-      opts = { definition.opts, "table", optional },
-    }
+    vim.validate("target", definition[1], "string", not optional)
+    vim.validate("desc", definition[2], "string", optional)
+    vim.validate("opts", definition.opts, "table", optional)
 
     local opts = vim.tbl_extend("error", definition.opts or {}, { desc = definition[2] })
     return definition[1], opts
@@ -302,10 +289,7 @@ end
 --- }
 --- ```
 function M.lazy_mapdef(module_path)
-  ---@diagnostic disable-next-line: redundant-parameter
-  vim.validate {
-    module_path = { module_path, "string" },
-  }
+  vim.validate('module_path', module_path, "string")
 
   local function create_def(definition)
     ---@diagnostic disable-next-line: redundant-parameter
