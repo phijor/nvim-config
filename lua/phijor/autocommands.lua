@@ -1,7 +1,7 @@
 local augroups = require("phijor.util").augroups
 
 local function highlight_yank()
-  require("vim.highlight").on_yank { timeout = 2000 }
+  require("vim.hl").on_yank { timeout = 2000 }
 end
 
 local ignored_filetypes = {
