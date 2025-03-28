@@ -97,8 +97,15 @@ MapMode.Insert = "i"
 MapMode.InsertCommandLine = "l"
 MapMode.CommandLine = "c"
 MapMode.Terminal = "t"
-MapMode = vim.tbl_add_reverse_lookup(MapMode)
 
+local map_mode_lookup = {}
+for k, v in pairs(MapMode) do
+  map_mode_lookup[v] = k
+end
+
+function MapMode.is_mode(mode)
+  return not (map_mode_lookup[mode] == nil)
+end
 
 ---Create a keymapping for a `chord` of keys.
 ---@param modes MapMode | MapMode[] #modes in which to create the mapping
@@ -116,7 +123,7 @@ function KeyMapper:map(modes, chord, target, opts)
       modes,
       function(m)
         for _, mode in ipairs(m) do
-          if not MapMode[mode] then
+          if not MapMode.is_mode(mode) then
             return false, string.format("%s is not a map mode", vim.inspect(mode))
           end
         end
