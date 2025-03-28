@@ -50,15 +50,7 @@ function M.augroups(groups)
   end
 end
 
----@class MapOpts
----@field buffer? integer
----@field unique? boolean
----@field nowait? boolean
----@field silent? boolean
----@field script? boolean
----@field expr?   boolean
----@field noremap? boolean
-
+---@alias MapOpts vim.keymap.set.Opts
 ---@alias MapTarget string | fun()
 
 ---@class KeyMapper
