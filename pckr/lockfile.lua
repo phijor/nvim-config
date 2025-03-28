@@ -38,7 +38,7 @@ return {
   ["https://github.com/neovimhaskell/nvim-hs.vim"] = { commit = "d4a6b7278ae6a1fdc64e300c3ebc1e24719af342" },
   ["https://github.com/nvim-lua/plenary.nvim"] = { commit = "857c5ac632080dba10aae49dba902ce3abf91b35" },
   ["https://github.com/nvim-lua/popup.nvim"] = { commit = "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
-  ["https://github.com/nvim-lualine/lualine.nvim"] = { commit = "02d61f515e7d88e1b02366ca972aecf2768d53df" },
+  ["https://github.com/nvim-lualine/lualine.nvim"] = { commit = "1517caa8fff05e4b4999857319d3b0609a7f57fa" },
   ["https://github.com/nvim-telescope/telescope-symbols.nvim"] = { commit = "a6d0127a53d39b9fc2af75bd169d288166118aec" },
   ["https://github.com/nvim-telescope/telescope.nvim"] = { commit = "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
   ["https://github.com/nvim-treesitter/nvim-treesitter"] = { commit = "683816f14718b257666b29f792a8d330936cf5c1" },
