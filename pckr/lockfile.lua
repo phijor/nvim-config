@@ -48,7 +48,7 @@ return {
   ["https://github.com/petertriho/cmp-git"] = { commit = "483ffb9a7471409a841df099d7c13556234365a4" },
   ["https://github.com/phijor/cmp-agda-symbols"] = { commit = "ee780be0cdcddf7c4e0ed45f371b909310498667" },
   ["https://github.com/phijor/forester.nvim"] = { commit = "d6d726673cad11a5bb6c6d604a3cccc6c7298eaa" },
-  ["https://github.com/phijor/ltex-utils.nvim"] = { commit = "11392cd69bf9a174976a551d13d4c13a97505288" },
+  ["https://github.com/phijor/ltex-utils.nvim"] = { commit = "b02951284e664495d37ad5059bf75dbbe63aeda9" },
   ["https://github.com/ron-rs/ron.vim"] = { commit = "f749e543975a82e8dd9a6e7df9600a1c098ae800" },
   ["https://github.com/saadparwaiz1/cmp_luasnip"] = { commit = "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   ["https://github.com/simrat39/rust-tools.nvim"] = { commit = "676187908a1ce35ffcd727c654ed68d851299d3e" },
