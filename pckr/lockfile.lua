@@ -61,5 +61,5 @@ return {
   ["https://github.com/tpope/vim-unimpaired"] = { commit = "6d44a6dc2ec34607c41ec78acf81657248580bf1" },
   ["https://github.com/vladdoster/remember.nvim"] = { commit = "1b5176283bcf91d052b5755d9ba6e8ce14dfc95b" },
   ["https://github.com/wellle/targets.vim"] = { commit = "6325416da8f89992b005db3e4517aaef0242602e" },
-  ["https://gitlab.com/HiPhish/rainbow-delimiters.nvim"] = { commit = "7a578f43b7390b5135242cc0b1b70addcc53a2d2" },
+  ["https://gitlab.com/HiPhish/rainbow-delimiters.nvim"] = { commit = "de39919a57e1a40a4c7dc5bae0de276f9c616ef3" },
 }
