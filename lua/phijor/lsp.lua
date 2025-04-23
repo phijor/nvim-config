@@ -114,16 +114,7 @@ local function setup_rust()
     },
   }
 
-  require("rust-tools").setup {
-    tools = {
-      inlay_hints = {
-        parameter_hints_prefix = "λ ",
-        other_hints_prefix = "→ ",
-        highlight = "DiagnosticVirtualTextHint",
-      }
-    },
-    server = rust_config,
-  }
+  nvim_lsp.rust_analyzer.setup(rust_config)
 end
 
 local function setup_lua()

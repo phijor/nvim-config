@@ -332,18 +332,6 @@ pckr.add {
     end,
   },
 
-  -- Rust
-  {
-    "simrat39/rust-tools.nvim",
-    requires = {
-      "neovim/nvim-lspconfig",
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    -- configuration is done in lsp.setup
-  },
-
   -- Idris
   {
     "ShinKage/idris2-nvim",
