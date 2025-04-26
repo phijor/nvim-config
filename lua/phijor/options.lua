@@ -122,3 +122,13 @@ set.directory = vim.env.XDG_RUNTIME_DIR .. "/nvim/swap//"
 local remote = [[nvr --remote-tab-wait-silent]]
 vim.env.EDITOR = remote
 vim.env.VISUAL = remote
+
+-- Diagnostics
+vim.diagnostic.config {
+  virtual_text = false,
+  underline = true,
+  severity_sort = true,
+  float = {
+    source = true,
+  },
+}

@@ -17,15 +17,6 @@ local default_on_attach = function(client, bufnr)
 
   vim.lsp.set_log_level("off")
   require('vim.lsp.log').set_format_func(vim.inspect)
-
-  vim.diagnostic.config {
-    virtual_text = false,
-    underline = true,
-    severity_sort = true,
-    float = {
-      source = true,
-    },
-  }
 end
 
 local lsp_get_default_config = function()
