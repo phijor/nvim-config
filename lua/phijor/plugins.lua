@@ -334,7 +334,7 @@ pckr.add {
 
   -- Idris
   {
-    "ShinKage/idris2-nvim",
+    "idris-community/idris2-nvim",
     requires = {
       "neovim/nvim-lspconfig",
       "MunifTanjim/nui.nvim",
