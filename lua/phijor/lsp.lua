@@ -7,9 +7,6 @@ local util = require "phijor.util"
 local M = {}
 
 local default_on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
-
   require("phijor.keymap").map_keys_lsp(bufnr)
   if client.server_capabilities.document_formatting then
     require("phijor.autocommands").enable_formatting_on_write()
