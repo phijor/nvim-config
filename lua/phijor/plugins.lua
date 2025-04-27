@@ -343,8 +343,8 @@ pckr.add {
 
   -- Agda
   {
-    "isovector/cornelis",
-    branch = "master",
+    "phijor/cornelis",
+    branch = "v2.7.0-backport",
     requires = {
       "kana/vim-textobj-user",
       "neovimhaskell/nvim-hs.vim",
