@@ -49,7 +49,6 @@ return {
   ["https://github.com/phijor/cornelis"] = { commit = "dc9882f9bae2a71ee0007d317dad2232ca2e5910" },
   ["https://github.com/phijor/forester.nvim"] = { commit = "d6d726673cad11a5bb6c6d604a3cccc6c7298eaa" },
   ["https://github.com/phijor/ltex-utils.nvim"] = { commit = "b02951284e664495d37ad5059bf75dbbe63aeda9" },
-  ["https://github.com/ron-rs/ron.vim"] = { commit = "f749e543975a82e8dd9a6e7df9600a1c098ae800" },
   ["https://github.com/saadparwaiz1/cmp_luasnip"] = { commit = "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   ["https://github.com/sindrets/diffview.nvim"] = { commit = "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   ["https://github.com/smoka7/hop.nvim"] = { commit = "08ddca799089ab96a6d1763db0b8adc5320bf050" },

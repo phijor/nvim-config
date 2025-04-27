@@ -385,9 +385,6 @@ pckr.add {
     end
   },
 
-  -- RON (Rust Object Notation)
-  "ron-rs/ron.vim",
-
   -- Forester
   {
     "phijor/forester.nvim",
