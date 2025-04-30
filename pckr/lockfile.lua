@@ -33,7 +33,7 @@ return {
   ["https://github.com/m4xshen/autoclose.nvim"] = { commit = "b2077aa2c83df7ebc19b2a20a3a0654b24ae9c8f" },
   ["https://github.com/mboughaba/i3config.vim"] = { commit = "5c753c56c033d3b17e5005a67cdb9653bbb88ba7" },
   ["https://github.com/mfussenegger/nvim-treehopper"] = { commit = "0b9f5c8980ab1427644ff70059f7ae0fd89b547e" },
-  ["https://github.com/neovim/nvim-lspconfig"] = { commit = "641e567f975feab3815b47c7d29e6148e07afa77" },
+  ["https://github.com/neovim/nvim-lspconfig"] = { commit = "94d0fec9135719e046903bbbbf8f39e3d3436d4e" },
   ["https://github.com/neovimhaskell/nvim-hs.vim"] = { commit = "d4a6b7278ae6a1fdc64e300c3ebc1e24719af342" },
   ["https://github.com/nvim-lua/plenary.nvim"] = { commit = "857c5ac632080dba10aae49dba902ce3abf91b35" },
   ["https://github.com/nvim-lua/popup.nvim"] = { commit = "b7404d35d5d3548a82149238289fa71f7f6de4ac" },

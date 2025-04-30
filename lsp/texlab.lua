@@ -1,5 +1,4 @@
 return {
-  root_markers = { 'latexmkrc' },
   settings = {
     texlab = {
       build = {
