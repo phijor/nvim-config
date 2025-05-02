@@ -35,4 +35,14 @@ for mode, base in pairs(template) do
   }
 end
 
+local inactive = {
+  fg = "None", bg = cterm.black, gui = "None",
+}
+
+theme.inactive = {
+  a = inactive,
+  b = inactive,
+  c = inactive,
+}
+
 return theme
