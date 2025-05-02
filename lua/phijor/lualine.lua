@@ -48,6 +48,7 @@ require("lualine").setup {
       {
         "buffers",
         icons_enabled = false,
+        use_mode_colors = true,
       },
     },
   },
