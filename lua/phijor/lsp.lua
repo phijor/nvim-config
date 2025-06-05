@@ -51,8 +51,12 @@ M.on_attach = {
     }
   end,
 
-  ["ltex_plus"] = function(_, bufnr)
-    require("ltex-utils").on_attach(bufnr)
+  ["ltex_plus"] = function(_, _)
+    require("ltex_extra").setup {
+      load_langs = { "en-US", "de-DE", },
+      init_check = false,
+      path = vim.fn.stdpath("data") .. "/ltex",
+    }
   end,
 
   ["rust_analyzer"] = function(_, bufnr)

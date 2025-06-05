@@ -368,22 +368,7 @@ pckr.add {
   },
 
   -- LTex language server (spell checking)
-  {
-    "phijor/ltex-utils.nvim",
-    branch = "downstream-fixes",
-    requires = {
-      "neovim/nvim-lspconfig",
-      "nvim-telescope/telescope.nvim",
-    },
-    config = function()
-      require("ltex-utils").setup {
-        ---@diagnostic disable-next-line: missing-fields
-        diagnostics = {
-          debounce_time_ms = 2000,
-        },
-      }
-    end
-  },
+  "barreiroleo/ltex_extra.nvim",
 
   -- Forester
   {
