@@ -37,7 +37,7 @@ M.on_attach = {
       ["n <Leader>ii"] = code_action { "intro", "Idris: Introduce constructor" },
 
       ["n <Leader>ib"] = browse { "browse", "Idris: Browse namespace" },
-      ["n <Leader>it"] = repl { "evaluate", "Idris: Eval expression in REPL" },
+      ["nx <Leader>it"] = repl { "evaluate", "Idris: Eval expression in REPL" },
 
       ["n <Leader>io"] = hover { "open_split", "Idris: Show hovers in split" },
       ["n <Leader>iO"] = hover { "close_split", "Idris: Show hovers in popup" },
