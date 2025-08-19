@@ -4,7 +4,7 @@ local M = {}
 
 ---@type table<string, fun(client: vim.lsp.Client, bufnr: number)>
 M.on_attach = {
-  ["idris2"] = function(_, bufnr)
+  ["idris2_lsp"] = function(_, bufnr)
     local buf = util.KeyMapper:new { silent = true, buffer = bufnr }
     local code_action = util.lazy_mapdef "idris2.code_action"
     local hover = util.lazy_mapdef "idris2.hover"
