@@ -37,6 +37,9 @@ function M.setup()
     focus_disable = {
       { "FileType", nil, disable_focus }
     },
+    idle_jump = {
+      { "CursorHold", "*", [[normal! m']] },
+    },
   }
 
   require("phijor.keymap").map_keys_autocmd()
