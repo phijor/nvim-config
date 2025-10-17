@@ -46,7 +46,7 @@ return {
   ["https://github.com/nvim-treesitter/playground"] = { commit = "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   ["https://github.com/nvimtools/none-ls.nvim"] = { commit = "a5954f00ee88bcdf154e931198ec636a26a1077c" },
   ["https://github.com/petertriho/cmp-git"] = { commit = "b24309c386c9666c549a1abaedd4956541676d06" },
-  ["https://github.com/phijor/cmp-agda-symbols"] = { commit = "ee780be0cdcddf7c4e0ed45f371b909310498667" },
+  ["https://github.com/phijor/cmp-agda-symbols"] = { commit = "6f2a30b256a5531cd58dab26cce44edf3864c11d" },
   ["https://github.com/phijor/cornelis"] = { commit = "dc9882f9bae2a71ee0007d317dad2232ca2e5910" },
   ["https://github.com/phijor/forester.nvim"] = { commit = "d6d726673cad11a5bb6c6d604a3cccc6c7298eaa" },
   ["https://github.com/saadparwaiz1/cmp_luasnip"] = { commit = "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
