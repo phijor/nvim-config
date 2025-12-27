@@ -82,11 +82,11 @@ pckr.add {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
+    branch = "main",
     config = function()
       require "phijor.treesitter"
     end,
   },
-  "nvim-treesitter/playground",
 
   {
     "https://gitlab.com/HiPhish/rainbow-delimiters.nvim.git",
@@ -114,10 +114,6 @@ pckr.add {
   -- Set `commentstring` based on location in file
   "JoosepAlviste/nvim-ts-context-commentstring",
 
-  -- Treesitter: textobjects
-  -- Naviate using treesitter-defined textobjects
-  "nvim-treesitter/nvim-treesitter-textobjects",
-  "RRethy/nvim-treesitter-textsubjects",
   {
     "mfussenegger/nvim-treehopper",
     config = function()
@@ -295,9 +291,8 @@ pckr.add {
 
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    tag = "v0.2.0",
     requires = {
-      "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
     },
     config = function()
@@ -369,22 +364,6 @@ pckr.add {
 
   -- LTex language server (spell checking)
   "barreiroleo/ltex_extra.nvim",
-
-  -- Forester
-  {
-    "phijor/forester.nvim",
-    branch = "completion-enhancements",
-    requires = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
-    config = function()
-      require("forester").setup()
-      require("phijor.keymap").setup_forester_keys()
-    end,
-  },
 
   "cespare/vim-toml",
 

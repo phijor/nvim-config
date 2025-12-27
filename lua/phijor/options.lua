@@ -19,8 +19,6 @@ function _G.phijor_fold_text_ellipsis()
 end
 
 set.foldcolumn = "auto:1"
-set.foldmethod = "expr"
-set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldtext = "v:lua.phijor_fold_text_ellipsis()"
 
 set.fillchars = {
