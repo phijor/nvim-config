@@ -130,3 +130,8 @@ vim.diagnostic.config {
     source = true,
   },
 }
+
+-- Disable unused optional providers
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
