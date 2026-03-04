@@ -361,6 +361,21 @@ pckr.add {
     "kaarmu/typst.vim",
     ft = { 'typst' },
   },
+  {
+    "chomosuke/typst-preview.nvim",
+    ft = { 'typst' },
+    config = function()
+      require("typst-preview").setup {
+        dependencies_bin = {
+          ['tinymist'] = "tinymist",
+          ['websocat'] = "websocat"
+        },
+        -- port = 7195,
+        follow_cursor = true,
+      }
+    end
+
+  },
 
   -- LTex language server (spell checking)
   "barreiroleo/ltex_extra.nvim",

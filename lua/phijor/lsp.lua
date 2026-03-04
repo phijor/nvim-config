@@ -65,6 +65,15 @@ M.on_attach = {
     buf:cmd("n", "<Leader>cr", "LspCargoReload")
   end,
 
+  ["tinymist"] = function (_, bufnr)
+    local buf = util.KeyMapper:new { buffer = bufnr }
+
+    buf:maps {
+      ["n <Leader>p"] = { cmd = "TypstPreview document" },
+      ["n <Leader>P"] = { cmd = "TypstPreview slide" },
+    }
+  end,
+
   ["texlab"] = function(_, bufnr)
     local buf = util.KeyMapper:new { silent = true, buffer = bufnr }
 
