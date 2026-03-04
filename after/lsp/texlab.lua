@@ -1,20 +1,23 @@
 return {
+  root_markers = { '.latexmkrc', 'latexmkrc', '.texlabroot', 'texlabroot', 'Tectonic.toml', '.git' },
   settings = {
     texlab = {
       build = {
-        executable = "latexmk",
         onSave = true,
-        args = {
-          "-rc-report",
-          "-interaction=nonstopmode",
-          "-synctex=1",
-          "%f",
-        },
       },
-      auxDirectory = "_target",
       forwardSearch = {
-        executable = "zathura",
-        args = { "--synctex-forward=%l:1:%f", "%p" },
+        executable = "sioyek",
+        args = {
+          "--reuse-window",
+          "--forward-search-file",
+          "%f",
+          "--forward-search-line",
+          "%l",
+          "%p",
+        }
+      },
+      experimental = {
+        mathEnvironments = { "diagram", "diagram*" },
       },
     },
   },
