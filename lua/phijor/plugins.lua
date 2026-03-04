@@ -156,10 +156,6 @@ pckr.add {
   {
     "kylechui/nvim-surround",
     tag = "*",
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-surround').setup {}
-    end
   },
 
   "tpope/vim-repeat",
