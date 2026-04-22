@@ -118,8 +118,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
       require("phijor.autocommands").enable_formatting_on_write()
     end
 
-    vim.lsp.set_log_level("off")
-    require('vim.lsp.log').set_format_func(vim.inspect)
+    vim.lsp.log.set_level("off")
+    vim.lsp.log.set_format_func(vim.inspect)
 
     local on_attach = M.on_attach[client.name]
     if on_attach then
