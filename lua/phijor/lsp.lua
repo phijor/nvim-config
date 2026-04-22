@@ -107,9 +107,13 @@ M.config = {
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
-    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+    local client_id = args.data.client_id
+    local bufnr = args.data.buf
+    local client = assert(vim.lsp.get_client_by_id(client_id))
 
-    require("phijor.keymap").map_keys_lsp(0)
+    vim.lsp.completion.enable(true, client_id, bufnr)
+
+    require("phijor.keymap").map_keys_lsp(bufnr)
     if client.server_capabilities.document_formatting then
       require("phijor.autocommands").enable_formatting_on_write()
     end
@@ -119,7 +123,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local on_attach = M.on_attach[client.name]
     if on_attach then
-      on_attach(client, 0)
+      on_attach(client, bufnr)
     end
   end
 })
