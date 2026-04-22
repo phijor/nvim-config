@@ -85,6 +85,26 @@ M.on_attach = {
   end,
 }
 
+M.config = {
+  ["*"] = {
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    flags = {
+      debounce_text_changes = 150,
+    },
+  },
+  ["harper_ls"] = {
+    settings = {
+      ["harper-ls"] = {
+        linters = {
+          ["Spaces"] = false,
+          ["NoFrenchSpaces"] = false,
+          ["LongSentences"] = false,
+        },
+      },
+    }
+  }
+}
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
@@ -152,17 +172,14 @@ local function setup_null_ls()
 end
 
 function M.setup()
-  vim.lsp.config("*", {
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
-    flags = {
-      debounce_text_changes = 150,
-    },
-  })
+  for client, config in pairs(M.config) do
+    vim.lsp.config(client, config)
+  end
 
   vim.lsp.enable {
     "hls",           -- Haskell
+    "harper_ls",     -- Harper spell checker
     "html",          -- HTML
-    "ltex_plus",     -- LTeX spell checking
     "lua_ls",        -- Lua
     "nil_ls",        -- Nix
     "pyright",       -- Python
