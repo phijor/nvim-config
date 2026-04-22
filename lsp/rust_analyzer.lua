@@ -1,6 +1,9 @@
 return {
   settings = {
     ["rust-analyzer"] = {
+      assist = {
+        termSearch = { borrowcheck = false },
+      },
       check = { command = "clippy" },
       checkOnSave = true,
       diagnostics = {
