@@ -51,31 +51,14 @@ pckr.add {
 
   -- Autocompletion
   {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
     requires = {
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
+      { 'L3MON4D3/LuaSnip',                         tag = 'v2.*', },
+      { "4e554c4c/blink-cmp-agda-symbols",          run = "git submodule update --init", },
+      { "disrupted/blink-cmp-conventional-commits", }
     },
-  },
-  -- Completion sources
-  "hrsh7th/cmp-path",
-  "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-nvim-lsp-signature-help",
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-emoji",
-  "hrsh7th/cmp-cmdline",
-  "phijor/cmp-agda-symbols",
-  {
-    "davidsierradz/cmp-conventionalcommits",
-    filetype = { "gitcommit" },
-  },
-  {
-    "petertriho/cmp-git",
-    requires = { "nvim-lua/plenary.nvim" },
-    filetype = { "gitcommit" },
-    config = function()
-      require("cmp_git").setup {}
-    end
+    tag = "v1.*",
+    run = "cargo build --release",
   },
 
   -- Treesitter

@@ -68,23 +68,35 @@ highlight SpellCap      ctermbg=none                    cterm=bold,underline
 highlight! link Pmenu Normal
 highlight PmenuSel    cterm=underline
 highlight PmenuThumb  cterm=reverse
+highlight PmenuKind   cterm=italic
 
-" Highlight for completion items (from nvim-cmp)
-highlight CmpItemAbbrMatch ctermfg=cyan
-highlight link CmpItemAbbrMatchFuzzy CmpItemMatch
-highlight CmpItemAbbrDeprecated cterm=strikethrough
+" Highlight for completion items (for blink.cmp)
+highlight BlinkCmpLabelMatch ctermfg=cyan
+highlight BlinkCmpLabelDeprecated cterm=strikethrough
 
-highlight CmpItemKind cterm=italic
+highlight link BlinkCmpKindClass Type
+highlight link BlinkCmpKindEnum BlinkCmpKindClass
+highlight link BlinkCmpKindStruct BlinkCmpKindClass
+highlight link BlinkCmpKindTypeParameter BlinkCmpKindClass
 
-highlight link CmpItemKindClass Type
-highlight link CmpItemKindEnum CmpItemKindClass
-highlight link CmpItemKindStruct CmpItemKindClass
+highlight BlinkCmpKindFunction ctermfg=cyan
+highlight link BlinkCmpKindMethod BlinkCmpKindFunction
 
-highlight CmpItemKindFunction ctermfg=cyan
-highlight link CmpItemKindKeyword Keyword
+highlight link BlinkCmpKindOperator Operator
 
-highlight link CmpItemKindModule Include
-highlight link CmpItemKindVariable Identifier
+highlight link BlinkCmpKindConstant Constant
+highlight link BlinkCmpKindConstructor BlinkCmpKindConstant
+highlight link BlinkCmpKindEnumMember BlinkCmpKindConstant
+highlight link BlinkCmpKindField BlinkCmpKindConstant
+highlight link BlinkCmpKindFile BlinkCmpKindConstant
+highlight link BlinkCmpKindFolder BlinkCmpKindConstant
+
+highlight link BlinkCmpKindKeyword Keyword
+highlight link BlinkCmpKindModule Include
+highlight link BlinkCmpKindInterface Include
+highlight link BlinkCmpKindVariable Identifier
+
+highlight BlinkCmpKindSnippet cterm=italic ctermfg=darkyellow
 
 " LSP highlights
 highlight DiagnosticsError       ctermfg=red

@@ -1,84 +1,98 @@
--- vim: ts=2:
-local cmp = require "cmp"
-local luasnip = require "luasnip"
-
 require("luasnip.loaders.from_lua").load {
   paths = vim.fn.stdpath "config" .. "/snippets"
 }
 
-local kw_pattern = [[[^ \n\t'"(){}:=.!]\+]]
+local function show_symbol(cmp)
+  cmp.show {
+    providers = { "agda_symbols" },
+  }
+end
 
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  preselect = cmp.PreselectMode.None,
-  mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-j>"] = function ()
-      luasnip.jump(1)
-    end,
-    ["<C-k>"] = function ()
-      luasnip.jump(-1)
-    end,
-    ["<C-Space>"] = cmp.mapping.complete {},
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = false,
+--- @type blink.cmp.CompletionConfigPartial
+local completion = {
+  list = {
+    cycle = {
+      from_top = true,
+      from_bottom = true,
     },
-    ["<Tab>"] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        fallback()
-      end
-    end,
-    ["<S-Tab>"] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end,
+    selection = {
+      preselect = false,
+      auto_insert = true,
+    },
   },
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "nvim_lsp_signature_help" },
-  }, {
-    { name = "path" },
-    { name = "buffer", option = { keyword_pattern = kw_pattern }, },
-    { name = "agda-symbols", },
-    { name = "git" },
-    { name = "forester" },
-  }, {
-    { name = "luasnip" }, -- For luasnip users.
-    { name = "emoji" },
-  }),
+  accept = {
+    auto_brackets = {
+      enabled = false,
+    },
+  },
 }
 
-cmp.setup.cmdline(":", {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources {
-    { name = "cmdline" },
-    { name = "agda-symbols", },
-  },
-})
+require("blink.cmp").setup {
+  keymap = {
+    preset = 'none',
+    ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+    ['<C-e>'] = { 'hide', 'fallback' },
+    ["<CR>"] = { "accept", "fallback" },
 
-cmp.setup.cmdline("/", {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources {
-    { name = "buffer",
-      option = {
-        max_indexed_line_length = 200,
-        keyword_pattern = kw_pattern,
+    ["<Tab>"] = { "select_next", "fallback" },
+    ["<S-Tab>"] = { "select_prev", "fallback" },
+
+    ['<C-l>'] = { 'snippet_forward', 'fallback' },
+    ['<C-h>'] = { 'snippet_backward', 'fallback' },
+
+    ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+    ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+
+    ['<C-i>'] = { 'show_signature', 'hide_signature', 'fallback' },
+    ['<C-\\>'] = { show_symbol },
+  },
+  completion = completion,
+  cmdline = {
+    completion = completion,
+  },
+  sources = {
+    default = {
+      'lsp', 'snippets', 'path',
+      'conventional_commits',
+      'buffer',
+    },
+    providers = {
+      path = {
+        opts = {
+          get_cwd = function(_)
+            return vim.fn.getcwd()
+          end
+        },
+      },
+      agda_symbols = {
+        name = 'agda_symbols',
+        module = 'blink-agda-symbols',
+        enabled = function() return true end,
+        opts = {
+          extra = {
+            ["ltr"] = "◁",
+            ["rtr"] = "▷",
+            ["rh"] = "↪",
+            ["rr"] = "↠",
+            ["lrmultimap"] = "⧟",
+          }
+        }
+      },
+      conventional_commits = {
+        name = 'conventional_commits',
+        module = 'blink-cmp-conventional-commits',
+        opts = {
+          completion = {
+            items = {
+              { type = 'wip', doc = 'Work in progress' },
+            },
+          },
+        },
       },
     },
-    { name = "agda-symbols", },
   },
-})
+  snippets = { preset = 'luasnip' },
+  fuzzy = {
+    implementation = "prefer_rust_with_warning"
+  },
+}

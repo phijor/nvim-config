@@ -85,9 +85,10 @@ M.on_attach = {
   end,
 }
 
+
 M.config = {
   ["*"] = {
-    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    capabilities = require("blink.cmp").get_lsp_capabilities(),
     flags = {
       debounce_text_changes = 150,
     },
