@@ -52,6 +52,7 @@ set.softtabstop = -1 -- use value of tabstop
 set.shiftround = true -- align indents to shiftwidth
 set.expandtab = true
 set.wrap = false
+set.nrformats:append "blank" -- do not treat "-12" in "1970-12-01" as a negative number
 
 set.clipboard:append "unnamedplus"
 set.undolevels = 1000
