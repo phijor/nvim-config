@@ -65,10 +65,9 @@ highlight SpellBad      ctermbg=none                    cterm=bold,underline
 highlight SpellCap      ctermbg=none                    cterm=bold,underline
 
 " Completion menu
-highlight Pmenu       ctermfg=none ctermbg=black  ctermfg=none
-highlight PmenuSel                                cterm=bold,reverse
-highlight PmenuSbar   ctermfg=none ctermbg=white
-highlight PmenuThumb  ctermfg=none ctermbg=none   cterm=reverse
+highlight! link Pmenu Normal
+highlight PmenuSel    cterm=underline
+highlight PmenuThumb  cterm=reverse
 
 " Highlight for completion items (from nvim-cmp)
 highlight CmpItemAbbrMatch ctermfg=cyan
