@@ -20,6 +20,17 @@ end
 
 vim.cmd [[command SynStack lua require('phijor.util').syn_stack()]]
 
+function M.restart_session()
+  local session = vim.fn.fnameescape(vim.fn.stdpath('run') .. '/nvim/restart_session.vim')
+
+  vim.opt.sessionoptions = { 'buffers', 'curdir', 'folds' }
+  vim.cmd('mksession! ' .. session)
+
+  vim.cmd('restart source ' .. session)
+end
+
+vim.cmd [[command Restart lua require('phijor.util').restart_session()]]
+
 ---@class AugroupDefinition
 ---@field [1] string | string[] #event
 ---@field [2] string | string[] #pattern
