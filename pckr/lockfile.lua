@@ -12,7 +12,7 @@ return {
   ["https://github.com/chomosuke/typst-preview.nvim"] = { commit = "87db18b8d19c8b0eed399f52e4c527ce5afe4817" },
   ["https://github.com/disrupted/blink-cmp-conventional-commits"] = { commit = "28f46593ef5e03ba7525bdf6075be0c56c6ceb55" },
   ["https://github.com/flazz/vim-colorschemes"] = { commit = "fd8f122cef604330c96a6a6e434682dbdfb878c9" },
-  ["https://github.com/glacambre/firenvim"] = { commit = "b68449b92dfea73a54e4c8f2307fc244a3a574bd" },
+  ["https://github.com/glacambre/firenvim"] = { commit = "ab0e51bfa4e01191d0bfd1eee15388ac816e702e" },
   ["https://github.com/idris-community/idris2-nvim"] = { commit = "ec0fb7f22feeaa8d454e2b11675ae4c493228833" },
   ["https://github.com/j-hui/fidget.nvim"] = { commit = "b61e8af9b8b68ee0ec7da5fb7a8c203aae854f2e" },
   ["https://github.com/junegunn/fzf"] = { commit = "27dab2422e5faa6149b302d941280fcb8f9fe74c" },
