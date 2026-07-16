@@ -107,9 +107,8 @@ pckr.add {
           require('tsht').move { side = side }
         end
       end
-
       key:maps {
-        ["ox m"] = { require('tsht').nodes },
+        ["ox m"] = { [[:<C-U>lua require('tsht').nodes()<CR>]] },
         ["n m"] = { move 'end' },
         ["n M"] = { move 'start' },
       }
