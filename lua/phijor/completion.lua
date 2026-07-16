@@ -8,25 +8,6 @@ local function show_symbol(cmp)
   }
 end
 
---- @type blink.cmp.CompletionConfigPartial
-local completion = {
-  list = {
-    cycle = {
-      from_top = true,
-      from_bottom = true,
-    },
-    selection = {
-      preselect = false,
-      auto_insert = true,
-    },
-  },
-  accept = {
-    auto_brackets = {
-      enabled = false,
-    },
-  },
-}
-
 require("blink.cmp").setup {
   keymap = {
     preset = 'none',
@@ -46,9 +27,32 @@ require("blink.cmp").setup {
     ['<C-i>'] = { 'show_signature', 'hide_signature', 'fallback' },
     ['<C-\\>'] = { show_symbol },
   },
-  completion = completion,
+  completion = {
+    list = {
+      cycle = {
+        from_top = true,
+        from_bottom = true,
+      },
+      selection = {
+        preselect = false,
+        auto_insert = true,
+      },
+    },
+    accept = {
+      auto_brackets = {
+        enabled = false,
+      },
+    },
+  },
   cmdline = {
-    completion = completion,
+    completion = {
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = true,
+        },
+      },
+    },
   },
   sources = {
     default = {
